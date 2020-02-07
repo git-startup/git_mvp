@@ -3,9 +3,9 @@
 <body>
 
 <!--  add project section shuld be hear -->
-    
-    
-    <!-- Header area start   --> 
+
+
+    <!-- Header area start   -->
     <header class="header-area">
         <div class="header-top">
             <div class="container">
@@ -28,11 +28,6 @@
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light top-nav">
-            <a class="navbar-brand brand" href="#">
-                <span class="custom-color w3-xlarge" id="brand">
-                    Git Startup
-                </span>
-            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon custom-bg"></span>
             </button>
@@ -46,67 +41,62 @@
                 </ul>
             </div>
         </nav>
-
     </header>
     <!-- Header area End -->
 
-    <!-- owl-carousel slider Starts -->
+    <!-- inrto start -->
     <section class="carousel-area" id="home">
+      <div class="intro-content">
         <div class="container">
-            
             <div class="row">
-
-                <div class="col-lg-5"></div>
-
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="section-top text-right wow bounceIn" data-wow-duration="1s" data-wow-delay=".5s" data-wow-offset="10" data-wow-iteration="1">
-
-                        @include('layouts.alerts')
-        
-                     <!--   <h2 class="w3-text-black">دعم تقني لفكرتك الناشئة</h2>
-                        <p class="custom-bg w3-padding-16 w3-large" style="padding: 0px 10px;">
-                            قيت استارتب هي داعمك التقني الاول حيث يضم فريقنا افضل المطورين والمصممين كلهم على استعداد كامل لمساعدتك
-                        </p>  -->
-                    </div>
-                </div>
-
-                <div class="col-lg-1"></div>
-
-            </div>
-            <div class="row carousel-slider owl-carousel text-center">
-                <div class="single-slide">
-                    <div class="w3-container w3-white w3-card w3-border">
-                        <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
-                        <span class="fa fa-code w3-xxlarge custom-color"></span>
-                        <p>
-                            Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="single-slide">
-                    <div class="w3-container w3-white w3-card w3-border">
-                        <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
-                        <span class="fa fa-feed w3-xxlarge custom-color"></span>
-                        <p>
-                            Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-                        </p>
-                    </div>
-                </div>
-                <div class="single-slide">
-                    <div class="w3-container w3-white w3-card w3-border">
-                        <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
-                        <span class="fa fa-smile-o w3-xxlarge custom-color"></span>
-                        <p>
-                            Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
-                        </p>
+                      <div class="text-center w3-text-white">
+                        <h1 class="">git Startup</h1>
+                        <p>tech support for your startup idea</p>
+                        <button class="btn custom-bg">Get Started</button>
+                      </div>
                     </div>
                 </div>
             </div>
         </div>
-
+      </div>
     </section>
-    <!-- owl-carousel slider End -->
+    <!-- end intro section -->
 
+    <!-- owl-carousel slider Start -->
+    <div class="container">
+      <div class="row carousel-slider owl-carousel text-center">
+          <div class="single-slide">
+              <div class="w3-container w3-white w3-card w3-border">
+                  <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
+                  <span class="fa fa-code w3-xxlarge custom-color"></span>
+                  <p>
+                      Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
+                  </p>
+              </div>
+          </div>
+          <div class="single-slide">
+              <div class="w3-container w3-white w3-card w3-border">
+                  <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
+                  <span class="fa fa-feed w3-xxlarge custom-color"></span>
+                  <p>
+                      Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
+                  </p>
+              </div>
+          </div>
+          <div class="single-slide">
+              <div class="w3-container w3-white w3-card w3-border">
+                  <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
+                  <span class="fa fa-smile-o w3-xxlarge custom-color"></span>
+                  <p>
+                      Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.
+                  </p>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- end owl-carousel slider section -->
 
     <!-- about-us Section -->
     <section class="container our-community" id="community">
@@ -121,9 +111,9 @@
                 <div class="w3-margin">
                     <h1>جيت استارتب</h1>
                     <p class="user_text w3-large">
-                        اننا في قيت استارتب نسعى لتكوين مجتمع تقني قادر على مجابهة التحديات التي تواجه ريادة الاعمال 
-                        انشئ حسابك لتتمكن من الانضمام لمجتمعنا 
-                    حيث نعمل على اقامة ورش ودورات تربط بين ريادة الاعمال وتقنية المعلومات من اجل تطوير منتجات قادرة على تلبية احتياجات العملاء المتغيرة 
+                        اننا في قيت استارتب نسعى لتكوين مجتمع تقني قادر على مجابهة التحديات التي تواجه ريادة الاعمال
+                        انشئ حسابك لتتمكن من الانضمام لمجتمعنا
+                    حيث نعمل على اقامة ورش ودورات تربط بين ريادة الاعمال وتقنية المعلومات من اجل تطوير منتجات قادرة على تلبية احتياجات العملاء المتغيرة
                     </p>
                     <div class="w3-hide-small">
                         <a href="{{ route('login') }}" class="btn custom-bg w3-margin w3-text-white">تسجيل دخول</a>
@@ -144,7 +134,7 @@
                     <img src="site/images/works/2.jpg" alt="" class="img-fluid">
                     <p class="w3-large w3-margin-top">Lorem ipsum dolor sit amet, has ei ipsum</p>
                     </div>
-                </a> 
+                </a>
             </div>
             <div class="col-md-3 wow bounceInLeft" data-wow-duration="1s" data-wow-delay=".5s">
                 <a href="#">
@@ -152,7 +142,7 @@
                     <img src="site/images/works/4.jpg" alt="" class="img-fluid">
                     <p class="w3-large w3-margin-top">Lorem ipsum dolor sit amet, has ei ipsum</p>
                     </div>
-                </a> 
+                </a>
             </div>
             <div class="col-md-3 wow bounceInLeft" data-wow-duration="1.5s" data-wow-delay=".5s">
                 <a href="#">
@@ -160,7 +150,7 @@
                     <img src="site/images/works/6.jpg" alt="" class="img-fluid">
                     <p class="w3-large w3-margin-top">Lorem ipsum dolor sit amet, has ei ipsum</p>
                     </div>
-                </a> 
+                </a>
             </div>
             <div class="col-md-3 wow bounceInLeft" data-wow-duration="2s" data-wow-delay=".5s">
                 <a href="#">
@@ -168,7 +158,7 @@
                     <img src="site/images/works/5.jpg" alt="" class="img-fluid">
                     <p class="w3-large w3-margin-top">Lorem ipsum dolor sit amet, has ei ipsum</p>
                     </div>
-                </a> 
+                </a>
             </div>
         </div>
     </section>
@@ -198,7 +188,7 @@
             <div class="col-md-4">
                 <div class="w3-border">
                     <img src="site/images/articals/img1.jpg" width="100%" height="100%">
-                    <p class="w3-padding">Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.</p> 
+                    <p class="w3-padding">Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -224,7 +214,7 @@
             <div class="row">
               <div class="col-lg-12 text-right">
                 <p class="w3-margin">
-                    <?php echo date('Y') ?> جميع الحقوق محفوظة لدى   قيت استارتب    
+                    <?php echo date('Y') ?> جميع الحقوق محفوظة لدى   قيت استارتب
                 </p>
               </div>
             </div>
