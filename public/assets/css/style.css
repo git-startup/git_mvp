@@ -1,0 +1,223 @@
+*{margin: 0;padding: 0}
+@font-face {font-family: JF-Flat-regular;src: url("../fonts/Flat_Font_Jozoor/JF-Flat-regular.ttf"); }
+body{font-family: JF-Flat-regular; overflow-x: hidden;} 
+/******************************************************************/
+/* style for top header */
+
+.header-area{margin-top: -10px!important;} 
+.header-top{padding:10px 0;background:#000;color:#fff;position:absolute;top:0;left:0;width:100%;z-index:1}
+.header-top h6{margin-top:6px}
+.header-top h6 i{font-size:18px;position:relative;top:2px}
+
+.header-top .social-links ul{float:left;margin-top:5px}
+.header-top .social-links ul li{display:inline;margin-left:15px}
+.header-top .social-links ul li a , .top-links
+{color:#777;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all 0.3s ease-in-out}
+.header-top .social-links ul li a:hover, .top-links a:hover{color:#f98f9b}
+.top-links{margin-top: 5px;}
+
+#header{padding:14px 0;position:fixed;left:0;top:48px;right:0;transition:all 0.5s;z-index:997;}
+
+#header.header-scrolled{background:#f9f9fd;transition:all 0.5s;top:0}
+
+@media (min-width: 768px) and (max-width: 991.98px){#header{top:0}}
+@media (min-width: 768px) and (max-width: 991.98px){#header{top:0}}
+@media (min-width: 576px) and (max-width: 767.98px){#header{top:0}}
+@media (max-width: 575.98px){#header{top:0}}
+@media (min-width: 768px) and (max-width: 991.98px){.header-top{}}
+@media (min-width: 576px) and (max-width: 767.98px){.header-top{}}
+@media (max-width: 575.98px){.header-top{}}
+
+
+
+/*************************************************************************/
+/* style for navigation bar */
+.top-nav{top: 70px;width: 100%;padding: 10px;}
+.top-nav ul{margin-right: 6%!important;}
+.top-nav li{margin: 0px 10px!important;}
+.navbar-toggler{border: 0px!important;}
+.navbar-toggler-icon{border-radius: 50%;color: #fff!important}
+.brand img{margin-left: 8%;position: absolute;}
+#brand{margin-left: 8%;position: absolute;top: 10px;}
+.nav-links li a{color: #000!important;}
+.nav-links li a:hover{color: #f98f9b!important;}
+
+ #nav-background{background-color: #fff}
+
+@media (max-width: 991.98px){
+  .top-nav{top:50}
+  .brand img{width: 80px;top: 19px;}
+  .top-nav{background-color: #fff;}
+  #nav-background{top: 0px!important;}.brand img{top: 15px;}}
+
+/**********************************************************************************/
+/* style for jumo and carousel area */
+.carousel-area{background-image: url('../../site/images/23.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;width: 100%;height:100%; margin: 75px 0!important;}
+.carousel-slider {margin-top: 50px;padding-bottom: 20px;position: relative;right: -15px;}
+.section-top{margin-top: 50px;}
+
+/***********************************************************/
+.services{list-style-type: none;}
+@media screen and (max-width: 768px){.services li h4{clear: both!important;}}
+/**********************************************************/
+/* style for service section */
+.how-work-area{margin-top: 100px;}
+.how-work-area div button{margin: 0px;}
+.Slides ul{list-style-type: none;}
+
+.how-work-left li{}
+
+
+/**********************************************************/
+/* how work section */
+.our-community{margin-top: 100px;}
+.our-community h2{padding-top: 50px;}
+.our-community img{margin-top: -100px;}
+.how-work-text{position: relative;top: 60px;}
+
+/**********************************************************/
+/*how we work style*/
+.how-work-text h2{width: 80%; margin: 0 0 0 10%;}
+.how-work-text div{width: 80%; margin: 2% 0 0 10%;}
+.how-work-text p, .how-work-text ul{width: 80%; margin: 2% 0 0 10%;list-style-type: none;}
+.how-work-text li{padding: 10px 20px 0 0;font-size: 18px}
+
+.how-work-text button{margin: 1% 10%;}
+
+/***************************************************************/
+/* style for partners area */
+.partners-area{margin-top: 50px;}
+.partners-area img{width: 60%;}
+.partners-area h2{padding-bottom: 80px;margin-top: 150px;}
+.partner_box div{height: 120px;cursor: pointer;}
+
+/******************************************************************/
+/* style for contact section  */
+.contact{margin-top: 100px;}
+.contact-form h2{padding: 20px 0px;}
+.contact-form p{font-size: 18px; padding: 10px 0px;}
+.contact-form input, .contact-form button, .contact-form textarea{margin: 8px 0px;}
+.contact-form input{padding: 25px 10px;}
+
+.contact-info{margin-top: 50px}
+.contact-info-special p{font-size: 16px;word-spacing: 1px;}
+.contact-info-special p span{margin-top: 5px}
+.contact-info-special ul{list-style-type: none;}
+.contact-info-special li{font-size: 18px;margin: 10px 0px 0px -30px;}
+.contact-info-special li a:hover{text-decoration: none;}
+
+/******************************************************************/
+/* for profile page */
+.bar-section {width: 40%;float: right;position: absolute; }
+.profile-link {width: 80%;overflow: hidden;margin: 0px 10% 0px 10%; }
+.profile-link a {padding: 8px 20px;float: right;width: auto;border: none;outline: none;display: block;text-decoration: none;border-top: 3px solid #9e9e9e;margin: 0px 2px;background-color: #fff;text-decoration: none;color: #000; }.profile-link a:hover {color: #000; text-decoration: none;}
+#bars {font-size: 60px;margin: 10px; position: relative;top: -15px;}
+#main_nav_links a:hover{text-decoration: none;}
+.mobile-menue {width: 100%;background-color: #fff;border-top: 3px solid #f98f9b; }
+.mobile-menue li {list-style-type: none;border-bottom: 1px solid #f1f1f1;padding: 10px; }
+.mobile-menue a {text-decoration: none; }
+#profile_menu i {position: relative;top: 20px;float: right;right: -25px;color: #f98f9b; }
+.profile-user-info {max-width: 1500px;height: 300px; }
+.info-icon {width: 100%; }
+.info-icon div {text-align: center;display: inline-block;margin: 3px; }
+
+/*************************************************************/
+/* style for footer */
+.footer{margin-top: 100px;background-color: #000;color: #fff;}
+
+/*************************************************************/
+
+/* for signin and signup page*/
+.sign-form{background-image: url('../img/23.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;width: 100%;height:700px;}
+#login , #register{margin-top: 10%;}
+@media screen and (max-width: 780px) {#login , #register {width: 90%;margin: 20% 5%; } }
+/******************************************************************/
+/* class for all text entred by users */
+.user_text{white-space: pre-wrap;}
+/*========================================================*/
+/* for delete message button in messenger page*/
+#btn_delete_message input{
+  background-color: #fff;
+  border: 0px;
+  cursor: pointer;
+}
+
+/*======================================*/
+/* for add new project page*/
+#add_project{position: absolute;display: none;z-index: 1500;right: 8%;}
+@media screen and (max-width: 640px){#add_project{right: 0px;}}
+/* ============================================*/
+/* for social page*/
+#social_card{height: 550px!important;}
+#social_send_message{cursor: pointer;color: #2196F3;}
+@media screen and (max-width: 766px) {#social_card{height: 400px!important;margin-bottom: 20px;}}
+@media screen and (max-width: 250px) {#social_card{height: 450px!important;margin-bottom: 20px;}}
+/*
+* media  query sectio
+*/
+/* for about us section in home page*/
+@media screen and (max-width: 920px) {
+  .bar-section {
+    width: 80% !important;
+    left: 50%; } }
+
+/* for the cover image in the index page*/
+@media screen and (max-width: 680px) {
+  #cover-img {
+    height: 400px; } }
+
+@media screen and (max-width: 602px) {
+  .sm-2 {
+    width: 49.99999%; } }
+
+@media screen and (max-width: 524px) {
+  .bar-section {
+    width: 90% !important;
+    left: 50%; } }
+
+@media screen and (max-width: 380px) {
+  .sm-2 {
+    width: 100%; }
+  .profile-user-info {
+    height: 350px; } }
+
+@media screen and (max-width: 250px) {
+  #edit-tab {
+    width: 100%; } }
+
+
+/*========================================*/
+/* errors page */
+@media screen and (max-width: 504px) {
+    .errors_image img{width: 100%}
+}
+
+.custom-bg{background-color: #f98f9b!important;color: #fff}
+
+.custom-color{color: #f98f9b;}
+
+.custom-blue-color{color: #7babef!important;}
+
+
+
+/* home page portfolio section*/
+.projects_portfolio{
+  background: url('../../site/images/team_background.jpg');
+  margin-top: 50px;
+  padding: 20px;
+}
+
+/* home page call action*/
+.call-action{
+  margin-top: 80px;
+  background-color: #000;
+  color: #fff;
+}
+
+/* home page our serc=vice section*/
+.our-articals{
+  margin-top: 80px;
+}
+
+
+

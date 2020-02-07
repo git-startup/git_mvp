@@ -1,0 +1,24 @@
+.mvp-list{
+
+}
+.mvp-list p{
+	position: absolute;top: 40px; 
+}
+#mvp-name, #mvp-price{
+	right: 100px;
+}
+.mvp-single{
+	margin-top: 100px;
+	padding: 25px;
+}
+#mvp_btn{
+	margin-top: 20px;
+}
+#mvp_btn:hover{
+	color: #000;
+}
+#mvp-price{
+	top: 10%;
+}
+
+
