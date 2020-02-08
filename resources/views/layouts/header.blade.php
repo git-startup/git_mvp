@@ -30,15 +30,15 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/mail.css') }}">
 
+
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-  
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/dropzone.css') }}">
 
     <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
-  
 
     <!-- Scripts -->
-    <script src="{{ asset('assets/vendor/js/jquery.min.js') }}"></script> 
+    <script src="{{ asset('assets/vendor/js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 </head>

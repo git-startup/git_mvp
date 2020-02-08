@@ -2658,6 +2658,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -70899,7 +70909,7 @@ var render = function() {
                               _vm._v(
                                 "\n                          " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71025,7 +71035,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71086,7 +71096,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71143,7 +71153,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71155,6 +71165,8 @@ var render = function() {
               ],
               1
             ),
+            _vm._v(" "),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "div",
@@ -71200,7 +71212,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71257,7 +71269,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71314,7 +71326,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71367,7 +71379,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71437,7 +71449,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71509,7 +71521,7 @@ var render = function() {
                               _vm._v(
                                 "\n                            " +
                                   _vm._s(errors[0]) +
-                                  " \n                        "
+                                  "\n                        "
                               )
                             ]
                           )
@@ -71553,6 +71565,31 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("hr")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c(
+        "form",
+        {
+          staticClass: "dropzone",
+          attrs: {
+            multiple: "",
+            action: "dropzone/store",
+            method: "post",
+            id: "image-upload",
+            enctype: "multipart/form-data"
+          }
+        },
+        [
+          _c("div", [
+            _c("h3", [_vm._v(" اضغط على الصندوق لتحميل صور العقار ")])
+          ])
+        ]
+      )
     ])
   }
 ]

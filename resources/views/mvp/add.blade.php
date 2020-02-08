@@ -15,10 +15,21 @@
 	  </div>
 	</div>
 
-
+ 
 <script src="{{ asset('assets/js/profile.js') }}"></script>
 <script src="{{ asset('assets/js/mvp.js') }}"></script>
-<script src="{{ asset('assets/js/script.js') }}"></script> 
+<script src="{{ asset('assets/js/script.js') }}"></script>
+
+<!-- dropzone -->
+<script src="{{ asset('assets/vendor/js/dropzone-jquery-plugin.js') }}"></script>
+<script src="{{ asset('assets/vendor/js/dropzone.js') }}"></script>
+
+<script type="text/javascript">
+        Dropzone.options.imageUpload = {
+            maxFilesize         :       1,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif"
+        };
+</script>
 
 
 <!-- Footer -->

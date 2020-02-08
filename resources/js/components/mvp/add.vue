@@ -12,7 +12,7 @@
                         <validation-provider name="name" rules="required|max:25" v-slot="{ errors }">
                             <input class="form-control w3-border w3-margin-bottom w3-right-align" type="text" name="name" v-model="name">
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                              {{ errors[0] }} 
+                              {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
@@ -30,12 +30,12 @@
                         <validation-provider name="description" rules="required|max:250|min:50" v-slot="{ errors }">
                             <textarea rows="8" class="form-control w3-border w3-right-align" name="description" v-model="description"></textarea>
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
                 </div>
-                    
+
                 <hr>
                 <div class="add_project_Slides">
                     <div class="form-group">
@@ -45,7 +45,7 @@
                                 <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="image_one">
                             </div>
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
@@ -56,10 +56,20 @@
                                 <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="image_two">
                             </div>
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
+
+                    <div class="">
+                        <form multiple action="dropzone/store" method="post" class="dropzone" id="image-upload" enctype="multipart/form-data">
+                        <div>
+                            <h3> اضغط على الصندوق لتحميل صور العقار </h3>
+                        </div>
+                      </form>
+                    </div>
+
+
                     <div class="form-group">
                         <validation-provider name="image_three" v-slot="{ errors }">
                             <div class="upload-btn-wrapper">
@@ -67,7 +77,7 @@
                                 <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="image_three">
                             </div>
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
@@ -78,7 +88,7 @@
                                 <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="how_to_use_file">
                             </div>
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
@@ -89,7 +99,7 @@
                                 <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="mvp_file">
                             </div>
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
@@ -98,7 +108,7 @@
                         <validation-provider name="price" rules="required" v-slot="{ errors }">
                             <input class="form-control w3-border w3-margin-bottom w3-right-align" type="number"  name="price">
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
@@ -107,7 +117,7 @@
                         <validation-provider name="slug" rules="required" v-slot="{ errors }">
                             <input class="form-control w3-border w3-margin-bottom w3-right-align" type="text"  name="slug" v-model="slug">
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>
@@ -119,7 +129,7 @@
                         <validation-provider name="dev_tools" rules="required" v-slot="{ errors }">
                             <textarea rows="8" class="form-control w3-border w3-margin-bottom w3-right-align" name="dev_tools" v-model="dev_tools" ></textarea>
                             <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-                                {{ errors[0] }} 
+                                {{ errors[0] }}
                             </span>
                         </validation-provider>
                     </div>

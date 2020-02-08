@@ -12,16 +12,16 @@ use App\Work;
 | contains the "web" middleware group. Now create something great!
 |
 */
- 
-Auth::routes(); 
+
+Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-/* 
-* Route For messenger Controllers 
+/*
+* Route For messenger Controllers
 */
 Route::get('/messenger', 'MessengerController@index')->name('messages.index');
 
@@ -66,7 +66,7 @@ Route::post('/social',[
 ]);
 
 /*
-* For Status in Social Page 
+* For Status in Social Page
 */
 
 Route::get('/status',[
@@ -105,7 +105,7 @@ Route::get('/status/{statusId}/like',[
 
 
 /*
-* Workers 
+* Workers
 */
 
 Route::get('/workers',[
@@ -135,7 +135,7 @@ Route::post('/workers/delete/{id}',[
 Route::get('/workers/count',function(){
     return Work::where('user_id','=',Auth::user()->id)
             ->orwhere('worker_id','=',Auth::user()->id)
-            ->where('accepted',0)->count(); 
+            ->where('accepted',0)->count();
 });
 
 // Article Page =  get all articles
@@ -176,7 +176,7 @@ Route::post('/dashboard/category',[
 
 
 /*
-* Route For Mvp 
+* Route For Mvp
 */
 
 /* Route to upload mvp */
@@ -217,7 +217,7 @@ Route::post('/mvp/edit/{slug}',[
     'middleware' => ['auth']
 ]);
 
-/* 
+/*
 * Rout For Search Users
 */
 
@@ -340,3 +340,10 @@ Route::post('/dashboard/developers/add',[
     'middleware' => ['admin']
 ]);
 
+
+
+
+
+//////
+Route::get('dropzone', 'DropzoneController@dropzone');
+Route::post('dropzone/store', 'DropzoneController@dropzoneStore')->name('dropzone.store');
