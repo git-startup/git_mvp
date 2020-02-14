@@ -9,6 +9,7 @@ class Mvp_galleryController extends Controller
 {
   public function store(Request $request)
   {
+    // i disable csrf token protection for this controoler
       $images = $request->file('files');
 
       foreach ($images as $image) {
