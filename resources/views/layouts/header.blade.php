@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lan="ar">
+<html lan="ar" dir="rtl">
 
 <head>
     <title>Git Startup</title>
@@ -33,7 +33,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/vendor/css/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/dropzone/dropzone.css') }}">
 
     <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
 

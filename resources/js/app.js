@@ -38,6 +38,8 @@ extend('min', {
   message: 'لقد ادحلت اقل من الحد المسموح به '
 });
 
+
+
 import { ValidationProvider } from 'vee-validate';
 
 

@@ -2607,67 +2607,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -70851,703 +70790,422 @@ var render = function() {
         _c("div", { staticClass: "w3-right-align" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "add_project_Slides" }, [
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v("اسم المشروع")]),
-                _vm._v(" "),
-                _c("validation-provider", {
-                  attrs: { name: "name", rules: "required|max:25" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.name,
-                                expression: "name"
-                              }
-                            ],
-                            staticClass:
-                              "form-control w3-border w3-margin-bottom w3-right-align",
-                            attrs: { type: "text", name: "name" },
-                            domProps: { value: _vm.name },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.name = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v("اسم المشروع")]),
+                  _vm._v(" "),
+                  _c("validation-provider", {
+                    attrs: { name: "name", rules: "required|max:25" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function(ref) {
+                          var errors = ref.errors
+                          return [
+                            _c("input", {
                               directives: [
                                 {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.name,
+                                  expression: "name"
                                 }
                               ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
+                              staticClass:
+                                "form-control w3-border w3-margin-bottom w3-right-align",
+                              attrs: { type: "text", name: "name" },
+                              domProps: { value: _vm.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.name = $event.target.value
+                                }
                               }
-                            },
-                            [
-                              _vm._v(
-                                "\n                          " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: errors[0],
+                                    expression: "errors[0]"
+                                  }
+                                ],
+                                class: {
+                                  "form-control": true,
+                                  "alert-danger text-right": errors[0]
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            " +
+                                    _vm._s(errors[0]) +
+                                    "\n                          "
+                                )
+                              ]
+                            )
+                          ]
+                        }
                       }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("نوع المشروع")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.type,
-                      expression: "type"
-                    }
-                  ],
-                  staticClass:
-                    "form-control w3-border w3-margin-bottom w3-right-align",
-                  attrs: { name: "type" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.type = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "web" } }, [
-                    _vm._v("موقع الكتروني ")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "app" } }, [
-                    _vm._v("تطبيق هاتف ")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "system" } }, [
-                    _vm._v("نظام")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "design" } }, [
-                    _vm._v("تصميم")
-                  ])
-                ]
+                    ])
+                  })
+                ],
+                1
               )
             ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v(" وصف عام عن المشروع  ")]),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("نوع المشروع")]),
                 _vm._v(" "),
-                _c("validation-provider", {
-                  attrs: {
-                    name: "description",
-                    rules: "required|max:250|min:50"
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.type,
+                        expression: "type"
+                      }
+                    ],
+                    staticClass:
+                      "form-control w3-border w3-margin-bottom w3-right-align",
+                    attrs: { name: "type" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.type = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
                   },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("textarea", {
-                            directives: [
+                  [
+                    _c("option", { attrs: { value: "web" } }, [
+                      _vm._v("موقع الكتروني ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "app" } }, [
+                      _vm._v("تطبيق هاتف ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "system" } }, [
+                      _vm._v("نظام")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "design" } }, [
+                      _vm._v("تصميم")
+                    ])
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-12" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v(" وصف عام عن المشروع  ")]),
+                  _vm._v(" "),
+                  _c("validation-provider", {
+                    attrs: {
+                      name: "description",
+                      rules: "required|max:250|min:50"
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function(ref) {
+                          var errors = ref.errors
+                          return [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.description,
+                                  expression: "description"
+                                }
+                              ],
+                              staticClass:
+                                "form-control w3-border w3-right-align",
+                              attrs: { rows: "8", name: "description" },
+                              domProps: { value: _vm.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.description = $event.target.value
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.description,
-                                expression: "description"
-                              }
-                            ],
-                            staticClass:
-                              "form-control w3-border w3-right-align",
-                            attrs: { rows: "8", name: "description" },
-                            domProps: { value: _vm.description },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: errors[0],
+                                    expression: "errors[0]"
+                                  }
+                                ],
+                                class: {
+                                  "form-control": true,
+                                  "alert-danger text-right": errors[0]
                                 }
-                                _vm.description = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
-                                }
-                              ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
+                              },
+                              [
+                                _vm._v(
+                                  "\n                              " +
+                                    _vm._s(errors[0]) +
+                                    "\n                          "
+                                )
+                              ]
+                            )
+                          ]
+                        }
                       }
-                    }
-                  ])
-                })
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c("div", { staticClass: "add_project_Slides" }, [
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("validation-provider", {
-                  attrs: { name: "image_one", rules: "required" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("div", { staticClass: "upload-btn-wrapper" }, [
-                            _c("button", { staticClass: "btn" }, [
-                              _vm._v(" صورة للمشروع   ")
-                            ]),
+                    ])
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("validation-provider", {
+                    attrs: { name: "mvp_link", rules: "required" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function(ref) {
+                          var errors = ref.errors
+                          return [
+                            _c("label", [_vm._v(" رابط تحميل المشروع ")]),
                             _vm._v(" "),
                             _c("input", {
                               staticClass:
                                 "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "file", name: "image_one" }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
-                                }
-                              ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("validation-provider", {
-                  attrs: { name: "image_two" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("div", { staticClass: "upload-btn-wrapper" }, [
-                            _c("button", { staticClass: "btn" }, [
-                              _vm._v(" صورة ثانية للمشروع - اختياري  ")
-                            ]),
+                              attrs: { type: "text", name: "mvp_link" }
+                            }),
                             _vm._v(" "),
-                            _c("input", {
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "file", name: "image_two" }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
-                                }
-                              ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("validation-provider", {
-                  attrs: { name: "image_three" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("div", { staticClass: "upload-btn-wrapper" }, [
-                            _c("button", { staticClass: "btn" }, [
-                              _vm._v(" صورة ثالثة للمشروع - اختياري  ")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "file", name: "image_three" }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
-                                }
-                              ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("validation-provider", {
-                  attrs: { name: "how_to_use_file", rules: "required" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("div", { staticClass: "upload-btn-wrapper" }, [
-                            _c("button", { staticClass: "btn" }, [
-                              _vm._v(" ملف يحوي طريقة الاستحدام  ")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "file", name: "how_to_use_file" }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
-                                }
-                              ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("validation-provider", {
-                  attrs: { name: "mvp_file", rules: "required" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("div", { staticClass: "upload-btn-wrapper" }, [
-                            _c("button", { staticClass: "btn" }, [
-                              _vm._v("ملف المشروع ")
-                            ]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "file", name: "mvp_file" }
-                            })
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
-                                }
-                              ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v("  سعر التحميل بالدولار  ")]),
-                _vm._v(" "),
-                _c("validation-provider", {
-                  attrs: { name: "price", rules: "required" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("input", {
-                            staticClass:
-                              "form-control w3-border w3-margin-bottom w3-right-align",
-                            attrs: { type: "number", name: "price" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
-                                }
-                              ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
-                              }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v(" اسم فريد للمشروع ")]),
-                _vm._v(" "),
-                _c("validation-provider", {
-                  attrs: { name: "slug", rules: "required" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("input", {
-                            directives: [
+                            _c(
+                              "span",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.slug,
-                                expression: "slug"
-                              }
-                            ],
-                            staticClass:
-                              "form-control w3-border w3-margin-bottom w3-right-align",
-                            attrs: { type: "text", name: "slug" },
-                            domProps: { value: _vm.slug },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: errors[0],
+                                    expression: "errors[0]"
+                                  }
+                                ],
+                                class: {
+                                  "form-control": true,
+                                  "alert-danger text-right": errors[0]
                                 }
-                                _vm.slug = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
+                              },
+                              [
+                                _vm._v(
+                                  "\n                              " +
+                                    _vm._s(errors[0]) +
+                                    "\n                          "
+                                )
+                              ]
+                            )
+                          ]
+                        }
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v(" اسم فريد للمشروع ")]),
+                  _vm._v(" "),
+                  _c("validation-provider", {
+                    attrs: { name: "slug", rules: "required" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function(ref) {
+                          var errors = ref.errors
+                          return [
+                            _c("input", {
                               directives: [
                                 {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.slug,
+                                  expression: "slug"
                                 }
                               ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
+                              staticClass:
+                                "form-control w3-border w3-margin-bottom w3-right-align",
+                              attrs: { type: "text", name: "slug" },
+                              domProps: { value: _vm.slug },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.slug = $event.target.value
+                                }
                               }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
-                      }
-                    }
-                  ])
-                })
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "add_project_Slides" }, [
-            _c(
-              "div",
-              { staticClass: "form-group" },
-              [
-                _c("label", [_vm._v(" الادوات المستخدمة في التطوير ")]),
-                _vm._v(" "),
-                _c("validation-provider", {
-                  attrs: { name: "dev_tools", rules: "required" },
-                  scopedSlots: _vm._u([
-                    {
-                      key: "default",
-                      fn: function(ref) {
-                        var errors = ref.errors
-                        return [
-                          _c("textarea", {
-                            directives: [
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
                               {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.dev_tools,
-                                expression: "dev_tools"
-                              }
-                            ],
-                            staticClass:
-                              "form-control w3-border w3-margin-bottom w3-right-align",
-                            attrs: { rows: "8", name: "dev_tools" },
-                            domProps: { value: _vm.dev_tools },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: errors[0],
+                                    expression: "errors[0]"
+                                  }
+                                ],
+                                class: {
+                                  "form-control": true,
+                                  "alert-danger text-right": errors[0]
                                 }
-                                _vm.dev_tools = $event.target.value
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
+                              },
+                              [
+                                _vm._v(
+                                  "\n                              " +
+                                    _vm._s(errors[0]) +
+                                    "\n                          "
+                                )
+                              ]
+                            )
+                          ]
+                        }
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-12" }, [
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c("label", [_vm._v(" الادوات المستخدمة في التطوير ")]),
+                  _vm._v(" "),
+                  _c("validation-provider", {
+                    attrs: { name: "dev_tools", rules: "required" },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "default",
+                        fn: function(ref) {
+                          var errors = ref.errors
+                          return [
+                            _c("textarea", {
                               directives: [
                                 {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: errors[0],
-                                  expression: "errors[0]"
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.dev_tools,
+                                  expression: "dev_tools"
                                 }
                               ],
-                              class: {
-                                "form-control": true,
-                                "alert-danger text-right": errors[0]
+                              staticClass:
+                                "form-control w3-border w3-margin-bottom w3-right-align",
+                              attrs: { rows: "8", name: "dev_tools" },
+                              domProps: { value: _vm.dev_tools },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.dev_tools = $event.target.value
+                                }
                               }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(errors[0]) +
-                                  "\n                        "
-                              )
-                            ]
-                          )
-                        ]
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                directives: [
+                                  {
+                                    name: "show",
+                                    rawName: "v-show",
+                                    value: errors[0],
+                                    expression: "errors[0]"
+                                  }
+                                ],
+                                class: {
+                                  "form-control": true,
+                                  "alert-danger text-right": errors[0]
+                                }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                              " +
+                                    _vm._s(errors[0]) +
+                                    "\n                          "
+                                )
+                              ]
+                            )
+                          ]
+                        }
                       }
-                    }
-                  ])
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("input", {
-              attrs: { type: "hidden", name: "_token" },
-              domProps: { value: _vm.csrf }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "w3-button custom-bg w3-hover-black w3-section w3-padding w3-right w3-hover-black",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("اضف المشروع")]
-            )
+                    ])
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("input", {
+                attrs: { type: "hidden", name: "_token" },
+                domProps: { value: _vm.csrf }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "w3-button w3-black w3-hover-black w3-section w3-padding w3-right w3-hover-black",
+                  attrs: { id: "add_file", type: "submit" }
+                },
+                [_vm._v("اضف المشروع")]
+              )
+            ])
           ])
         ])
       ]
@@ -71560,36 +71218,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h4", { staticClass: "w3-margin-top w3-margin-bottom" }, [
-        _vm._v("ابدأ مشروعك معنا الان")
+      _c("h4", { staticClass: "w3-margin-top text-center w3-margin-bottom" }, [
+        _vm._v(" اضافة مشروع جديد  ")
       ]),
       _vm._v(" "),
       _c("hr")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", {}, [
-      _c(
-        "form",
-        {
-          staticClass: "dropzone",
-          attrs: {
-            multiple: "",
-            action: "dropzone/store",
-            method: "post",
-            id: "image-upload",
-            enctype: "multipart/form-data"
-          }
-        },
-        [
-          _c("div", [
-            _c("h3", [_vm._v(" اضغط على الصندوق لتحميل صور العقار ")])
-          ])
-        ]
-      )
     ])
   }
 ]

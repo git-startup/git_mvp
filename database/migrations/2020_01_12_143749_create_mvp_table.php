@@ -24,12 +24,7 @@ class CreateMvpTable extends Migration
             $table->longText('description');
             $table->string('slug')->unique();
             $table->text('dev_tools');
-            $table->string('how_to_use_file'); 
-            $table->string('mvp_file');
-            $table->integer('price');
-            $table->string('image_one');
-            $table->string('image_two');
-            $table->string('image_three');
+            $table->string('mvp_link');
             $table->integer('is_approved')->unsigned()->default(0);
             $table->integer('is_available')->unsigned()->default(1);
             $table->timestamps();

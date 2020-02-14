@@ -202,6 +202,7 @@ Route::get('/mvp/search/{type}',[
 Route::get('/mvp/{slug}',[
     'uses' => 'MvpController@getMvp',
     'as' => 'mvp.index',
+    'middleware' => ['auth']
 ]);
 Route::post('/mvp/{slug}',[
     'uses' => 'MvpController@postMvp',
@@ -233,7 +234,7 @@ Route::get('/users/{user_interest}',[
 * Routes For Admin panel
 */
 
-Route::get('/dashboard_',[
+Route::get('/admin-dashboard',[
     'uses' => 'DashboardController@getIndex',
     'as' => 'dashboard.index',
     'middleware' => ['admin']
@@ -343,7 +344,4 @@ Route::post('/dashboard/developers/add',[
 
 
 
-
-//////
-Route::get('dropzone', 'DropzoneController@dropzone');
-Route::post('dropzone/store', 'DropzoneController@dropzoneStore')->name('dropzone.store');
+Route::post('mvp/gallery', 'Mvp_galleryController@store')->name('gallery.store');

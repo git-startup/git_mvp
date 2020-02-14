@@ -10,7 +10,7 @@ use App\Mvp;
 use App\Status;
 use App\Message;
 use App\Tickets;
-use App\Category; 
+use App\Category;
 use App\Articles;
 use Mail;
 use App\Mail\NotifyUsersForNewArticle;
@@ -84,7 +84,7 @@ class DashboardController extends Controller
             'phone' => $request->input('phone'),
             'type' => $request->input('type'),
             'image'    => $avatar,
-            'password' => Hash::make($request->input('password')), 
+            'password' => Hash::make($request->input('password')),
         ]);
 
         return redirect()->back()->with('info','تم اضافة مستخدم بنجاح');
@@ -121,7 +121,7 @@ class DashboardController extends Controller
         }
     }
 
-    // to get users posts 
+    // to get users posts
      public function getStatus(Request $request){
 
          if($request->input('delete_status')){
@@ -137,7 +137,7 @@ class DashboardController extends Controller
 
      }
 
-     // to publish new article 
+     // to publish new article
 	public function getPublishArticle(){
 		$category = Category::where('is_active',1)->get();
 		return view('dashboard.publish_article')
@@ -172,7 +172,7 @@ class DashboardController extends Controller
 
 	        $newArticle['image'] = $image;
         }
-        // to upload bottom image 
+        // to upload bottom image
         if($request->hasFile('bottom_image')){
         	$image = $request->file('bottom_image');
 	        $imageUrl = 'site/articles/'.time().'.'.'sub_image'.'.'.$image->getClientOriginalExtension();
@@ -186,13 +186,13 @@ class DashboardController extends Controller
         $newArticle = Articles::create($newArticle);
 
         //Notify all users about the new article
-        foreach (User::get() as $user) { 
-            Mail::to($user->email)->queue(new NotifyUsersForNewArticle($newArticle, $user)); 
+        foreach (User::get() as $user) {
+            Mail::to($user->email)->queue(new NotifyUsersForNewArticle($newArticle, $user));
         }
 
         return redirect()->back()->with('info','article has been published');
 	}
-	// to list all published articles 
+	// to list all published articles
 	public function getPublishedArticles(){
 		$articles = Articles::OrderBy('created_at','desc')->get();
 		return view('dashboard.published_articles')
@@ -245,7 +245,7 @@ class DashboardController extends Controller
 				'image'          => $imageUrl,
 				'bottom_image'   => $bottomImageUrl
 			]);
-			
+
 			return redirect()->back()->with('info','article has been updated');
 
 		}
@@ -253,7 +253,7 @@ class DashboardController extends Controller
 			$article = Articles::where('id',$request->article_id)->first();
 			// to delete article image file
 			File::delete($article->image);
-			if($article->bottom_image){	
+			if($article->bottom_image){
 				File::delete($article->bottom_image);
 			}
 			Articles::where('id',$request->article_id)->delete();
