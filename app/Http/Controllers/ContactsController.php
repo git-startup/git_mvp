@@ -12,7 +12,7 @@ use Auth;
 
 class ContactsController extends Controller
 {
-     public function get() 
+     public function get()  
     {
         
         // get all users except the authenticated one

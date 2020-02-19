@@ -27,7 +27,6 @@ Route::get('/messenger', 'MessengerController@index')->name('messages.index');
 
 Route::get('/messenger/count',function(){
     return Message::where('to','=',Auth::user()->id)
-            ->orwhere('from','=',Auth::user()->id)
             ->where('read',0)->count();
 });
 
