@@ -1,5 +1,5 @@
 
-// for profile page 
+// for profile page
 var profile_nav_menu = document.getElementById("profile_menu");
 // to hide or show the profile menu
 function open_profile_menue() {
@@ -23,7 +23,7 @@ function open_main_nav(){
 
 // User Avatar Dropdown Menu
 function user_avatar_menu() {
-  var profile_menu = document.getElementById("drop_content_profile"); 
+  var profile_menu = document.getElementById("drop_content_profile");
   if (profile_menu.style.display === 'block') {
       profile_menu.style.display = 'none';
   } else {
@@ -57,4 +57,3 @@ $('.owl-carousel').owlCarousel({
         }
     }
 });
-

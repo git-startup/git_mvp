@@ -1,64 +1,49 @@
 @include ('layouts.header')
 
-<body>
+<body dir="">
 
 <!--  add project section shuld be hear -->
 
 
     <!-- Header area start   -->
     <header class="header-area">
-        <div class="header-top">
-            <div class="container">
-                <div class="">
-                    <div class="">
-                        <div class="social-links">
-                            <ul>
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="w3-right top-links">
-                        <span class="w3-margin"><a href="#">سياسة الاستخدام</a></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <nav class="navbar navbar-expand-lg navbar-light top-nav">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon custom-bg"></span>
+          </button>
 
-        <nav class="navbar navbar-expand-lg navbar-light top-nav">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon custom-bg"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <hr class="">
-                <ul class="navbar-nav ml-auto nav-links w3-right-align">
-                  <li><a class="nav-item nav-link w3-large" href="#community"> اخر المقالات  </a></li>
-                  <li><a class="nav-item nav-link w3-large" href="#services">مشاريع مميزة</a></li>
-                  <li><a class="nav-item nav-link w3-large" onclick="open_add_project()" href="#">ابدء مشروعك معنا</a></li>
-                </ul>
-            </div>
-        </nav>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <hr class="">
+              <ul class="navbar-nav ml-auto nav-links w3-right-align">
+                <li><a class="nav-item nav-link" href="#community"> اخر المقالات  </a></li>
+                <li><a class="nav-item nav-link" href="#services">مشاريع مميزة</a></li>
+                <li><a class="nav-item nav-link" onclick="open_add_project()" href="#">ابدء مشروعك معنا</a></li>
+              </ul>
+          </div>
+      </nav>
     </header>
     <!-- Header area End -->
 
     <!-- inrto start -->
-    <section class="carousel-area" id="home">
+    <section class="carousel-area">
       <div class="intro-content">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-top text-right wow bounceIn" data-wow-duration="1s" data-wow-delay=".5s" data-wow-offset="10" data-wow-iteration="1">
-                      <div class="text-center w3-text-white">
-                        <h1 class="">git Startup</h1>
-                        <p>tech support for your startup idea</p>
-                        <button class="btn custom-bg">Get Started</button>
-                      </div>
-                    </div>
-                </div>
+          <div class="row">
+            <div class="w3-model-content" style="width: 60%;margin: 0 20%">
+              <div class="section-top text-center w3-text-white wow bounceIn" data-wow-duration="1s" data-wow-delay=".5s" data-wow-offset="10" data-wow-iteration="1">
+                <h1 class="w3-xxlarge">Git Startup</h1>
+                <p class="w3-xxlarge">دعم تفني لفكرتك الناشئة</p>
+              </div>
+              <div class="">
+                <form method="POST" action="{{ route('register') }}">
+                  @csrf
+                  <div id="home_register">
+                    <home_register-app></home_register-app>
+                  </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
       </div>
     </section>
@@ -66,9 +51,9 @@
 
     <!-- owl-carousel slider Start -->
     <div class="container">
-      <div class="row carousel-slider owl-carousel text-center">
+      <div class="carousel-slider owl-carousel text-center">
           <div class="single-slide">
-              <div class="w3-container w3-white w3-card w3-border">
+              <div class="w3-container w3-card w3-border w3-black">
                   <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
                   <span class="fa fa-code w3-xxlarge custom-color"></span>
                   <p>
@@ -77,7 +62,7 @@
               </div>
           </div>
           <div class="single-slide">
-              <div class="w3-container w3-white w3-card w3-border">
+              <div class="w3-container w3-white w3-card w3-border w3-black">
                   <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
                   <span class="fa fa-feed w3-xxlarge custom-color"></span>
                   <p>
@@ -86,7 +71,7 @@
               </div>
           </div>
           <div class="single-slide">
-              <div class="w3-container w3-white w3-card w3-border">
+              <div class="w3-container w3-white w3-card w3-border w3-black">
                   <h5 class="w3-margin w3-large">Lorem ipsum dolor sit amet,</h4>
                   <span class="fa fa-smile-o w3-xxlarge custom-color"></span>
                   <p>
@@ -99,18 +84,11 @@
     <!-- end owl-carousel slider section -->
 
     <!-- about-us Section -->
-    <section class="container our-community" id="community">
+    <section class="container our-community" id="community" dir="rtl">
         <div class="row text-right">
-            <div class="col-md-5">
-                <div class="">
-                    <img src="site/images/logo.png" width="100%">
-                </div>
-            </div>
-            <div class="col-md-1"></div>
             <div class="col-md-6">
                 <div class="w3-margin">
-                    <h1>جيت استارتب</h1>
-                    <p class="user_text w3-large">
+                    <p class="w3-large">
                         اننا في قيت استارتب نسعى لتكوين مجتمع تقني قادر على مجابهة التحديات التي تواجه ريادة الاعمال
                         انشئ حسابك لتتمكن من الانضمام لمجتمعنا
                     حيث نعمل على اقامة ورش ودورات تربط بين ريادة الاعمال وتقنية المعلومات من اجل تطوير منتجات قادرة على تلبية احتياجات العملاء المتغيرة
@@ -119,6 +97,11 @@
                         <a href="{{ route('login') }}" class="btn custom-bg w3-margin w3-text-white">تسجيل دخول</a>
                         <a href="{{ route('register') }}" class="btn custom-bg w3-margin w3-text-white">انشاء حساب جديد</a>
                     </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="">
+                    <img src="site/images/logo.png" width="100%">
                 </div>
             </div>
         </div>

@@ -84,6 +84,8 @@ Vue.component('login-app',require('./components/auth/loginComponent.vue').defaul
 
 Vue.component('register-app',require('./components/auth/registerComponent.vue').default);
 
+Vue.component('home_register-app',require('./components/site/homeRegisterComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -141,4 +143,8 @@ const work_accept = new Vue({
 
 const notification = new Vue({
     el: '#notification',
+});
+
+const home_register = new Vue({
+    el: '#home_register',
 });
