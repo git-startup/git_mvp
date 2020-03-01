@@ -12,7 +12,7 @@
       <img src="{{ asset($profile->image) }}" style="border-radius: 50%" class="w3-image w3-margin w3-round-large" width="100" height="100">
       <h3>{{ $profile->name }}</h3>
     </div>
- 
+
     <div class="w3-row-padding w3-center info-icon" style="margin:32px 0;">
       @if(!$profile->location)
         <div class="alert alert-info"><i class="fa fa-map-marker"></i> قم يتحديد موقعك </div>
@@ -118,16 +118,18 @@
                   <div class="w3-container w3-margin">
                     <div class="col-lg-12 w3-padding w3-light-grey">
                       <h3><a class="w3-text-blue" href="/mvp/edit/{{ $mvp->slug }}"> {{ $mvp->name }} <i class="fa fa-wrench"></i> </a></h3>
-                      <div class="row w3-margin">
-                        <hr>
-                        <div class="col-md-6 w3-white">
-                          <p class="w3-padding">تحميل  {{ $mvp->report->downloads }}</p> 
+                      @if($mvp->report)
+                        <div class="row w3-margin">
+                          <hr>
+                          <div class="col-md-6 w3-white">
+                            <p class="w3-padding">تحميل  {{ $mvp->report->downloads }}</p>
+                          </div>
+                          <div class="col-md-6 w3-white">
+                            <p class="w3-padding">مشاهدة  {{ $mvp->report->views }}</p>
+                          </div>
+                          <hr>
                         </div>
-                        <div class="col-md-6 w3-white">
-                          <p class="w3-padding">مشاهدة  {{ $mvp->report->views }}</p>
-                        </div>
-                        <hr>
-                      </div>
+                      @endif
                       <form action="/profile/{{ $profile->id }}" method="post">
                         <input type="hidden" name="$request->mvp_id" value="{{ $mvp->id }}">
                         @csrf
@@ -137,7 +139,7 @@
                         @elseif($mvp->is_available == 0)
                           <input type="submit" name="is_available" class="btn btn-success w3-margin-bottom" value=" تفعيل المشروع ">
                         @endif
-                      </form> 
+                      </form>
                     </div>
                   </div>
                 @endforeach
@@ -229,9 +231,9 @@
                 @if ($errors->has('skills'))
                   <span class="help-block">{{ $errors->first('skills') }}</span>
                 @endif
-                
+
               </p>
-              
+
               <p class="form-group{{ $errors->has('description') ? ' alert alert-danger' : '' }}">
                 <label for="description">نبذة مختصرة عنك</label>
                 <textarea rows="6" class="form-control w3-right-align w3-padding-16 w3-border" id="description" name="description">{{ $profile->description }}</textarea>
@@ -266,8 +268,8 @@
           </div>
         @elseif(!Auth::user()->hasWorkRequestPending($profile))
           <div class="w3-container" id="work_request">
-            <work_request-app :user="{{ $profile }}"></work_request-app> 
-          </div> 
+            <work_request-app :user="{{ $profile }}"></work_request-app>
+          </div>
         @else
           <div class="alert alert-info">
             <p>في انتظار الموافقة على طلب العمل</p>
@@ -281,7 +283,7 @@
 
 <!-- End page content -->
 </div>
-  
+
 <script src="{{ asset('assets/js/profile.js') }}"></script>
 <script src="{{ asset('assets/js/mvp.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
@@ -289,4 +291,3 @@
 
 <!-- Footer -->
 @include('layouts.footer')
-

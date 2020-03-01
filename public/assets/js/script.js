@@ -12,7 +12,7 @@ function open_profile_menue() {
 
 // to hide or show the main navigation
 function open_main_nav(){
-
+  var main_nav_bar_links = document.getElementById('main_nav_links');
   if (main_nav_bar_links.className == 'w3-hide-small') {
       main_nav_bar_links.className = 'w3-show';
   } else {

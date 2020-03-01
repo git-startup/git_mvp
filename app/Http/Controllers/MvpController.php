@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Mvp;
+use App\User;
 
 class MvpController extends Controller{
 
 	// to get add mvp page
 	public function getAdd(){
-       return view('mvp.add');
+			$users = User::get();
+      return view('mvp.add')
+			 				->with('users',$users);
     }
     // to add mvp
     public function postAdd(Request $request){
+
     	$this->validate($request,[
             'name'            => 'required|string',
             'type'            => 'required|string',
@@ -35,7 +39,9 @@ class MvpController extends Controller{
             'description' => $request->description,
             'slug'        => $request->slug,
             'dev_tools'   => $request->dev_tools,
-            'mvp_link'    => $request->mvp_link
+            'mvp_link'    => $request->mvp_link,
+						'is_public'   => $request->is_public,
+						'client_id'   => $request->client_id
         ]);
 
 	    return view('mvp.index',['slug' => $request->slug])
@@ -44,12 +50,18 @@ class MvpController extends Controller{
 
 	// to get single mvp
 	public function getMvp($slug){
-		$mvp = Mvp::where('slug',$slug)->first();
+		$mvp = Mvp::where('slug',$slug)
+								->where('is_approved',1)
+								->where('is_available',1)->first();
 		if($mvp){
-			return view('mvp.index')
-		    	->with('mvp',$mvp);
+			if($mvp->is_public == 1){
+				return view('mvp.index')->with('mvp',$mvp);
+			}
+			elseif($mvp->client_id == Auth::user()->id){
+				return view('mvp.index')->with('mvp',$mvp);
+			}else 	return redirect()->back()->with('info','لا تمتلك صلاحية الوصول لهذه الصفحة');
 		}else{
-			return redirect()->back()->with('info','الرجاء التأكد من العنوان الصحيح');
+			return redirect()->back()->with('info','هذه الصفحة غير متاحة حاليا');
 		}
  	}
     // to get edit mvp page

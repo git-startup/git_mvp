@@ -2607,12 +2607,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_0__["ValidationProvider"]
   },
   props: {
+    users: {
+      type: Array,
+      required: true
+    },
     user: {
       type: Object,
       required: true
@@ -2626,7 +2639,8 @@ __webpack_require__.r(__webpack_exports__);
       image: '',
       slug: '',
       dev_tools: '',
-      csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      client_id: client_id,
+      is_public: 1
     };
   }
 });
@@ -2682,6 +2696,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -69889,7 +69908,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "w3-margin-top" }, [
     _c(
       "div",
       { staticClass: "form-group text-right" },
@@ -70253,15 +70272,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group text-right" }, [
+    return _c("div", { staticClass: "form-group" }, [
       _c("select", { staticClass: "form-control", attrs: { name: "type" } }, [
-        _c("option", { attrs: { value: "business_owner" } }, [
-          _vm._v("رائد اعمال")
-        ]),
+        _c(
+          "option",
+          { staticClass: "w3-right-align", attrs: { value: "business_owner" } },
+          [_vm._v("رائد اعمال")]
+        ),
         _vm._v(" "),
-        _c("option", { attrs: { value: "developer" } }, [
-          _vm._v("مبرمج \\ مطور")
-        ])
+        _c(
+          "option",
+          { staticClass: "w3-right-align", attrs: { value: "developer" } },
+          [_vm._v("مبرمج \\ مطور")]
+        )
       ])
     ])
   },
@@ -70865,439 +70888,498 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "form",
-      {
-        attrs: {
-          action: "/mvp/add",
-          method: "post",
-          enctype: "multipart/form-data"
-        }
-      },
-      [
-        _c("div", { staticClass: "w3-right-align" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", [_vm._v("اسم المشروع")]),
-                  _vm._v(" "),
-                  _c("validation-provider", {
-                    attrs: { name: "name", rules: "required|max:25" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function(ref) {
-                          var errors = ref.errors
-                          return [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.name,
-                                  expression: "name"
-                                }
-                              ],
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "text", name: "name" },
-                              domProps: { value: _vm.name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.name = $event.target.value
-                                }
+    _c("div", { staticClass: "w3-right-align" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", [_vm._v("اسم المشروع")]),
+              _vm._v(" "),
+              _c("validation-provider", {
+                attrs: { name: "name", rules: "required|max:25" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(ref) {
+                      var errors = ref.errors
+                      return [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.name,
+                              expression: "name"
+                            }
+                          ],
+                          staticClass:
+                            "form-control w3-border w3-margin-bottom w3-right-align",
+                          attrs: { type: "text", name: "name" },
+                          domProps: { value: _vm.name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
                               }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
+                              _vm.name = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
                               {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: errors[0],
-                                    expression: "errors[0]"
-                                  }
-                                ],
-                                class: {
-                                  "form-control": true,
-                                  "alert-danger text-right": errors[0]
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                            " +
-                                    _vm._s(errors[0]) +
-                                    "\n                          "
-                                )
-                              ]
+                                name: "show",
+                                rawName: "v-show",
+                                value: errors[0],
+                                expression: "errors[0]"
+                              }
+                            ],
+                            class: {
+                              "form-control": true,
+                              "alert-danger text-right": errors[0]
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                      " +
+                                _vm._s(errors[0]) +
+                                "\n                    "
                             )
                           ]
-                        }
-                      }
-                    ])
-                  })
-                ],
-                1
-              )
-            ]),
+                        )
+                      ]
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("نوع المشروع")]),
             _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("div", { staticClass: "form-group" }, [
-                _c("label", [_vm._v("نوع المشروع")]),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.type,
+                    expression: "type"
+                  }
+                ],
+                staticClass:
+                  "form-control w3-border w3-margin-bottom w3-right-align",
+                attrs: { name: "type" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.type = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "web" } }, [
+                  _vm._v("موقع الكتروني ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "app" } }, [
+                  _vm._v("تطبيق هاتف ")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "system" } }, [_vm._v("نظام")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "design" } }, [_vm._v("تصميم")])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", [_vm._v(" وصف عام عن المشروع  ")]),
+              _vm._v(" "),
+              _c("validation-provider", {
+                attrs: {
+                  name: "description",
+                  rules: "required|max:250|min:50"
+                },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(ref) {
+                      var errors = ref.errors
+                      return [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.description,
+                              expression: "description"
+                            }
+                          ],
+                          staticClass: "form-control w3-border w3-right-align",
+                          attrs: { rows: "8", name: "description" },
+                          domProps: { value: _vm.description },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.description = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: errors[0],
+                                expression: "errors[0]"
+                              }
+                            ],
+                            class: {
+                              "form-control": true,
+                              "alert-danger text-right": errors[0]
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(errors[0]) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ]
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("validation-provider", {
+                attrs: { name: "mvp_link", rules: "required" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(ref) {
+                      var errors = ref.errors
+                      return [
+                        _c("label", [_vm._v(" رابط تحميل المشروع ")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass:
+                            "form-control w3-border w3-margin-bottom w3-right-align",
+                          attrs: { type: "text", name: "mvp_link" }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: errors[0],
+                                expression: "errors[0]"
+                              }
+                            ],
+                            class: {
+                              "form-control": true,
+                              "alert-danger text-right": errors[0]
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(errors[0]) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ]
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", [_vm._v(" اسم فريد للمشروع ")]),
+              _vm._v(" "),
+              _c("validation-provider", {
+                attrs: { name: "slug", rules: "required" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(ref) {
+                      var errors = ref.errors
+                      return [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.slug,
+                              expression: "slug"
+                            }
+                          ],
+                          staticClass:
+                            "form-control w3-border w3-margin-bottom w3-right-align",
+                          attrs: { type: "text", name: "slug" },
+                          domProps: { value: _vm.slug },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.slug = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: errors[0],
+                                expression: "errors[0]"
+                              }
+                            ],
+                            class: {
+                              "form-control": true,
+                              "alert-danger text-right": errors[0]
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(errors[0]) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ]
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("label", [_vm._v(" الادوات المستخدمة في التطوير ")]),
+              _vm._v(" "),
+              _c("validation-provider", {
+                attrs: { name: "dev_tools", rules: "required" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(ref) {
+                      var errors = ref.errors
+                      return [
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.dev_tools,
+                              expression: "dev_tools"
+                            }
+                          ],
+                          staticClass:
+                            "form-control w3-border w3-margin-bottom w3-right-align",
+                          attrs: { rows: "8", name: "dev_tools" },
+                          domProps: { value: _vm.dev_tools },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.dev_tools = $event.target.value
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: errors[0],
+                                expression: "errors[0]"
+                              }
+                            ],
+                            class: {
+                              "form-control": true,
+                              "alert-danger text-right": errors[0]
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(errors[0]) +
+                                "\n                    "
+                            )
+                          ]
+                        )
+                      ]
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _vm._v("\n              مشروع خاص\n              "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.is_public,
+                  expression: "is_public"
+                }
+              ],
+              attrs: {
+                type: "checkbox",
+                name: "is_public",
+                value: "0",
+                onclick:
+                  "document.getElementById('client_id').style.display = 'block'"
+              },
+              domProps: {
+                checked: Array.isArray(_vm.is_public)
+                  ? _vm._i(_vm.is_public, "0") > -1
+                  : _vm.is_public
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.is_public,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = "0",
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && (_vm.is_public = $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        (_vm.is_public = $$a
+                          .slice(0, $$i)
+                          .concat($$a.slice($$i + 1)))
+                    }
+                  } else {
+                    _vm.is_public = $$c
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticStyle: { display: "none" }, attrs: { id: "client_id" } },
+              [
+                _c("label", { attrs: { for: "" } }, [
+                  _vm._v("اختر صاحب المشروع")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "mode",
+                      rawName: "v-mode",
+                      value: _vm.client_id,
+                      expression: "client_id"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { list: "clientList", name: "client_id" }
+                }),
                 _vm._v(" "),
                 _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.type,
-                        expression: "type"
-                      }
-                    ],
-                    staticClass:
-                      "form-control w3-border w3-margin-bottom w3-right-align",
-                    attrs: { name: "type" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.type = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "web" } }, [
-                      _vm._v("موقع الكتروني ")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "app" } }, [
-                      _vm._v("تطبيق هاتف ")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "system" } }, [
-                      _vm._v("نظام")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "design" } }, [
-                      _vm._v("تصميم")
+                  "datalist",
+                  { attrs: { id: "clientList" } },
+                  _vm._l(_vm.users, function(user) {
+                    return _c("option", { domProps: { value: user.id } }, [
+                      _vm._v(_vm._s(user.name))
                     ])
-                  ]
+                  }),
+                  0
                 )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-12" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", [_vm._v(" وصف عام عن المشروع  ")]),
-                  _vm._v(" "),
-                  _c("validation-provider", {
-                    attrs: {
-                      name: "description",
-                      rules: "required|max:250|min:50"
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function(ref) {
-                          var errors = ref.errors
-                          return [
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.description,
-                                  expression: "description"
-                                }
-                              ],
-                              staticClass:
-                                "form-control w3-border w3-right-align",
-                              attrs: { rows: "8", name: "description" },
-                              domProps: { value: _vm.description },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.description = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: errors[0],
-                                    expression: "errors[0]"
-                                  }
-                                ],
-                                class: {
-                                  "form-control": true,
-                                  "alert-danger text-right": errors[0]
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                              " +
-                                    _vm._s(errors[0]) +
-                                    "\n                          "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      }
-                    ])
-                  })
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("validation-provider", {
-                    attrs: { name: "mvp_link", rules: "required" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function(ref) {
-                          var errors = ref.errors
-                          return [
-                            _c("label", [_vm._v(" رابط تحميل المشروع ")]),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "text", name: "mvp_link" }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: errors[0],
-                                    expression: "errors[0]"
-                                  }
-                                ],
-                                class: {
-                                  "form-control": true,
-                                  "alert-danger text-right": errors[0]
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                              " +
-                                    _vm._s(errors[0]) +
-                                    "\n                          "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      }
-                    ])
-                  })
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", [_vm._v(" اسم فريد للمشروع ")]),
-                  _vm._v(" "),
-                  _c("validation-provider", {
-                    attrs: { name: "slug", rules: "required" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function(ref) {
-                          var errors = ref.errors
-                          return [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.slug,
-                                  expression: "slug"
-                                }
-                              ],
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { type: "text", name: "slug" },
-                              domProps: { value: _vm.slug },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.slug = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: errors[0],
-                                    expression: "errors[0]"
-                                  }
-                                ],
-                                class: {
-                                  "form-control": true,
-                                  "alert-danger text-right": errors[0]
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                              " +
-                                    _vm._s(errors[0]) +
-                                    "\n                          "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      }
-                    ])
-                  })
-                ],
-                1
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-12" }, [
-              _c(
-                "div",
-                { staticClass: "form-group" },
-                [
-                  _c("label", [_vm._v(" الادوات المستخدمة في التطوير ")]),
-                  _vm._v(" "),
-                  _c("validation-provider", {
-                    attrs: { name: "dev_tools", rules: "required" },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "default",
-                        fn: function(ref) {
-                          var errors = ref.errors
-                          return [
-                            _c("textarea", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.dev_tools,
-                                  expression: "dev_tools"
-                                }
-                              ],
-                              staticClass:
-                                "form-control w3-border w3-margin-bottom w3-right-align",
-                              attrs: { rows: "8", name: "dev_tools" },
-                              domProps: { value: _vm.dev_tools },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.dev_tools = $event.target.value
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: errors[0],
-                                    expression: "errors[0]"
-                                  }
-                                ],
-                                class: {
-                                  "form-control": true,
-                                  "alert-danger text-right": errors[0]
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                              " +
-                                    _vm._s(errors[0]) +
-                                    "\n                          "
-                                )
-                              ]
-                            )
-                          ]
-                        }
-                      }
-                    ])
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("input", {
-                attrs: { type: "hidden", name: "_token" },
-                domProps: { value: _vm.csrf }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "w3-button w3-black w3-hover-black w3-section w3-padding w3-right w3-hover-black",
-                  attrs: { id: "add_file", type: "submit" }
-                },
-                [_vm._v("اضف المشروع")]
-              )
-            ])
-          ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "w3-button w3-black w3-hover-black w3-section w3-padding w3-right w3-hover-black",
+              attrs: { id: "add_file", type: "submit" }
+            },
+            [_vm._v("اضف المشروع")]
+          )
         ])
-      ]
-    )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [
@@ -71397,374 +71479,377 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "row w3-white w3-padding w3-round w3-card" },
+    {
+      staticClass: "w3-white w3-padding w3-round w3-card",
+      staticStyle: { "padding-top": "30px!important" }
+    },
     [
-      _c(
-        "div",
-        { staticClass: "form-group col-md-12 text-right" },
-        [
-          _c("validation-provider", {
-            attrs: { name: "name", rules: "required|max:25|string" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(ref) {
-                  var errors = ref.errors
-                  return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.name,
-                          expression: "name"
-                        }
-                      ],
-                      staticClass: "form-control text-right",
-                      attrs: {
-                        placeholder: "الاسم",
-                        type: "text",
-                        name: "name"
-                      },
-                      domProps: { value: _vm.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.name = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          { staticClass: "form-group col-md-12 text-right" },
+          [
+            _c("validation-provider", {
+              attrs: { name: "name", rules: "required|max:25|string" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(ref) {
+                    var errors = ref.errors
+                    return [
+                      _c("input", {
                         directives: [
                           {
-                            name: "show",
-                            rawName: "v-show",
-                            value: errors[0],
-                            expression: "errors[0]"
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.name,
+                            expression: "name"
                           }
                         ],
-                        class: {
-                          "form-control": true,
-                          "alert-danger text-right": errors[0]
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t" +
-                            _vm._s(errors[0]) +
-                            "\n\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  ]
-                }
-              }
-            ])
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group col-md-6 text-right" },
-        [
-          _c("validation-provider", {
-            attrs: { name: "email", rules: "required|max:25|email" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(ref) {
-                  var errors = ref.errors
-                  return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.email,
-                          expression: "email"
-                        }
-                      ],
-                      staticClass: "form-control text-right",
-                      attrs: {
-                        placeholder: "البريد اللكتروني",
-                        type: "email",
-                        name: "email"
-                      },
-                      domProps: { value: _vm.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        staticClass: "form-control text-right",
+                        attrs: {
+                          placeholder: "الاسم",
+                          type: "text",
+                          name: "name"
+                        },
+                        domProps: { value: _vm.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.name = $event.target.value
                           }
-                          _vm.email = $event.target.value
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: errors[0],
+                              expression: "errors[0]"
+                            }
+                          ],
+                          class: {
+                            "form-control": true,
+                            "alert-danger text-right": errors[0]
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t" +
+                              _vm._s(errors[0]) +
+                              "\n\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6 text-right" },
+          [
+            _c("validation-provider", {
+              attrs: { name: "email", rules: "required|max:25|email" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(ref) {
+                    var errors = ref.errors
+                    return [
+                      _c("input", {
                         directives: [
                           {
-                            name: "show",
-                            rawName: "v-show",
-                            value: errors[0],
-                            expression: "errors[0]"
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.email,
+                            expression: "email"
                           }
                         ],
-                        class: {
-                          "form-control": true,
-                          "alert-danger text-right": errors[0]
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(errors[0]) +
-                            "\n\t\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  ]
-                }
-              }
-            ])
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group col-md-6 text-right" },
-        [
-          _c("validation-provider", {
-            attrs: { name: "phone", rules: "required|max:15" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(ref) {
-                  var errors = ref.errors
-                  return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.phone,
-                          expression: "phone"
-                        }
-                      ],
-                      staticClass: "form-control text-right",
-                      attrs: {
-                        placeholder: "رقم الهاتف",
-                        type: "text",
-                        name: "phone"
-                      },
-                      domProps: { value: _vm.phone },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        staticClass: "form-control text-right",
+                        attrs: {
+                          placeholder: "البريد اللكتروني",
+                          type: "email",
+                          name: "email"
+                        },
+                        domProps: { value: _vm.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.email = $event.target.value
                           }
-                          _vm.phone = $event.target.value
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: errors[0],
+                              expression: "errors[0]"
+                            }
+                          ],
+                          class: {
+                            "form-control": true,
+                            "alert-danger text-right": errors[0]
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t" +
+                              _vm._s(errors[0]) +
+                              "\n\t\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6 text-right" },
+          [
+            _c("validation-provider", {
+              attrs: { name: "phone", rules: "required|max:15" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(ref) {
+                    var errors = ref.errors
+                    return [
+                      _c("input", {
                         directives: [
                           {
-                            name: "show",
-                            rawName: "v-show",
-                            value: errors[0],
-                            expression: "errors[0]"
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.phone,
+                            expression: "phone"
                           }
                         ],
-                        class: {
-                          "form-control": true,
-                          "alert-danger text-right": errors[0]
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(errors[0]) +
-                            "\n\t\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  ]
-                }
-              }
-            ])
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group col-md-6 text-right" },
-        [
-          _c("validation-provider", {
-            attrs: { name: "password", rules: "required|min:6" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(ref) {
-                  var errors = ref.errors
-                  return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.password,
-                          expression: "password"
-                        }
-                      ],
-                      staticClass: "form-control text-right",
-                      attrs: {
-                        placeholder: "كلمة المرور",
-                        type: "password",
-                        id: "password",
-                        name: "password"
-                      },
-                      domProps: { value: _vm.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        staticClass: "form-control text-right",
+                        attrs: {
+                          placeholder: "رقم الهاتف",
+                          type: "text",
+                          name: "phone"
+                        },
+                        domProps: { value: _vm.phone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.phone = $event.target.value
                           }
-                          _vm.password = $event.target.value
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: errors[0],
+                              expression: "errors[0]"
+                            }
+                          ],
+                          class: {
+                            "form-control": true,
+                            "alert-danger text-right": errors[0]
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t" +
+                              _vm._s(errors[0]) +
+                              "\n\t\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6 text-right" },
+          [
+            _c("validation-provider", {
+              attrs: { name: "password", rules: "required|min:6" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(ref) {
+                    var errors = ref.errors
+                    return [
+                      _c("input", {
                         directives: [
                           {
-                            name: "show",
-                            rawName: "v-show",
-                            value: errors[0],
-                            expression: "errors[0]"
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password,
+                            expression: "password"
                           }
                         ],
-                        class: {
-                          "form-control": true,
-                          "alert-danger text-right": errors[0]
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(errors[0]) +
-                            "\n\t\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  ]
-                }
-              }
-            ])
-          })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group col-md-6 text-right" },
-        [
-          _c("validation-provider", {
-            attrs: { name: "password_confirmation", rules: "required|min:6" },
-            scopedSlots: _vm._u([
-              {
-                key: "default",
-                fn: function(ref) {
-                  var errors = ref.errors
-                  return [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.password_confirmation,
-                          expression: "password_confirmation"
-                        }
-                      ],
-                      staticClass: "form-control text-right",
-                      attrs: {
-                        placeholder: "اعد كتابة كلمة المرور",
-                        type: "password",
-                        id: "password_confirmation",
-                        name: "password_confirmation"
-                      },
-                      domProps: { value: _vm.password_confirmation },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                        staticClass: "form-control text-right",
+                        attrs: {
+                          placeholder: "كلمة المرور",
+                          type: "password",
+                          id: "password",
+                          name: "password"
+                        },
+                        domProps: { value: _vm.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password = $event.target.value
                           }
-                          _vm.password_confirmation = $event.target.value
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      {
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: errors[0],
+                              expression: "errors[0]"
+                            }
+                          ],
+                          class: {
+                            "form-control": true,
+                            "alert-danger text-right": errors[0]
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t" +
+                              _vm._s(errors[0]) +
+                              "\n\t\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-6 text-right" },
+          [
+            _c("validation-provider", {
+              attrs: { name: "password_confirmation", rules: "required|min:6" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(ref) {
+                    var errors = ref.errors
+                    return [
+                      _c("input", {
                         directives: [
                           {
-                            name: "show",
-                            rawName: "v-show",
-                            value: errors[0],
-                            expression: "errors[0]"
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password_confirmation,
+                            expression: "password_confirmation"
                           }
                         ],
-                        class: {
-                          "form-control": true,
-                          "alert-danger text-right": errors[0]
+                        staticClass: "form-control text-right",
+                        attrs: {
+                          placeholder: "اعد كتابة كلمة المرور",
+                          type: "password",
+                          id: "password_confirmation",
+                          name: "password_confirmation"
+                        },
+                        domProps: { value: _vm.password_confirmation },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password_confirmation = $event.target.value
+                          }
                         }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t\t\t\t\t\t\t" +
-                            _vm._s(errors[0]) +
-                            "\n\t\t\t\t\t\t\t"
-                        )
-                      ]
-                    )
-                  ]
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: errors[0],
+                              expression: "errors[0]"
+                            }
+                          ],
+                          class: {
+                            "form-control": true,
+                            "alert-danger text-right": errors[0]
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t" +
+                              _vm._s(errors[0]) +
+                              "\n\t\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]
+                  }
                 }
-              }
-            ])
-          })
-        ],
-        1
-      ),
+              ])
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1)
+      ]),
       _vm._v(" "),
-      _vm._m(0),
+      _vm._m(2),
       _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn w3-black w3-right", attrs: { type: "submit" } },
-        [_vm._v("انشاء حساب")]
-      )
+      _c("div", { staticClass: "w3-clear" })
     ]
   )
 }
@@ -71773,15 +71858,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-md-12 text-right" }, [
+    return _c("div", { staticClass: "form-group col-md-12" }, [
       _c("select", { staticClass: "form-control", attrs: { name: "type" } }, [
-        _c("option", { attrs: { value: "business_owner" } }, [
-          _vm._v("رائد اعمال")
-        ]),
+        _c(
+          "option",
+          { staticClass: "text-right", attrs: { value: "business_owner" } },
+          [_vm._v("رائد اعمال")]
+        ),
         _vm._v(" "),
-        _c("option", { attrs: { value: "developer" } }, [
-          _vm._v("مبرمج \\ مطور")
-        ])
+        _c(
+          "option",
+          { staticClass: "text-right", attrs: { value: "developer" } },
+          [_vm._v("مبرمج \\ مطور")]
+        )
       ])
     ])
   },
@@ -71818,6 +71907,18 @@ var staticRenderFns = [
           }
         })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c(
+        "button",
+        { staticClass: "btn w3-black w3-right", attrs: { type: "submit" } },
+        [_vm._v("انشاء حساب")]
+      )
     ])
   }
 ]

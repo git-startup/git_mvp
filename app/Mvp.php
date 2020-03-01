@@ -15,8 +15,10 @@ class Mvp extends Model
     	'slug',
     	'dev_tools',
     	'mvp_link',
+      'client_id',
     	'is_approved',
-    	'is_available'
+    	'is_available',
+      'is_public'
     ];
 
     public function user(){
@@ -27,7 +29,11 @@ class Mvp extends Model
         return $this->hasOne(MvpReport::class,'mvp_id');
     }
 
-    public function gallery(){
-      return $this->hasMany(Mvp_gallery::class,'mvp_id');
+    public function files(){
+      return $this->hasMany(Mvp_files::class,'mvp_id');
+    }
+
+    public function features(){
+      return $this->hasMany(Mvp_features::class,'mvp_id');
     }
 }

@@ -182,20 +182,24 @@ Route::post('/dashboard/category',[
 Route::get('/mvp/add',[
     'uses' => 'MvpController@getAdd',
     'as' => 'mvp.add',
+    'middleware' => ['auth']
 ]);
 Route::post('/mvp/add',[
     'uses' => 'MvpController@postAdd',
+    'middleware' => ['auth']
 ]);
 
 /* Route to manage mvp */
 Route::get('/mvp',[
     'uses' => 'MvpController@list',
     'as' => 'mvp.list',
+    'middleware' => ['auth']
 ]);
 
 Route::get('/mvp/search/{type}',[
     'uses' => 'MvpController@search',
     'as' => 'mvp.search',
+    'middleware' => ['auth']
 ]);
 
 Route::get('/mvp/{slug}',[
@@ -217,6 +221,8 @@ Route::post('/mvp/edit/{slug}',[
     'middleware' => ['auth']
 ]);
 
+Route::post('mvp/files/upload', 'Mvp_filesController@store')->name('mvp.store');
+Route::post('feature/files/upload', 'Mvp_featuresController@store')->name('feature.store');
 /*
 * Rout For Search Users
 */
@@ -339,8 +345,3 @@ Route::post('/dashboard/developers/add',[
 'uses' => 'DashboardController@postAddDeveloper',
     'middleware' => ['admin']
 ]);
-
-
-
-
-Route::post('mvp/gallery', 'Mvp_galleryController@store')->name('gallery.store');

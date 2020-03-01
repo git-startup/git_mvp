@@ -6,14 +6,14 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 
 /*************************************************************************/
 /* style for navigation bar */
-.top-nav{width: 100%;padding: 10px;background: url('../../site/images/pattern-150.png') repeat;}
+.top-nav{width: 100%;padding: 10px;background-color: #fff}
 .top-nav ul{margin-right: 6%!important;}
 .top-nav li{margin: 0px 10px!important;}
 .navbar-toggler{border: 0px!important;}
 .navbar-toggler-icon{border-radius: 50%;color: #fff!important}
 .brand img{margin-left: 8%;position: absolute;}
 #brand{margin-left: 8%;position: absolute;top: 10px;}
-.nav-links li a{color: #fff!important;}
+.nav-links li a{color: #000!important;}
 .nav-links li a:hover{color: #f98f9b!important;}
 
  #nav-background{background-color: #fff}
@@ -26,60 +26,38 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 
 /**********************************************************************************/
 /* style for jumo and carousel area */
-.carousel-area{background-image: url('../../site/images/intro-background.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;width: 100%;height:500px; margin: 0px 0px 75px 0!important;}
-.carousel-slider {margin-top: 150px;padding-bottom: 20px;position: relative;right: -15px;}
+.carousel-area{background-image: url('../../site/images/slidebear.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;width: 100%;height:500px; margin: 0px 0px 75px 0!important;}
+.carousel-slider {margin-top: 150px;padding-bottom: 20px;position: relative;}
 .section-top{padding-top: 80px;}
 .intro-content {background: rgba(0, 0, 0, 0.65); height: 500px; }
 
-/***********************************************************/
-.services{list-style-type: none;}
-@media screen and (max-width: 768px){.services li h4{clear: both!important;}}
-/**********************************************************/
-/* style for service section */
-.how-work-area{margin-top: 100px;}
-.how-work-area div button{margin: 0px;}
-.Slides ul{list-style-type: none;}
+#home_register{width: 80%;margin: 0 10%}
+@media screen and (max-width: 990px){
+  #home_register{width: 90%;margin: 0 5%}
+}
+@media screen and (max-width: 766px){
+  .carousel-slider{margin-top: 250px}
+}
 
-.how-work-left li{}
-
-
+@media screen and (max-width: 438px){
+  .carousel-area, .intro-content{height: 600px}
+  .carousel-slider{margin-top: 250px}
+}
 /**********************************************************/
 /* how work section */
-.our-community{margin-top: 100px;}
+.our-community{margin-top: 80px;}
 .our-community h2{padding-top: 50px;}
 .our-community img{margin-top: -100px;}
 .how-work-text{position: relative;top: 60px;}
 
-/**********************************************************/
-/*how we work style*/
-.how-work-text h2{width: 80%; margin: 0 0 0 10%;}
-.how-work-text div{width: 80%; margin: 2% 0 0 10%;}
-.how-work-text p, .how-work-text ul{width: 80%; margin: 2% 0 0 10%;list-style-type: none;}
-.how-work-text li{padding: 10px 20px 0 0;font-size: 18px}
-
-.how-work-text button{margin: 1% 10%;}
-
-/***************************************************************/
-/* style for partners area */
-.partners-area{margin-top: 50px;}
-.partners-area img{width: 60%;}
-.partners-area h2{padding-bottom: 80px;margin-top: 150px;}
-.partner_box div{height: 120px;cursor: pointer;}
-
 /******************************************************************/
-/* style for contact section  */
-.contact{margin-top: 100px;}
-.contact-form h2{padding: 20px 0px;}
-.contact-form p{font-size: 18px; padding: 10px 0px;}
-.contact-form input, .contact-form button, .contact-form textarea{margin: 8px 0px;}
-.contact-form input{padding: 25px 10px;}
-
-.contact-info{margin-top: 50px}
-.contact-info-special p{font-size: 16px;word-spacing: 1px;}
-.contact-info-special p span{margin-top: 5px}
-.contact-info-special ul{list-style-type: none;}
-.contact-info-special li{font-size: 18px;margin: 10px 0px 0px -30px;}
-.contact-info-special li a:hover{text-decoration: none;}
+/* home page portfolio section*/
+.projects_portfolio{
+  background: url('../../site/images/team_background.jpg');margin-top: 10px;padding: 20px;}
+/* home page call action*/
+.call-action{margin-top: 80px;background-color: #000;color: #fff;}
+/* home page our serc=vice section*/
+.our-articals{margin-top: 80px;}
 
 /******************************************************************/
 /* for profile page */
@@ -172,24 +150,3 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 .custom-color{color: #f98f9b;}
 
 .custom-blue-color{color: #7babef!important;}
-
-
-
-/* home page portfolio section*/
-.projects_portfolio{
-  background: url('../../site/images/team_background.jpg');
-  margin-top: 50px;
-  padding: 20px;
-}
-
-/* home page call action*/
-.call-action{
-  margin-top: 80px;
-  background-color: #000;
-  color: #fff;
-}
-
-/* home page our serc=vice section*/
-.our-articals{
-  margin-top: 80px;
-}

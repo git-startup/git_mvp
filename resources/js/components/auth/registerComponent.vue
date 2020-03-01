@@ -1,5 +1,5 @@
 <template>
-		<div>
+		<div class="w3-margin-top">
 			<div class="form-group text-right">
 					<validation-provider name="name" rules="required|max:25|string" v-slot="{ errors }">
 						<input class="form-control text-right"  placeholder="الاسم" type="text" name="name"  v-model="name">
@@ -45,10 +45,10 @@
 						</Validation-Provider>
           </div>
 
-					<div class="form-group text-right">
+					<div class="form-group">
 							<select name="type" class="form-control">
-									<option value="business_owner">رائد اعمال</option>
-									<option value="developer">مبرمج \ مطور</option>
+									<option class="w3-right-align" value="business_owner">رائد اعمال</option>
+									<option class="w3-right-align" value="developer">مبرمج \ مطور</option>
 							</select>
 					</div>
 

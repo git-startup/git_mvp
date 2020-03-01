@@ -10,7 +10,10 @@
 	<div class="container text-center">
 	  <div class="row">
 	  	<div id="add_mvp" class="col-md-12 w3-white w3-padding">
-			<add_mvp-app :user="{{ Auth::user() }}"></add_mvp-app>
+        <form action="/mvp/add" method="post" enctype="multipart/form-data">
+          @csrf
+			    <add_mvp-app :user="{{ Auth::user() }}" :users="{{ $users }}"></add_mvp-app>
+       </form>
 		</div>
 	  </div>
 	</div>
