@@ -1,11 +1,7 @@
-<template> 
+<template>
     <div class="contacts-list">
         <!-- mail side navigation -->
-          <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left" style="z-index:3;width:320px;" id="mySidebar">
-            <!-- close side bar -->
-            <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" 
-            class="w3-bar-item w3-button w3-hide-large w3-large">اغلاق <i class="fa fa-remove"></i></a>
-            
+          <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left" style="z-index:99;width:320px;" id="contacts_list">
             <div class="w3-animate-left">
                <!-- contact section -->
                <ul>
@@ -22,8 +18,8 @@
               <!-- end contact section -->
             </div>
         </nav>
-    </div> 
-</template>  
+    </div>
+</template>
 
 <script>
     export default {
@@ -61,10 +57,12 @@
 
 <style lang="scss" scoped>
 .contacts-list {
+    position: absolute;
+    left: 0px;
     max-height: 600px;
     overflow: scroll;
     border-left: 1px solid #a6a6a6;
-    
+
     ul {
         list-style-type: none;
         padding-left: 0;

@@ -43,53 +43,7 @@
 			                @endif
 	                    </div>
 	                </div>
-	                    
-	                <hr>
-	                <div class="add_project_Slides">
-	                    <div class="form-group{{ $errors->has('image_one') ? ' alert alert-danger' : '' }}">
-	                        <label> صورة للمشروع  </label>
-                            <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="image_one" value="{{ $mvp->image_one }}">
-                            @if ($errors->has('image_one'))
-			                  <span class="help-block">{{ $errors->first('image_one') }}</span>
-			                @endif
-	                    </div>
-	                    <div class="form-group{{ $errors->has('image_two') ? ' alert alert-danger' : '' }}">
-	                        <label> صورة ثانية للمشروع - اختياري </label>
-                            <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="image_two" value="{{ $mvp->image_two }}">
-                            @if ($errors->has('image_two'))
-			                  <span class="help-block">{{ $errors->first('image_two') }}</span>
-			                @endif
-	                    </div>
-	                    <div class="form-group{{ $errors->has('image_three') ? ' alert alert-danger' : '' }}">
-	                        <label> صورة ثالثة للمشروع - اختياري </label>
-                            <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="image_three" value="{{ $mvp->image_three }}">
-                            @if ($errors->has('image_three'))
-			                  <span class="help-block">{{ $errors->first('image_three') }}</span>
-			                @endif
-	                    </div>
-	                    <div class="form-group{{ $errors->has('how_to_use_file') ? ' alert alert-danger' : '' }}">
-	                        <label> ملف يحوي طريقة الاستحدام </label>
-                            <input class="form-control w3-border w3-margin-bottom w3-right-align" type="file"  name="how_to_use_file" value="{{ $mvp->how_to_use_file }}">
-                            @if ($errors->has('how_to_use_file'))
-			                  <span class="help-block">{{ $errors->first('how_to_use_file') }}</span>
-			                @endif
-	                    </div>
-	                    <div class="form-group{{ $errors->has('mvp_file') ? ' alert alert-danger' : '' }}">
-	                        <label>  ملف المشروع </label>
-                            <input class="form-control w3-border w3-margin-bottom w3-right-align nice" type="file"  name="mvp_file" value="{{ $mvp->mvp_file }}">
-                            @if ($errors->has('mvp_file'))
-			                  <span class="help-block">{{ $errors->first('mvp_file') }}</span>
-			                @endif
-	                    </div>
-	                    <div class="form-group{{ $errors->has('price') ? ' alert alert-danger' : '' }}">
-	                        <label>  سعر التحميل بالدولار  </label>
-                            <input class="form-control w3-border w3-margin-bottom w3-right-align" type="number"  name="price" value="{{ $mvp->price }}">
-                            @if ($errors->has('price'))
-			                  <span class="help-block">{{ $errors->first('price') }}</span>
-			                @endif
-	                    </div>
-	                </div>
-
+                  
 	                <div class="add_project_Slides">
 	                    <div class="form-group{{ $errors->has('dev_tools') ? ' alert alert-danger' : '' }}">
 	                        <label> الادوات المستخدمة في التطوير </label>
@@ -112,7 +66,7 @@
 	  </div>
 	</div>
 
-<script src="{{ asset('assets/vendor/js/jquery.min.js') }}"></script> 
+<script src="{{ asset('assets/vendor/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/js/jquery.nicefileinput.min.js') }}"></script>
 
 <script type="text/javascript">

@@ -1,14 +1,12 @@
 
-var openInbox = document.getElementById("myBtn");
-openInbox.click();
 
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
+function open_contacts_list () {
+  var contacts = document.getElementById("contacts_list");
+  if(contacts.style.display == "block"){
+    contacts.style.display = "none";
+  }
+  elseif(contacts.style.display == "none"){
+    contacts.style.display = "block";
+  }
+
 }
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-

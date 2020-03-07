@@ -2,7 +2,7 @@
     <div>
       <div class="w3-right-align">
           <div>
-              <h4 class="w3-margin-top text-center w3-margin-bottom"> اضافة مشروع جديد  </h4> <hr>
+              <h4 class="w3-margin-top text-right w3-margin-bottom"> اضافة مشروع جديد  </h4> <br>
           </div>
           <div class="row" >
               <div class="col-md-6">
@@ -38,7 +38,6 @@
                     </validation-provider>
                 </div>
               </div>
-
               <div class="col-md-6">
                 <div class="form-group">
                     <validation-provider name="mvp_link" rules="required" v-slot="{ errors }">
@@ -70,17 +69,6 @@
                             {{ errors[0] }}
                         </span>
                     </validation-provider>
-                </div>
-                <div class="form-group">
-                  مشروع خاص
-                  <input type="checkbox" name="is_public" value="0" v-model="is_public" onclick="document.getElementById('client_id').style.display = 'block'">
-                  <div class="" id="client_id" style="display: none">
-                    <label for="">اختر صاحب المشروع</label>
-                    <input list="clientList" name="client_id" class="form-control" v-mode='client_id'>
-                    <datalist id="clientList">
-                      <option v-for="user in users" :value="user.id">{{ user.name }}</option>
-                    </datalist>
-                  </div>
                 </div>
                 <button id="add_file" class="w3-button w3-black w3-hover-black w3-section w3-padding w3-right w3-hover-black" type="submit">اضف المشروع</button>
             </div>
@@ -116,8 +104,7 @@
         image: '',
         slug: '',
         dev_tools: '',
-        client_id,
-        is_public: 1
+        client_id
       }
     },
 	}

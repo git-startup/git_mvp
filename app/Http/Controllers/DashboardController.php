@@ -125,7 +125,9 @@ class DashboardController extends Controller
      public function getStatus(Request $request){
 
          if($request->input('delete_status')){
-             Status::where('id','=',$request->input('status_id'))->delete();
+             Status::where('id','=',$request->input('status_id'))->update([
+               'is_deleted' => 1
+             ]);
              return redirect()->back()->with('info','تم حذف المنشور بنجاح');
 
          }
@@ -250,13 +252,15 @@ class DashboardController extends Controller
 
 		}
 		if($request->has('delete_article')){
-			$article = Articles::where('id',$request->article_id)->first();
+			//$article = Articles::where('id',$request->article_id)->first();
 			// to delete article image file
-			File::delete($article->image);
-			if($article->bottom_image){
-				File::delete($article->bottom_image);
-			}
-			Articles::where('id',$request->article_id)->delete();
+			//File::delete($article->image);
+			//if($article->bottom_image){
+			//	File::delete($article->bottom_image);
+			//}
+			Articles::where('id',$request->article_id)->update([
+        'is_deleted' => 1
+      ]);
 			return redirect()->back()->with('info','article has been deleted');
 		}
 		if($request->has('publish_btn')){

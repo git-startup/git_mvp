@@ -18,7 +18,7 @@ class Mvp extends Model
       'client_id',
     	'is_approved',
     	'is_available',
-      'is_public'
+      'is_deleted'
     ];
 
     public function user(){
@@ -29,8 +29,8 @@ class Mvp extends Model
         return $this->hasOne(MvpReport::class,'mvp_id');
     }
 
-    public function files(){
-      return $this->hasMany(Mvp_files::class,'mvp_id');
+    public function images(){
+      return $this->hasMany(Mvp_images::class,'mvp_id');
     }
 
     public function features(){

@@ -2,7 +2,7 @@
     <div class="chat-app row">
         <Conversation :contact="selectedContact" :messages="messages" @new="saveNewMessage"/>
         <ContactsList :contacts="contacts" @selected="startConversationWith"/>
-    </div> 
+    </div>
 </template>
 
 <script>
@@ -26,11 +26,10 @@
         mounted() {
             Echo.private(`messages.${this.user.id}`)
                 .listen('NewMessage', (e) => {
-                    console.log("It is working!");
                     this.hanleIncoming(e.message);
                 });
 
-            axios.get('/contacts') 
+            axios.get('/contacts')
                 .then((response) => {
                     this.contacts = response.data;
                 });
@@ -41,7 +40,7 @@
 
                 axios.get(`/conversation/${contact.id}`)
                     .then((response) => {
-                        this.messages = response.data; 
+                        this.messages = response.data;
                         this.selectedContact = contact;
                     })
             },

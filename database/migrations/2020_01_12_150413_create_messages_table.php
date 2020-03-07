@@ -17,9 +17,10 @@ class CreateMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('from')->unsigned();
             $table->integer('to')->unsigned();
-            $table->text('message'); 
+            $table->text('message');
             $table->string('file')->nullable();
             $table->boolean('read')->default(false);
+            $table->integer('is_deleted')->nullable();
             $table->timestamps();
         });
     }

@@ -1,21 +1,21 @@
 <template>
 	<div>
-		<a href="/messenger" class="w3-bar-item w3-hover-none w3-button w3-mobile">
-			<i class="fa fa-envelope-o"></i> 
+		<a href="/messenger" class="w3-bar-item w3-hover-none w3-button">
+			<i class="fa fa-envelope-o"></i>
 			<span class="badge badge-light" id="notifi" style="position: relative; top: 5px; left: -5px;padding: 3px 5px;">
 				 {{ this.message_count }}
-			</span> 
+			</span>
 		</a>
 
-		<a href="/workers" class="w3-bar-item w3-hover-none w3-button w3-mobile"><i class="fa fa-bell-o"></i> 
+		<a href="/workers" class="w3-bar-item w3-hover-none w3-button"><i class="fa fa-bell-o"></i> 
 			<span class="badge badge-light" id="work_notifi" style="position: relative; top: 5px; left: -5px;padding: 3px 5px;">
 				{{ this.work_count }}
-			</span> 
-		</a> 
+			</span>
+		</a>
 	</div>
 </template>
 
-<script> 
+<script>
 	export default{
 		data(){
 			return{

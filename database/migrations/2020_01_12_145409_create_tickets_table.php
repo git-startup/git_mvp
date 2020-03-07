@@ -1,5 +1,5 @@
 <?php
- 
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,11 +19,12 @@ class CreateTicketsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
-            $table->string('subject'); 
+            $table->string('subject');
             $table->text('content');
             $table->integer('is_closed')->unsigned()->default(0);
+            $table->integer('is_deleted')->nullable();
             $table->timestamps();
-        }); 
+        });
     }
 
     /**

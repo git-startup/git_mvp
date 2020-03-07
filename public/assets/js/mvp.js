@@ -2,14 +2,14 @@
 Dropzone.autoDiscover = false;
 var myDropzone = new Dropzone("div#mvp_myDrop",
 		{
-				paramName: "files", // The name that will be used to transfer the file
+				paramName: "images", // The name that will be used to transfer the file
 				addRemoveLinks: true,
 				uploadMultiple: true,
 				autoProcessQueue: false,
 				parallelUploads: 20,
 				maxFilesize: 10, // MB
 				acceptedFiles: ".png, .jpeg, .jpg, .gif, .zip, .pdf",
-				url: "http://localhost:8000/mvp/files/upload?mvp_id={{ $mvp->id }}",
+				url: "http://localhost:8000/mvp/images/upload?mvp_id={{ $mvp->id }}",
 		});
 /* Add Files Script*/
 myDropzone.on("success", function(file, images){
@@ -24,7 +24,7 @@ myDropzone.on("error", function (data) {
 myDropzone.on("complete", function(file) {
 		myDropzone.removeFile(file);
 });
-$("#upload_mvp_files").on("click",function (){
+$("#upload_mvp_images").on("click",function (){
 		myDropzone.processQueue();
 });
 

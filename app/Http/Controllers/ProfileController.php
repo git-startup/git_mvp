@@ -12,21 +12,18 @@ use Auth;
 class ProfileController extends Controller
 {
     public function getProfile(Request $request,$user_id){
-      
+
         $profile = User::find($user_id);
 
         if(!$profile){
             return view('errors.404');
         }
-        else { 
-            $mvps = Mvp::where('user_id',Auth::user()->id)->get();
-            $status = Status::where('user_id',Auth::user()->id)->get();
-            $messagesCount = Message::where('to','=',Auth::user()->id)
-                ->orwhere('from','=',Auth::user()->id)->count();
-            
+        else {
+            $mvps = Mvp::where('user_id',Auth::user()->id)->where('is_deleted',0)->get();
+            $status = Status::where('user_id',Auth::user()->id)->where('is_deleted',0)->get();
+
             return view('profile.index')
                 ->with('profile',$profile)
-                ->with('messagesCount',$messagesCount)
                 ->with('mvps',$mvps)
                 ->with('status',$status);
         }
@@ -35,7 +32,7 @@ class ProfileController extends Controller
 
     public function postProfile(Request $request,$userid){
 
-        if($request->has('not_available')){ 
+        if($request->has('not_available')){
             Mvp::where('id',$request->mvp_id)->update(['is_available' => 0]);
             return redirect()->back()->with('info','تم تعطيل المشروع بنجاح');
         }
@@ -44,21 +41,25 @@ class ProfileController extends Controller
             return redirect()->back()->with('info','تم تفعيل المشروع بنجاح');
         }
         elseif($request->input('delete_mvp')){
-            $getMvp = Mvp::where('id','=',$request->mvp_id)->first();
+            //$getMvp = Mvp::where('id','=',$request->mvp_id)->first();
             //to delete the Mvp image's files
-            File::delete($getMvp->image_one);
-            File::delete($getMvp->image_two);
-            File::delete($getMvp->image_three);
+            //File::delete($getMvp->image_one);
+            //File::delete($getMvp->image_two);
+            //File::delete($getMvp->image_three);
             // to delete the mvp record from db
-            Mvp::where('id',$request->mvp_id)->delete();
+            Mvp::where('id',$request->mvp_id)->update([
+              'is_deleted' => 1
+            ]);
             return redirect()->back()->with('info','تم حذف المشروع بنجاح');
         }
         elseif($request->input('delete_status')){
             $status_id = $request->input('status_id');
-            Status::where('id',$status_id)->delete();
+            Status::where('id',$status_id)->update([
+              'is_deleted' => 1
+            ]);
             return redirect()->back()->with('info','تم حذف المنشور بنجاح');
-        } 
-        
+        }
+
         // to contact with user
         if($request->input('btn_contact')){
             $this->validate($request,[
@@ -72,7 +73,7 @@ class ProfileController extends Controller
             ]);
             return redirect()->back()->with('info','تم ارسال الرسالة بنجاح');
         }
-        
+
         // to edit user profile information
         if($request->input('btn_edit_profile')){
 
@@ -91,7 +92,7 @@ class ProfileController extends Controller
                 $input['imagename'] = 'site/profile/logo/'.time().'.'.$image->getClientOriginalExtension();
                 $destinationPath = public_path('site/profile/logo');
                 $image->move($destinationPath,$input['imagename']);
-                
+
                 User::where('id',Auth::user()->id)->update([
                     'name'          => $request->input('name'),
                     'location'      => $request->input('location'),

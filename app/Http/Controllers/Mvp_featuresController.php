@@ -9,18 +9,25 @@ class Mvp_featuresController extends Controller
 {
   public function store(Request $request)
   {
-      $file = $request->file('file');
+      if($request->hasFile('file')){
+          $file = $request->file('file');
+          $input['filename'] = 'site/mvp/features/files/'.time().'.'.$file->getClientOriginalExtension();
+          $destinationPath = public_path('/site/profile/logo');
+          $file->move($destinationPath,$input['filename']);
 
-      $fileName = time().'_'. rand(1000, 9999). '.' .$file->extension();
-      $file->move(public_path('site/mvp/features/files'),$fileName);
+          $feature_file = $input['filename'];
+      }else{
+        $feature_file = '';
+      }
+
 
       Mvp_features::create([
         'name' => $request->name,
         'description' => $request->description,
-        'mvp_id' => $_GET['mvp_id'],
-        'url' => $fileName
+        'mvp_id' => $request->mvp_id,
+        'url' => $feature_file
       ]);
 
-      return response()->json(['success'=>'true']);
+      return redirect()->back()->with('info','تمت اضافة الخاصية بنجاح');
   }
 }

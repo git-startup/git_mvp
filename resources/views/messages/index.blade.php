@@ -12,13 +12,13 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header w3-right-align">
-                قائمة الاتصال الخاصة بك     <i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
+                قائمة الاتصال الخاصة بك     <i class="fa fa-bars w3-button w3-xlarge w3-margin-left w3-margin-top" onclick="open_contacts_list()"></i>
                 </div>
 
                 <div class="card-body" id="app">
                     <chat-app :user="{{ Auth::user() }}"></chat-app>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 </div>

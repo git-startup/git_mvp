@@ -133,8 +133,9 @@ Route::post('/workers/delete/{id}',[
 
 Route::get('/workers/count',function(){
     return Work::where('user_id','=',Auth::user()->id)
+            ->where('accepted',0)
             ->orwhere('worker_id','=',Auth::user()->id)
-            ->where('accepted',0)->count();
+            ->where('accepted',0)->count(); 
 });
 
 // Article Page =  get all articles
@@ -221,8 +222,12 @@ Route::post('/mvp/edit/{slug}',[
     'middleware' => ['auth']
 ]);
 
-Route::post('mvp/files/upload', 'Mvp_filesController@store')->name('mvp.store');
-Route::post('feature/files/upload', 'Mvp_featuresController@store')->name('feature.store');
+Route::post('mvp/images/upload', 'Mvp_imagesController@store')->name('mvp.store');
+
+Route::post('/mvp/feature/add',[
+    'uses' => 'Mvp_featuresController@store',
+    'as'   => 'mvp.store'
+]);
 /*
 * Rout For Search Users
 */

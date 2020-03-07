@@ -11,8 +11,8 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 .top-nav li{margin: 0px 10px!important;}
 .navbar-toggler{border: 0px!important;}
 .navbar-toggler-icon{border-radius: 50%;color: #fff!important}
-.brand img{margin-left: 8%;position: absolute;}
-#brand{margin-left: 8%;position: absolute;top: 10px;}
+.brand{position: absolute;top: 5px;left: 25px;}
+
 .nav-links li a{color: #000!important;}
 .nav-links li a:hover{color: #f98f9b!important;}
 
@@ -20,8 +20,6 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 
 @media (max-width: 991.98px){
   .top-nav{top:50}
-  .brand img{width: 80px;top: 19px;}
-  .top-nav{}
   #nav-background{top: 0px!important;}.brand img{top: 15px;}}
 
 /**********************************************************************************/
@@ -34,6 +32,9 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 #home_register{width: 80%;margin: 0 10%}
 @media screen and (max-width: 990px){
   #home_register{width: 90%;margin: 0 5%}
+}
+@media screen and (max-width: 400px){
+  #home_register{width: 98%;margin: 0 1%}
 }
 @media screen and (max-width: 766px){
   .carousel-slider{margin-top: 250px}

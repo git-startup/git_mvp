@@ -9,26 +9,27 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable; 
+    use Notifiable;
 
-    /** 
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
-        'password', 
-        'role', 
+        'name',
+        'email',
+        'password',
+        'role',
         'phone',
-        'gender', 
+        'gender',
         'location',
         'type',
         'image',
         'description',
         'skills',
-        'is_disable'
+        'is_disable',
+        'is_deleted'
     ];
 
     /**
@@ -50,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-     // to get the username 
+     // to get the username
     public function getUsername(){
         return $this->username;
     }
@@ -93,29 +94,29 @@ class User extends Authenticatable implements MustVerifyEmail
 
     // so user can make a new status
     public function statuses(){
-        return $this->hasMany(Status::class,'user_id');  
+        return $this->hasMany(Status::class,'user_id');
     }
-    
+
     //for mvp table
     public function mvps(){
-        return $this->hasMany(Mvp::class,'user_id');  
+        return $this->hasMany(Mvp::class,'user_id');
     }
 
     // for mvp report table
     public function report(){
-        return $this->hasMany(MvpReport::class,'user_id');  
+        return $this->hasMany(MvpReport::class,'user_id');
     }
-    
+
     // for massanger table
     public function Messenger(){
-        return $this->hasMany(Message::class,'from');  
+        return $this->hasMany(Message::class,'from');
     }
-    
+
     // this method for orders table
     public function orders(){
         return $this->hasMany('gitstartup\Orders','user_id');
-    }   
- 
+    }
+
     // for like model
     public function likes(){
         return $this->hasMany(Like::class,'user_id');
@@ -126,50 +127,50 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     // for work table
-    public function workersOfMine(){ 
+    public function workersOfMine(){
         return $this->belongsToMany(User::class,'work_list','user_id','worker_id');
     }
-    
+
     public function workerOf(){
         // test this out (user_id vs worker_id)
         return $this->belongsToMany(User::class,'work_list','worker_id','user_id');
     }
-    
+
     public function workers(){
         return $this->workersOfMine()->wherePivot('accepted',true)->get()->merge($this->workerOf()->wherePivot('accepted',true)->get());
     }
-    
+
     public function workRequest(){
         return $this->workersOfMine()->wherePivot('accepted',false)->get();
     }
-    
+
     public function workRequestPending(){
         return $this->workerOf()->wherePivot('accepted',false)->get();
     }
-    
+
     public function hasWorkRequestPending(User $user){
         return (bool) $this->workRequestPending()->where('id',$user->id)->count();
     }
-    
+
     public function hasWorkRequestRecived(User $user){
         return (bool) $this->workRequest()->where('id',$user->id)->count();
     }
-    
+
     public function addWorker(User $user){
         $this->workerOf()->attach($user->id);
     }
-    
+
     public function deleteWorker(User $user){
         $this->workerOf()->detach($user->id);
         $this->workersOfMine()->detach($user->id);
     }
-    
+
     public function acceptWorkRequest(User $user){
         $this->workRequest()->where('id',$user->id)->first()->pivot->update([
-            'accepted' => true, 
+            'accepted' => true,
         ]);
     }
-    
+
     public function isWorkWith(User $user){
         return (bool) $this->workers()->where('id',$user->id)->count();
     }

@@ -17,7 +17,8 @@ class CreateWorkListTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('worker_id');
-            $table->integer('accepted')->unsigned()->default(0); 
+            $table->integer('accepted')->unsigned()->default(0);
+            $table->integer('is_deleted')->nullable();
             $table->timestamps();
         });
     }

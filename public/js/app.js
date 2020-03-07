@@ -2244,8 +2244,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     Echo["private"]("messages.".concat(this.user.id)).listen('NewMessage', function (e) {
-      console.log("It is working!");
-
       _this.hanleIncoming(e.message);
     });
     axios.get('/contacts').then(function (response) {
@@ -2304,10 +2302,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -2604,18 +2598,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2639,8 +2621,7 @@ __webpack_require__.r(__webpack_exports__);
       image: '',
       slug: '',
       dev_tools: '',
-      client_id: client_id,
-      is_public: 1
+      client_id: client_id
     };
   }
 });
@@ -3134,9 +3115,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     accept_btn: function accept_btn() {
+      var _this = this;
+
       axios.get('/workers/accept/' + this.user_id, {}).then(function (response) {
-        document.getElementById('accept_btn').innerHTML = 'تم قبول الطلب';
-        document.getElementById('accept_btn').style.backgroundColor = 'green';
+        document.getElementById('accept_btn_' + _this.user_id).innerHTML = 'تم قبول الطلب';
+        document.getElementById('accept_btn_' + _this.user_id).style.backgroundColor = 'green';
+        var counter = parseInt(document.getElementById('work_notifi').innerText);
+        document.getElementById('work_notifi').innerHTML = counter - 1;
       });
     }
   }
@@ -9720,7 +9705,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-5739f2b8] {\n  max-height: 600px;\n  overflow: scroll;\n  border-left: 1px solid #a6a6a6;\n}\n.contacts-list ul[data-v-5739f2b8] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-5739f2b8] {\n  border-bottom: 1px solid #aaaaaa;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-5739f2b8] {\n  background: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-5739f2b8] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: -webkit-box;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul li .avatar[data-v-5739f2b8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.contacts-list ul li .avatar img[data-v-5739f2b8] {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contacts-list ul li .contact[data-v-5739f2b8] {\n  -webkit-box-flex: 3;\n          flex: 3;\n  font-size: 10px;\n  display: -webkit-box;\n  display: flex;\n  overflow: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.contacts-list ul li .contact p[data-v-5739f2b8] {\n  margin: 0;\n}\n.contacts-list ul li .contact p.name[data-v-5739f2b8] {\n  font-weight: bold;\n  font-size: 14px;\n}\n.contacts-list ul li .contact p.email[data-v-5739f2b8] {\n  font-size: 14px;\n}", ""]);
+exports.push([module.i, ".contacts-list[data-v-5739f2b8] {\n  position: absolute;\n  left: 0px;\n  max-height: 600px;\n  overflow: scroll;\n  border-left: 1px solid #a6a6a6;\n}\n.contacts-list ul[data-v-5739f2b8] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-5739f2b8] {\n  border-bottom: 1px solid #aaaaaa;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-5739f2b8] {\n  background: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-5739f2b8] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: -webkit-box;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul li .avatar[data-v-5739f2b8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.contacts-list ul li .avatar img[data-v-5739f2b8] {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contacts-list ul li .contact[data-v-5739f2b8] {\n  -webkit-box-flex: 3;\n          flex: 3;\n  font-size: 10px;\n  display: -webkit-box;\n  display: flex;\n  overflow: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.contacts-list ul li .contact p[data-v-5739f2b8] {\n  margin: 0;\n}\n.contacts-list ul li .contact p.name[data-v-5739f2b8] {\n  font-weight: bold;\n  font-size: 14px;\n}\n.contacts-list ul li .contact p.email[data-v-5739f2b8] {\n  font-size: 14px;\n}", ""]);
 
 // exports
 
@@ -70632,12 +70617,10 @@ var render = function() {
       {
         staticClass:
           "w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left",
-        staticStyle: { "z-index": "3", width: "320px" },
-        attrs: { id: "mySidebar" }
+        staticStyle: { "z-index": "99", width: "320px" },
+        attrs: { id: "contacts_list" }
       },
       [
-        _vm._m(0),
-        _vm._v(" "),
         _c("div", { staticClass: "w3-animate-left" }, [
           _c(
             "ul",
@@ -70692,25 +70675,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "w3-bar-item w3-button w3-hide-large w3-large",
-        attrs: {
-          href: "javascript:void(0)",
-          onclick: "w3_close()",
-          title: "Close Sidemenu"
-        }
-      },
-      [_vm._v("اغلاق "), _c("i", { staticClass: "fa fa-remove" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -70734,10 +70699,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "conversation col-md-12" },
+    { staticClass: "conversation" },
     [
       _c("h1", { staticClass: "w3-right-align" }, [
-        _vm._v(_vm._s(_vm.contact ? _vm.contact.name : "اختار مستخدم"))
+        _vm._v(_vm._s(_vm.contact ? _vm.contact.name : ""))
       ]),
       _vm._v(" "),
       _c("MessagesFeed", {
@@ -71287,87 +71252,6 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _vm._v("\n              مشروع خاص\n              "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.is_public,
-                  expression: "is_public"
-                }
-              ],
-              attrs: {
-                type: "checkbox",
-                name: "is_public",
-                value: "0",
-                onclick:
-                  "document.getElementById('client_id').style.display = 'block'"
-              },
-              domProps: {
-                checked: Array.isArray(_vm.is_public)
-                  ? _vm._i(_vm.is_public, "0") > -1
-                  : _vm.is_public
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.is_public,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = "0",
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.is_public = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.is_public = $$a
-                          .slice(0, $$i)
-                          .concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.is_public = $$c
-                  }
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticStyle: { display: "none" }, attrs: { id: "client_id" } },
-              [
-                _c("label", { attrs: { for: "" } }, [
-                  _vm._v("اختر صاحب المشروع")
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "mode",
-                      rawName: "v-mode",
-                      value: _vm.client_id,
-                      expression: "client_id"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { list: "clientList", name: "client_id" }
-                }),
-                _vm._v(" "),
-                _c(
-                  "datalist",
-                  { attrs: { id: "clientList" } },
-                  _vm._l(_vm.users, function(user) {
-                    return _c("option", { domProps: { value: user.id } }, [
-                      _vm._v(_vm._s(user.name))
-                    ])
-                  }),
-                  0
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
           _c(
             "button",
             {
@@ -71388,11 +71272,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h4", { staticClass: "w3-margin-top text-center w3-margin-bottom" }, [
+      _c("h4", { staticClass: "w3-margin-top text-right w3-margin-bottom" }, [
         _vm._v(" اضافة مشروع جديد  ")
       ]),
       _vm._v(" "),
-      _c("hr")
+      _c("br")
     ])
   }
 ]
@@ -71947,7 +71831,7 @@ var render = function() {
     _c(
       "a",
       {
-        staticClass: "w3-bar-item w3-hover-none w3-button w3-mobile",
+        staticClass: "w3-bar-item w3-hover-none w3-button",
         attrs: { href: "/messenger" }
       },
       [
@@ -71973,7 +71857,7 @@ var render = function() {
     _c(
       "a",
       {
-        staticClass: "w3-bar-item w3-hover-none w3-button w3-mobile",
+        staticClass: "w3-bar-item w3-hover-none w3-button",
         attrs: { href: "/workers" }
       },
       [
@@ -72486,7 +72370,7 @@ var render = function() {
       "button",
       {
         staticClass: "btn btn-primary",
-        attrs: { id: "accept_btn" },
+        attrs: { id: "accept_btn_" + _vm.user_id },
         on: {
           click: function($event) {
             return _vm.accept_btn()

@@ -40,7 +40,6 @@ class MvpController extends Controller{
             'slug'        => $request->slug,
             'dev_tools'   => $request->dev_tools,
             'mvp_link'    => $request->mvp_link,
-						'is_public'   => $request->is_public,
 						'client_id'   => $request->client_id
         ]);
 
@@ -51,17 +50,11 @@ class MvpController extends Controller{
 	// to get single mvp
 	public function getMvp($slug){
 		$mvp = Mvp::where('slug',$slug)
-								->where('is_approved',1)
-								->where('is_available',1)->first();
-		if($mvp){
-			if($mvp->is_public == 1){
+							->where('is_approved',1)
+							->where('is_available',1)
+							->where('is_deleted',0)->first();
+		if($mvp->count() > 0){
 				return view('mvp.index')->with('mvp',$mvp);
-			}
-			elseif($mvp->client_id == Auth::user()->id){
-				return view('mvp.index')->with('mvp',$mvp);
-			}else 	return redirect()->back()->with('info','لا تمتلك صلاحية الوصول لهذه الصفحة');
-		}else{
-			return redirect()->back()->with('info','هذه الصفحة غير متاحة حاليا');
 		}
  	}
     // to get edit mvp page
@@ -114,7 +107,7 @@ class MvpController extends Controller{
 		$mvps = Mvp::orderBy('created_at','desc')
 					->where('is_approved',1)
 					->where('is_available',1)
-					->get();
+					->where('is_deleted',0)->get();
 		return view('mvp.list')
 				->with('mvps',$mvps);
 	}

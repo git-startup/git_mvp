@@ -18,11 +18,12 @@ class CreateStatusTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users'); 
+                ->on('users');
             $table->text('body');
-            $table->string('type'); 
-            $table->integer('is_published')->unsigned()->default(1); 
+            $table->string('type');
+            $table->integer('is_published')->unsigned()->default(1);
             $table->integer('likes')->nullable();
+            $table->integer('is_deleted')->nullable();
             $table->timestamps();
         });
     }

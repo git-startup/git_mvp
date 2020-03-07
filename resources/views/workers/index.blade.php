@@ -17,7 +17,7 @@
           <img src="{{ asset(Auth::user()->image) }}" class="w3-circle" height="55" width="55" alt="{{ Auth::user()->name }}">
         </a>
       </div>
-      
+
       <!-- search pepople by Interests section -->
       <div class="w3-margin">
         <h4 class="">ابحث عن اشخاص</h4>
@@ -30,7 +30,7 @@
           <a href="{{ route('search.users',['user_interest' => 'investors']) }}" class="badge badge-success btn"> مستثمر </a>
         </p>
       </div>
-      
+
     </div>
 
     <!-- to make margin -->
@@ -38,31 +38,27 @@
     </div>
 
     <div class="col-md-8">
- 
+
       <div class="row">
         <div class="col-lg-12">
             <div class="w3-container w3-white w3-padding">
                 <div class="card" style="width: 100%;">
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush" id="work_accept">
                         @if($requests->count())
-                          @foreach($requests as $user )
-                              <li class="list-group-item w3-light-grey text-right">
+                          @foreach($requests as $user)
+                              <li class="list-group-item bg-light w3-margin text-right">
                                 <div class="w3-right">
                                     <img src="{{ asset($user->image) }}" style="width: 80px; height: 80px;">
                                 </div>
+                                <span class=""><a href="/profile/{{ $user->id }}" class="w3-text-blue" style="margin-right: 10px;">{{ $user->name }}</a></span>
 
-                                <p style="position: relative; top: 40px;"><a href="/profile/{{ $user->id }}" class="w3-text-black" style="margin-right: 10px;">{{ $user->name }}</a></p>
-                                <p class="w3-text-black">{{ $user->location }}</p>
-
-
-                                <div class="w3-left" id="work_accept">
-                                    @if(Auth::user()->hasWorkRequestPending($user)) 
-                                        <p>Wetting for {{ $user->getname() }} to accept your Request .</p>
-                                    @elseif(Auth::user()->hasWorkRequestRecived($user)) 
+                                <p class="">{{ $user->location }}</p>
+                                <div class="w3-left" style="margin-top: 10px;">
+                                    @if(Auth::user()->hasWorkRequestRecived($user))
                                         <work_accept-app :user_id="{{ $user->id }}"></work_accept-app>
                                     @elseif(Auth::user()->isWorkWith($user))
                                         <p>You and {{ $user->getname() }} are worker</p>
-                                        
+
                                         <form action="/workers/delete/{{ $user->id }}" method="post">
                                             <input type="submit" value="Delete Worker" />
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token" />
@@ -75,17 +71,27 @@
                               </li>
                               <br>
                           @endforeach
-                        @else
+                        @endif
+
+                        @if($requests_pending->count())
+                          @foreach($requests_pending as $user)
                           <li class="list-group-item">
-                              <p class="alert alert-danger"> لا توجد نتائج لعرضها حاليا </p>
+                              <p class="alert alert-info"> في انتظار  {{ $user->getname() }} ليوافق على طلب العمل </p>   </p>
                             </li>
+                          @endforeach
+                        @endif
+
+                        @if(!$requests_pending->count() and !$requests->count())
+                          <li class="list-group-item">
+                            <p class="alert alert-info"> لاتوجد طلبات عمل لعرضها حاليا </p>   </p>
+                          </li>
                         @endif
                       </ul>
                 </div>
             </div>
         </div>
       </div>
-           
+
     </div>
 
   </div>

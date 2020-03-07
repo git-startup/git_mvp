@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) { 
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->text('skills')->nullable();
             $table->text('description')->nullable();
             $table->integer('is_disable')->unsigned()->default(0);
+            $table->integer('is_deleted')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

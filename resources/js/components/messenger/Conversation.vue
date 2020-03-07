@@ -1,15 +1,15 @@
 <template>
-    <div class="conversation col-md-12">
-        <h1 class="w3-right-align">{{ contact ? contact.name : 'اختار مستخدم' }}</h1>
+    <div class="conversation">
+        <h1 class="w3-right-align">{{ contact ? contact.name : '' }}</h1>
         <MessagesFeed :contact="contact" :messages="messages"/>
         <MessageComposer @send="sendMessage"/>
     </div>
-</template> 
+</template>
 
 <script>
     import MessagesFeed from './MessagesFeed';
     import MessageComposer from './MessageComposer';
- 
+
     export default {
         props: {
             contact: {

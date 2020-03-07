@@ -2,13 +2,21 @@
 
 <body dir="rtl">
 
-<!--  add project section shuld be hear -->
-
 
     <!-- Header area start   -->
     <header class="header-area">
       <nav class="navbar navbar-expand-lg navbar-light top-nav">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+        <!--<a class="navbar-brand brand" href="#"><img src="img/logo.png" width="100" height="100" alt="Git Startup" id="brand_image"></a>  -->
+        <div class="">
+           <a class="navbar-brand brand" href="#">
+               <span class="w3-xlarge custom-color" id="brand">
+                   Gitstartup
+               </span>
+           </a>
+        </div>
+
+          <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon custom-bg"></span>
           </button>
 
@@ -31,7 +39,6 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="section-top text-center w3-text-white wow bounceIn" data-wow-duration="1s" data-wow-delay=".5s" data-wow-offset="10" data-wow-iteration="1">
-                <h1 class="w3-xxlarge">gitstartup</h1>
                 <p class="w3-xxlarge">دعم تفني لفكرتك الناشئة</p>
               </div>
               <div class="w3-padding">

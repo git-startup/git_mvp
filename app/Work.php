@@ -10,8 +10,9 @@ class Work extends Model
     protected $fillable = [
     	'user_id',
     	'worker_id',
-    	'accepted'
+    	'accepted',
+      'is_deleted'
     ];
 
- 
+
 }
