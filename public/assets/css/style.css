@@ -67,6 +67,9 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 .profile-link a {padding: 8px 20px;float: right;width: auto;border: none;outline: none;display: block;text-decoration: none;border-top: 3px solid #9e9e9e;margin: 0px 2px;background-color: #fff;text-decoration: none;color: #000; }.profile-link a:hover {color: #000; text-decoration: none;}
 #bars {font-size: 60px;margin: 10px; position: relative;top: -15px;}
 #main_nav_links a:hover{text-decoration: none;}
+@media screen and (max-width: 662px){
+  #main_nav_links i{display: none!important;}
+}
 .mobile-menue {width: 100%;background-color: #fff;border-top: 3px solid #f98f9b; }
 .mobile-menue li {list-style-type: none;border-bottom: 1px solid #f1f1f1;padding: 10px; }
 .mobile-menue a {text-decoration: none; }

@@ -2122,6 +2122,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2322,9 +2328,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     contacts: {
@@ -2340,7 +2343,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     selectContact: function selectContact(contact) {
       this.selected = contact;
-      this.$emit('selected', contact);
+      this.$emit('selected', contact); // close contact menu
+
+      document.getElementById("contacts_list").style.display = 'none';
     }
   },
   computed: {
@@ -2677,6 +2682,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3104,6 +3115,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     user_id: {
@@ -3123,6 +3139,16 @@ __webpack_require__.r(__webpack_exports__);
         var counter = parseInt(document.getElementById('work_notifi').innerText);
         document.getElementById('work_notifi').innerHTML = counter - 1;
       });
+    },
+    delete_btn: function delete_btn() {
+      var _this2 = this;
+
+      axios.post('/workers/delete/' + this.user_id, {}).then(function (response) {
+        document.getElementById('delete_btn_' + _this2.user_id).innerHTML = ' تم حذف الطلب ';
+        document.getElementById('delete_btn_' + _this2.user_id).style.backgroundColor = 'green';
+        var counter = parseInt(document.getElementById('work_notifi').innerText);
+        document.getElementById('work_notifi').innerHTML = counter - 1;
+      });
     }
   }
 });
@@ -3138,13 +3164,58 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_0__["ValidationProvider"]
+  },
   props: {
     user: {
       type: Object,
@@ -3152,7 +3223,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      work_title: '',
+      agreement: '',
+      end_of_agreement: ''
+    };
   },
   mounted: function mounted() {
     var _this = this;
@@ -3163,9 +3238,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     send_request_btn: function send_request_btn() {
-      axios.get('/workers/add/' + this.user.id, {}).then(function (response) {
+      axios.post('/workers/add', {
+        worker_id: this.user.id,
+        work_title: this.work_title,
+        agreement: this.agreement,
+        end_of_agreement: this.end_of_agreement,
+        _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }).then(function (response) {
         document.getElementById('send_request_btn').innerHTML = 'تم ارسال الطلب ';
         document.getElementById('send_request_btn').style.backgroundColor = 'green';
+        document.getElementById('agreement').value = '';
       });
     },
     hasRequest: function hasRequest(user) {
@@ -9686,7 +9768,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".chat-app[data-v-34adcb52] {\n  display: -webkit-box;\n  display: flex;\n}", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -9705,7 +9787,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-5739f2b8] {\n  position: absolute;\n  left: 0px;\n  max-height: 600px;\n  overflow: scroll;\n  border-left: 1px solid #a6a6a6;\n}\n.contacts-list ul[data-v-5739f2b8] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-5739f2b8] {\n  border-bottom: 1px solid #aaaaaa;\n  height: 80px;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-5739f2b8] {\n  background: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-5739f2b8] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  display: -webkit-box;\n  display: flex;\n  font-weight: 700;\n  min-width: 20px;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul li .avatar[data-v-5739f2b8] {\n  -webkit-box-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n.contacts-list ul li .avatar img[data-v-5739f2b8] {\n  width: 50px;\n  height: 50px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contacts-list ul li .contact[data-v-5739f2b8] {\n  -webkit-box-flex: 3;\n          flex: 3;\n  font-size: 10px;\n  display: -webkit-box;\n  display: flex;\n  overflow: hidden;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.contacts-list ul li .contact p[data-v-5739f2b8] {\n  margin: 0;\n}\n.contacts-list ul li .contact p.name[data-v-5739f2b8] {\n  font-weight: bold;\n  font-size: 14px;\n}\n.contacts-list ul li .contact p.email[data-v-5739f2b8] {\n  font-size: 14px;\n}", ""]);
+exports.push([module.i, ".contacts-list[data-v-5739f2b8] {\n  position: absolute;\n  right: 0px;\n  max-height: 600px;\n  margin-top: -20px;\n}\n.contacts-list nav[data-v-5739f2b8] {\n  background-color: rgba(0, 0, 0, 0.03);\n  z-index: 99;\n  width: 320px;\n  height: 600px;\n}\n@media screen and (max-width: 480px) {\n.contacts-list nav[data-v-5739f2b8] {\n    width: 220px;\n}\n}\n.contacts-list ul[data-v-5739f2b8] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-5739f2b8] {\n  border-bottom: 1px solid #aaaaaa;\n  height: 100%;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-5739f2b8] {\n  background: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-5739f2b8] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  font-weight: 700;\n  min-width: 20px;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul li .avatar[data-v-5739f2b8] {\n  -webkit-box-align: center;\n          align-items: center;\n}\n.contacts-list ul li .avatar img[data-v-5739f2b8] {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contacts-list ul li .contact[data-v-5739f2b8] {\n  font-size: 10px;\n  overflow: hidden;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.contacts-list ul li .contact p[data-v-5739f2b8] {\n  margin: 0;\n}\n.contacts-list ul li .contact p.name[data-v-5739f2b8] {\n  font-weight: bold;\n  font-size: 14px;\n}\n.contacts-list ul li .contact p.email[data-v-5739f2b8] {\n  font-size: 14px;\n}", ""]);
 
 // exports
 
@@ -9724,7 +9806,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".conversation[data-v-414a3aac] {\n  -webkit-box-flex: 5;\n          flex: 5;\n  display: -webkit-box;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n}\n.conversation h1[data-v-414a3aac] {\n  font-size: 20px;\n  padding: 10px;\n  margin: 0;\n  border-bottom: 1px dashed lightgray;\n}\n@media screen and (max-width: 768px) {\n.conversation[data-v-414a3aac] {\n    -webkit-box-flex: 7;\n            flex: 7;\n}\n}", ""]);
+exports.push([module.i, ".conversation[data-v-414a3aac] {\n  background-color: #fff;\n  width: 100%;\n}\n.conversation h1[data-v-414a3aac] {\n  font-size: 20px;\n  padding: 10px;\n  margin: 0;\n}", ""]);
 
 // exports
 
@@ -9743,7 +9825,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".composer textarea[data-v-56acc9f0] {\n  width: 96%;\n  margin: 10px;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n}", ""]);
+exports.push([module.i, ".composer textarea[data-v-56acc9f0] {\n  width: 99%;\n  margin: 10px 0.5%;\n  resize: none;\n  border-radius: 3px;\n  border: 1px solid lightgray;\n  padding: 6px;\n  float: right;\n}\n.composer button[data-v-56acc9f0] {\n  clear: both;\n}", ""]);
 
 // exports
 
@@ -9762,7 +9844,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".feed[data-v-7267809e] {\n  background: #f0f0f0;\n  height: 100%;\n  max-height: 470px;\n  overflow: scroll;\n}\n.feed ul[data-v-7267809e] {\n  list-style-type: none;\n  padding: 5px;\n}\n.feed ul li.message[data-v-7267809e] {\n  margin: 10px 0;\n  width: 100%;\n}\n.feed ul li.message .text[data-v-7267809e] {\n  max-width: 200px;\n  border-radius: 5px;\n  padding: 12px;\n  display: inline-block;\n}\n.feed ul li.message.received[data-v-7267809e] {\n  text-align: right;\n}\n.feed ul li.message.received .text[data-v-7267809e] {\n  background: #b2b2b2;\n}\n.feed ul li.message.sent[data-v-7267809e] {\n  text-align: left;\n}\n.feed ul li.message.sent .text[data-v-7267809e] {\n  background: #81c4f9;\n}", ""]);
+exports.push([module.i, ".feed[data-v-7267809e] {\n  background: #fff;\n  height: 100%;\n  max-height: 470px;\n}\n.feed ul[data-v-7267809e] {\n  list-style-type: none;\n  padding: 5px;\n}\n.feed ul li.message[data-v-7267809e] {\n  margin: 10px 0;\n  width: 100%;\n}\n.feed ul li.message .text[data-v-7267809e] {\n  max-width: 200px;\n  border-radius: 5px;\n  padding: 12px;\n  display: inline-block;\n}\n.feed ul li.message.received[data-v-7267809e] {\n  text-align: right;\n}\n.feed ul li.message.received .text[data-v-7267809e] {\n  background: #b2b2b2;\n}\n.feed ul li.message.sent[data-v-7267809e] {\n  text-align: left;\n}\n.feed ul li.message.sent .text[data-v-7267809e] {\n  background: #81c4f9;\n}", ""]);
 
 // exports
 
@@ -70247,32 +70329,95 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _vm._m(0),
+    _c(
+      "div",
+      { staticClass: "form-group text-right" },
+      [
+        _c("validation-provider", {
+          attrs: { name: "type", rules: "required" },
+          scopedSlots: _vm._u([
+            {
+              key: "default",
+              fn: function(ref) {
+                var errors = ref.errors
+                return [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.type,
+                          expression: "type"
+                        }
+                      ],
+                      staticClass: "form-control text-right",
+                      attrs: { name: "type" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.type = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "developer" } }, [
+                        _vm._v("مطور")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "project_owner" } }, [
+                        _vm._v("صاحب مشروع")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: errors[0],
+                          expression: "errors[0]"
+                        }
+                      ],
+                      class: {
+                        "form-control": true,
+                        "alert-danger text-right": errors[0]
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\t" +
+                          _vm._s(errors[0]) +
+                          "\n\t\t\t\t\t\t\t"
+                      )
+                    ]
+                  )
+                ]
+              }
+            }
+          ])
+        })
+      ],
+      1
+    ),
     _vm._v(" "),
-    _vm._m(1)
+    _vm._m(0)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("select", { staticClass: "form-control", attrs: { name: "type" } }, [
-        _c(
-          "option",
-          { staticClass: "w3-right-align", attrs: { value: "business_owner" } },
-          [_vm._v("رائد اعمال")]
-        ),
-        _vm._v(" "),
-        _c(
-          "option",
-          { staticClass: "w3-right-align", attrs: { value: "developer" } },
-          [_vm._v("مبرمج \\ مطور")]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -70582,7 +70727,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("ContactsList", {
-        attrs: { contacts: _vm.contacts },
+        attrs: { id: "contacts_list", contacts: _vm.contacts },
         on: { selected: _vm.startConversationWith }
       })
     ],
@@ -70612,67 +70757,58 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "contacts-list" }, [
-    _c(
-      "nav",
-      {
-        staticClass:
-          "w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left",
-        staticStyle: { "z-index": "99", width: "320px" },
-        attrs: { id: "contacts_list" }
-      },
-      [
-        _c("div", { staticClass: "w3-animate-left" }, [
-          _c(
-            "ul",
-            _vm._l(_vm.sortedContacts, function(contact) {
-              return _c(
-                "li",
-                {
-                  key: contact.id,
-                  class: { selected: contact == _vm.selected },
-                  on: {
-                    click: function($event) {
-                      return _vm.selectContact(contact)
-                    }
+    _c("nav", { staticClass: "w3-sidebar w3-bar-block w3-animate-left" }, [
+      _c("div", { staticClass: "w3-animate-left" }, [
+        _c(
+          "ul",
+          _vm._l(_vm.sortedContacts, function(contact) {
+            return _c(
+              "li",
+              {
+                key: contact.id,
+                class: { selected: contact == _vm.selected },
+                on: {
+                  click: function($event) {
+                    return _vm.selectContact(contact)
                   }
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "w3-bar-item w3-button w3-hover-light-grey text-right",
-                      attrs: { href: "javascript:void(0)" }
-                    },
-                    [
-                      _c("div", { staticClass: "w3-container" }, [
-                        _c("img", {
-                          staticClass: "w3-round w3-margin-right",
-                          staticStyle: { width: "15%" },
-                          attrs: { src: contact.image, alt: contact.name }
-                        }),
-                        _c("span", { staticClass: "w3-opacity w3-large" }, [
-                          _vm._v(_vm._s(contact.name))
-                        ]),
-                        _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(contact.location))])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  contact.unread
-                    ? _c("span", { staticClass: "unread" }, [
-                        _vm._v(_vm._s(contact.unread))
-                      ])
-                    : _vm._e()
-                ]
-              )
-            }),
-            0
-          )
-        ])
-      ]
-    )
+                }
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "w3-bar-item w3-button w3-hover-light-grey text-right",
+                    attrs: { href: "javascript:void(0)" }
+                  },
+                  [
+                    _c("div", { staticClass: "w3-container" }, [
+                      _c("img", {
+                        staticClass: "w3-round w3-margin-right",
+                        staticStyle: { width: "15%" },
+                        attrs: { src: contact.image, alt: contact.name }
+                      }),
+                      _c("span", { staticClass: "w3-opacity w3-large" }, [
+                        _vm._v(_vm._s(contact.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(contact.location))])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                contact.unread
+                  ? _c("span", { staticClass: "unread" }, [
+                      _vm._v(_vm._s(contact.unread))
+                    ])
+                  : _vm._e()
+              ]
+            )
+          }),
+          0
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -71726,38 +71862,107 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "form-group col-md-12 text-right" },
+          [
+            _c(
+              "lable",
+              { staticClass: "w3-text-grey", attrs: { for: "type" } },
+              [_vm._v(" نوع الحساب ")]
+            ),
+            _vm._v(" "),
+            _c("validation-provider", {
+              attrs: { id: "type", name: "type", rules: "required" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(ref) {
+                    var errors = ref.errors
+                    return [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.type,
+                              expression: "type"
+                            }
+                          ],
+                          staticClass: "form-control text-right",
+                          attrs: { name: "type" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.type = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "developer" } }, [
+                            _vm._v("مطور")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "project_owner" } }, [
+                            _vm._v("صاحب مشروع")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: errors[0],
+                              expression: "errors[0]"
+                            }
+                          ],
+                          class: {
+                            "form-control": true,
+                            "alert-danger text-right": errors[0]
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t" +
+                              _vm._s(errors[0]) +
+                              "\n\t\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            })
+          ],
+          1
+        ),
         _vm._v(" "),
-        _vm._m(1)
+        _vm._m(0)
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "w3-clear" })
     ]
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-md-12" }, [
-      _c("select", { staticClass: "form-control", attrs: { name: "type" } }, [
-        _c(
-          "option",
-          { staticClass: "text-right", attrs: { value: "business_owner" } },
-          [_vm._v("رائد اعمال")]
-        ),
-        _vm._v(" "),
-        _c(
-          "option",
-          { staticClass: "text-right", attrs: { value: "developer" } },
-          [_vm._v("مبرمج \\ مطور")]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -72369,7 +72574,8 @@ var render = function() {
     _c(
       "button",
       {
-        staticClass: "btn btn-primary",
+        staticClass: "btn btn-success w3-round",
+        staticStyle: { padding: "7px 15px" },
         attrs: { id: "accept_btn_" + _vm.user_id },
         on: {
           click: function($event) {
@@ -72377,7 +72583,25 @@ var render = function() {
           }
         }
       },
-      [_vm._v("قبول طلب العمل")]
+      [
+        _c("i", { staticClass: "fa fa-check w3-margin-left-8" }),
+        _vm._v(" موافقة\n\t")
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-danger w3-round",
+        staticStyle: { padding: "7px 15px" },
+        attrs: { id: "delete_btn_" + _vm.user_id },
+        on: {
+          click: function($event) {
+            return _vm.delete_btn()
+          }
+        }
+      },
+      [_c("i", { staticClass: "fa fa-close" }), _vm._v(" حذف\n\t")]
     )
   ])
 }
@@ -72403,23 +72627,315 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "button",
+  return _c(
+    "div",
+    {
+      staticClass: "w3-modal",
+      staticStyle: { display: "none" },
+      attrs: { id: "agreement_model" }
+    },
+    [
+      _c("div", { staticClass: "w3-modal-content w3-card-4 w3-animate-zoom" }, [
+        _c(
+          "div",
+          {
+            staticClass: "w3-margin row",
+            staticStyle: { "padding-top": "30px" }
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "form-group col-md-6" },
+              [
+                _c("label", { attrs: { for: "work_title" } }, [
+                  _vm._v("اسم تعريفي للعمل")
+                ]),
+                _vm._v(" "),
+                _c("validation-provider", {
+                  attrs: { name: "work_title", rules: "required|max:150" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(ref) {
+                        var errors = ref.errors
+                        return [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.work_title,
+                                expression: "work_title"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: "work_title",
+                              name: "work_title"
+                            },
+                            domProps: { value: _vm.work_title },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.work_title = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: errors[0],
+                                  expression: "errors[0]"
+                                }
+                              ],
+                              class: {
+                                "form-control": true,
+                                "alert-danger text-right": errors[0]
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t" +
+                                  _vm._s(errors[0]) +
+                                  "\n\t\t\t\t\t\t\t\t"
+                              )
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group col-md-6" },
+              [
+                _c("label", { attrs: { for: "end_of_agreement" } }, [
+                  _vm._v("انتهاء مدة الاتفاق")
+                ]),
+                _vm._v(" "),
+                _c("validation-provider", {
+                  attrs: { name: "end_of_agreement", rules: "required" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(ref) {
+                        var errors = ref.errors
+                        return [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.end_of_agreement,
+                                expression: "end_of_agreement"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              id: "end_of_agreement",
+                              name: "end_of_agreement"
+                            },
+                            domProps: { value: _vm.end_of_agreement },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.end_of_agreement = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: errors[0],
+                                  expression: "errors[0]"
+                                }
+                              ],
+                              class: {
+                                "form-control": true,
+                                "alert-danger text-right": errors[0]
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t" +
+                                  _vm._s(errors[0]) +
+                                  "\n\t\t\t\t\t\t\t\t"
+                              )
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "form-group col-md-12" },
+              [
+                _c("label", { attrs: { for: "agreement" } }, [
+                  _vm._v("اكتب اتفاق العمل بالتفصيل ")
+                ]),
+                _vm._v(" "),
+                _c("validation-provider", {
+                  attrs: { name: "agreement", rules: "required|min:250" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(ref) {
+                        var errors = ref.errors
+                        return [
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.agreement,
+                                expression: "agreement"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "agreement",
+                              name: "agreement",
+                              rows: "8",
+                              cols: "80"
+                            },
+                            domProps: { value: _vm.agreement },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.agreement = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              directives: [
+                                {
+                                  name: "show",
+                                  rawName: "v-show",
+                                  value: errors[0],
+                                  expression: "errors[0]"
+                                }
+                              ],
+                              class: {
+                                "form-control": true,
+                                "alert-danger text-right": errors[0]
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n\t\t\t\t\t\t\t\t\t" +
+                                  _vm._s(errors[0]) +
+                                  "\n\t\t\t\t\t\t\t\t"
+                              )
+                            ]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                })
+              ],
+              1
+            )
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "footer",
+          {
+            staticClass: "w3-container",
+            staticStyle: { "margin-right": "15px" },
+            attrs: { dir: "rtl" }
+          },
+          [
+            _c("div", { staticClass: "w3-section w3-right" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary w3-round",
+                  staticStyle: { padding: "7px 15px" },
+                  attrs: {
+                    tabindex: "1",
+                    title: "ارسال",
+                    type: "button",
+                    id: "send_request_btn",
+                    value: "ارسال الطلب"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.send_request_btn()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "fa fa-send w3-margin-left-8" }),
+                  _c("span", [_vm._v("ارسال الطلب")])
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ])
+          ]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "span",
       {
-        staticClass: "btn btn-primary w3-margin",
-        attrs: { id: "send_request_btn" },
-        on: {
-          click: function($event) {
-            return _vm.send_request_btn()
-          }
+        staticClass: "btn w3-light-grey w3-round",
+        staticStyle: { padding: "7px 15px" },
+        attrs: {
+          tabindex: "2",
+          title: "إلغاء",
+          onclick:
+            "document.getElementById('agreement_model').style.display='none'"
         }
       },
-      [_vm._v("ارسال طلب عمل")]
+      [
+        _c("i", { staticClass: "fa fa-times w3-margin-left-8" }),
+        _c("span", [_vm._v("إلغاء")])
+      ]
     )
-  ])
-}
-var staticRenderFns = []
+  }
+]
 render._withStripped = true
 
 

@@ -113,7 +113,7 @@ Route::get('/workers',[
     'middleware' => ['auth'],
 ]);
 
-Route::get('/workers/add/{id}',[
+Route::post('/workers/add',[
     'uses' => 'workController@getAdd',
     'as' => 'workers.add',
     'middleware' => ['auth'],
@@ -135,7 +135,7 @@ Route::get('/workers/count',function(){
     return Work::where('user_id','=',Auth::user()->id)
             ->where('accepted',0)
             ->orwhere('worker_id','=',Auth::user()->id)
-            ->where('accepted',0)->count(); 
+            ->where('accepted',0)->count();
 });
 
 // Article Page =  get all articles
@@ -149,32 +149,6 @@ Route::get('/article/{slug}',[
     'uses' => 'ArticlesController@getArticle',
     'as' => 'articles.single',
 ]);
-
-// to add new category
-Route::get('/dashboard/addCategory',[
-    'uses' => 'DashboardController@getAddCategory',
-    'as' => 'dashboard.addCategory',
-    'middleware' => ['admin'],
-]);
-
-Route::post('/dashboard/addCategory',[
-    'uses' => 'DashboardController@postAddCategory',
-    'middleware' => ['admin'],
-]);
-
-// to manage all articles category
-Route::get('/dashboard/category',[
-    'uses' => 'DashboardController@getCategory',
-    'as' => 'dashboard.category',
-    'middleware' => ['admin'],
-]);
-
-Route::post('/dashboard/category',[
-    'uses' => 'DashboardController@postCategory',
-    'middleware' => ['admin'],
-]);
-
-
 /*
 * Route For Mvp
 */
@@ -232,7 +206,7 @@ Route::post('/mvp/feature/add',[
 * Rout For Search Users
 */
 
-Route::get('/users/{user_interest}',[
+Route::get('/users/{can_work_on}',[
     'uses' => 'SocialController@searchUsers',
     'as' => 'search.users',
     'mddleware' => ['auth'],
@@ -265,12 +239,57 @@ Route::post('/dashboard/mvp',[
 ]);
 
 /*
+* to manage mvp types
+*/
+Route::get('/dashboard/add_mvp_type',[
+    'uses' => 'DashboardController@getAdd_mvp_type',
+    'as' => 'dashboard.add_mvp_type',
+    'middleware' => ['admin'],
+]);
+Route::post('/dashboard/add_mvp_type',[
+    'uses' => 'DashboardController@postAdd_mvp_type',
+]);
+Route::get('/dashboard/mvp_type',[
+    'uses' => 'DashboardController@getMvp_type',
+    'as' => 'dashboard.mvp_type',
+    'middleware' => ['admin'],
+]);
+
+Route::post('/dashboard/mvp_type',[
+    'uses' => 'DashboardController@postMvp_type',
+]);
+
+/*
 * to mange user status
 */
 
 Route::get('/dashboard/status',[
     'uses' => 'DashboardController@getStatus',
     'as' => 'dashboard.status',
+    'middleware' => ['admin'],
+]);
+
+// to add new category
+Route::get('/dashboard/addCategory',[
+    'uses' => 'DashboardController@getAddCategory',
+    'as' => 'dashboard.addCategory',
+    'middleware' => ['admin'],
+]);
+
+Route::post('/dashboard/addCategory',[
+    'uses' => 'DashboardController@postAddCategory',
+    'middleware' => ['admin'],
+]);
+
+// to manage all articles category
+Route::get('/dashboard/category',[
+    'uses' => 'DashboardController@getCategory',
+    'as' => 'dashboard.category',
+    'middleware' => ['admin'],
+]);
+
+Route::post('/dashboard/category',[
+    'uses' => 'DashboardController@postCategory',
     'middleware' => ['admin'],
 ]);
 
@@ -292,14 +311,14 @@ Route::post('/dashboard/publish_article',[
 * to list all published article
 */
 
-Route::get('/dashboard/published_articles',[
-    'uses' => 'DashboardController@getPublishedArticles',
-    'as' => 'dashboard.published_articles',
+Route::get('/dashboard/articles',[
+    'uses' => 'DashboardController@getArticles',
+    'as' => 'dashboard.articles',
     'middleware' => ['admin'],
 ]);
 
-Route::post('/dashboard/published_articles',[
-    'uses' => 'DashboardController@postPublishedArticles',
+Route::post('/dashboard/articles',[
+    'uses' => 'DashboardController@postArticles',
     'middleware' => ['admin'],
 ]);
 
@@ -335,18 +354,18 @@ Route::get('/dashboard/users',[
 ]);
 
 Route::post('/dashboard/users',[
-'uses' => 'DashboardController@getUsers',
+'uses' => 'DashboardController@postUsers',
     'middleware' => ['admin']
 ]);
 
 
-Route::get('/dashboard/developers/add',[
-    'uses' => 'DashboardController@getAddDeveloper',
-    'as' => 'dashboard.register',
+Route::get('/dashboard/add_user',[
+    'uses' => 'DashboardController@getAdd_user',
+    'as' => 'dashboard.add_user',
     'middleware' => ['admin']
 ]);
 
-Route::post('/dashboard/developers/add',[
-'uses' => 'DashboardController@postAddDeveloper',
+Route::post('/dashboard/add_user',[
+'uses' => 'DashboardController@postAdd_user',
     'middleware' => ['admin']
 ]);

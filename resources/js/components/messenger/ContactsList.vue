@@ -1,24 +1,21 @@
 <template>
-    <div class="contacts-list">
-        <!-- mail side navigation -->
-          <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left" style="z-index:99;width:320px;" id="contacts_list">
-            <div class="w3-animate-left">
-               <!-- contact section -->
-               <ul>
-                    <li v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact)" :class="{ 'selected': contact == selected }">
-                      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-hover-light-grey text-right">
-                        <div class="w3-container">
-                          <img class="w3-round w3-margin-right" :src="contact.image" :alt="contact.name" style="width:15%;"><span class="w3-opacity w3-large">{{ contact.name }}</span>
-                          <p>{{ contact.location }}</p>
-                        </div>
-                      </a>
-                      <span class="unread" v-if="contact.unread">{{ contact.unread }}</span>
-                    </li>
-                </ul>
-              <!-- end contact section -->
-            </div>
-        </nav>
-    </div>
+  <div class="contacts-list">
+    <nav class="w3-sidebar w3-bar-block w3-animate-left">
+      <div class="w3-animate-left">
+       <ul>
+         <li v-for="contact in sortedContacts" :key="contact.id" @click="selectContact(contact)" :class="{ 'selected': contact == selected }">
+            <a href="javascript:void(0)" class="w3-bar-item w3-button w3-hover-light-grey text-right">
+              <div class="w3-container">
+                <img class="w3-round w3-margin-right" :src="contact.image" :alt="contact.name" style="width:15%;"><span class="w3-opacity w3-large">{{ contact.name }}</span>
+                <p>{{ contact.location }}</p>
+              </div>
+            </a>
+            <span class="unread" v-if="contact.unread">{{ contact.unread }}</span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -37,8 +34,9 @@
         methods: {
             selectContact(contact) {
                 this.selected = contact;
-
                 this.$emit('selected', contact);
+                // close contact menu
+                document.getElementById("contacts_list").style.display = 'none'
             }
         },
         computed: {
@@ -58,10 +56,21 @@
 <style lang="scss" scoped>
 .contacts-list {
     position: absolute;
-    left: 0px;
+    right: 0px;
     max-height: 600px;
-    overflow: scroll;
-    border-left: 1px solid #a6a6a6;
+    margin-top: -20px;
+
+    nav{
+      background-color: rgba(0,0,0,.03);
+      z-index:99;
+      width:320px;
+      height: 600px;
+    }
+    @media screen and (max-width: 480px){
+      nav{
+        width:220px
+      }
+    }
 
     ul {
         list-style-type: none;
@@ -69,7 +78,7 @@
 
         li {
             border-bottom: 1px solid #aaaaaa;
-            height: 80px;
+            height: 100%;
             position: relative;
             cursor: pointer;
 
@@ -83,7 +92,6 @@
                 position: absolute;
                 right: 11px;
                 top: 20px;
-                display: flex;
                 font-weight: 700;
                 min-width: 20px;
                 justify-content: center;
@@ -95,24 +103,21 @@
             }
 
             .avatar {
-                flex: 1;
-                display: flex;
                 align-items: center;
-
                 img {
-                    width: 50px;
-                    height: 50px;
+                    width: 80px;
+                    height: 80px;
                     border-radius: 50%;
                     margin: 0 auto;
                 }
             }
 
             .contact {
-                flex: 3;
+
                 font-size: 10px;
-                display: flex;
+
                 overflow: hidden;
-                flex-direction: column;
+
                 justify-content: center;
 
                 p {

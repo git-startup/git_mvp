@@ -10,13 +10,13 @@
     </div>
 
     <div id="main_nav_links" class="w3-hide-small">
-      <a href="{{ route('mvp.add') }}" class="w3-bar-item w3-hover-dark-grey w3-button w3-right w3-mobile w3-border-top"><i class="fa fa-code"></i> اضف مشروع</a>
+      <a href="{{ route('mvp.add') }}" class="w3-bar-item w3-hover-white w3-button w3-right w3-mobile text-right"><i class="fa fa-code"></i> اضف مشروع</a>
 
-      <a href="{{ route('mvp.list') }}" class="w3-bar-item w3-hover-dark-grey w3-button w3-right w3-mobile w3-border-top"><i class="fa fa-code-fork"></i>  المشاريع</a>
+      <a href="{{ route('mvp.list') }}" class="w3-bar-item w3-hover-white w3-button w3-right w3-mobile text-right"><i class="fa fa-code-fork"></i>  المشاريع</a>
 
-      <a href="{{ route('social.index') }}"class="w3-bar-item w3-hover-dark-grey w3-right w3-button w3-mobile w3-border-top"><i class="fa fa-lightbulb-o"></i> استفسار جديد </a>
+      <a href="{{ route('social.index') }}"class="w3-bar-item w3-hover-white w3-right w3-button w3-mobile text-right"><i class="fa fa-lightbulb-o"></i> استفسار جديد </a>
 
-      <a href="{{ route('articles.list') }}"class="w3-bar-item w3-hover-dark-grey w3-right w3-button w3-mobile w3-border-top"><i class="fa fa-link"></i>  المقالات </a>
+      <a href="{{ route('articles.list') }}"class="w3-bar-item w3-hover-white w3-right w3-button w3-mobile text-right"><i class="fa fa-link"></i>  المقالات </a>
     </div>
 </nav>
 

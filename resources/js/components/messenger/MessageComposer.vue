@@ -11,11 +11,11 @@
             return {
                 message: ''
             };
-        }, 
+        },
         methods: {
             send(e) {
                 e.preventDefault();
-                
+
                 if (this.message == '') {
                     return;
                 }
@@ -28,13 +28,19 @@
 </script>
 
 <style lang="scss" scoped>
+.composer{
+
+}
 .composer textarea {
-    width: 96%;
-    margin: 10px;
+    width: 99%;
+    margin: 10px .5%;
     resize: none;
     border-radius: 3px;
     border: 1px solid lightgray;
     padding: 6px;
+    float: right;
+}
+.composer button {
+    clear: both;
 }
 </style>
-

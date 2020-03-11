@@ -45,12 +45,18 @@
 						</Validation-Provider>
           </div>
 
-					<div class="form-group">
-							<select name="type" class="form-control">
-									<option class="w3-right-align" value="business_owner">رائد اعمال</option>
-									<option class="w3-right-align" value="developer">مبرمج \ مطور</option>
+					<div class="form-group text-right">
+						<validation-provider name="type" rules="required" v-slot="{ errors }">
+							<select class="form-control text-right" name="type" v-model="type">
+								<option value="developer">مطور</option>
+								<option value="project_owner">صاحب مشروع</option>
 							</select>
-					</div>
+							<span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
+								{{ errors[0] }}
+							</span>
+						</Validation-Provider>
+          </div>
+
 
 					<div class="form-group text-right">
 							<p class="gender">

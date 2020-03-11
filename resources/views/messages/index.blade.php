@@ -12,7 +12,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header w3-right-align">
-                قائمة الاتصال الخاصة بك     <i class="fa fa-bars w3-button w3-xlarge w3-margin-left w3-margin-top" onclick="open_contacts_list()"></i>
+                  <span class="w3-hide-small">
+                    <i onclick="open_contacts_list()" class="fa fa-bars w3-large w3-margin-left w3-margin-top" style="cursor: pointer"></i>
+                    اختر مستخدم لتبدء التواصل معه
+                  </span>
                 </div>
 
                 <div class="card-body" id="app">
@@ -23,9 +26,11 @@
     </div>
 </div>
 
-<script src="{{ asset('assets/js/mail.js') }}"></script>
+
+
 <script src="{{ asset('assets/vendor/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('assets/js/mail.js') }}"></script>
 
 
 <!-- Footer -->

@@ -46,11 +46,17 @@
 							</Validation-Provider>
 	          </div>
 
-						<div class="form-group col-md-12">
-								<select name="type" class="form-control">
-										<option class="text-right" value="business_owner">رائد اعمال</option>
-										<option class="text-right" value="developer">مبرمج \ مطور</option>
+						<div class="form-group col-md-12 text-right">
+							<lable for="type" class="w3-text-grey"> نوع الحساب </lable>
+							<validation-provider id="type" name="type" rules="required" v-slot="{ errors }">
+								<select class="form-control text-right" name="type" v-model="type">
+									<option value="developer">مطور</option>
+									<option value="project_owner">صاحب مشروع</option>
 								</select>
+								<span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
+									{{ errors[0] }}
+								</span>
+							</Validation-Provider>
 						</div>
 
 						<div class="form-group col-md-12 text-right">

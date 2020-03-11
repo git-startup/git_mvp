@@ -23,11 +23,18 @@
         <h4 class="">ابحث عن اشخاص</h4>
         <p>ابحث حسب الاهتمامات</p>
         <p>
-          <a href="{{ route('search.users',['user_interest' => 'web-developer']) }}" class="badge badge-warning btn">مطور ويب</a>
-          <a href="{{ route('search.users',['user_interest' => 'graphic-designer']) }}" class="badge badge-success btn">مصمم </a>
-          <a href="{{ route('search.users',['user_interest' => 'mobile-app-developer']) }}" class="badge badge-warning btn"> مطور تطبيقات </a>
-          <a href="{{ route('search.users',['user_interest' => 'marketer']) }}" class="badge badge-danger btn">مسوق </a>
-          <a href="{{ route('search.users',['user_interest' => 'investors']) }}" class="badge badge-success btn"> رائد اعمال </a>
+          <?php
+            $classes = ['success','primary','warning','danger'];
+            $i = 0;
+          ?>
+          @foreach($mvp_type as $type)
+            <a href="{{ route('search.users',['can_work_on' => $type->slug]) }}" class="badge badge-<?php echo $classes[$i] ?> btn"> {{ $type->name }} </a>
+            <?php
+              if(isset($classes[$i+1])){
+                  $i++;
+              }else $i = 0;
+            ?>
+          @endforeach
         </p>
       </div>
     </div>

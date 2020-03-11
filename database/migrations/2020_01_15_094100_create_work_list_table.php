@@ -18,6 +18,7 @@ class CreateWorkListTable extends Migration
             $table->integer('user_id');
             $table->integer('worker_id');
             $table->integer('accepted')->unsigned()->default(0);
+            $table->longText('agreement');
             $table->integer('is_deleted')->nullable();
             $table->timestamps();
         });

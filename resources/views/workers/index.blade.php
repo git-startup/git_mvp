@@ -23,11 +23,18 @@
         <h4 class="">ابحث عن اشخاص</h4>
         <p>ابحث حسب الاهتمامات</p>
         <p>
-          <a href="{{ route('search.users',['user_interest' => 'web-developer']) }}" class="badge badge-warning btn">مطور ويب</a>
-          <a href="{{ route('search.users',['user_interest' => 'graphic-designer']) }}" class="badge badge-success btn">مصمم </a>
-          <a href="{{ route('search.users',['user_interest' => 'mobile-app-developer']) }}" class="badge badge-warning btn"> مطور تطبيقات </a>
-          <a href="{{ route('search.users',['user_interest' => 'marketer']) }}" class="badge badge-danger btn">مسوق </a>
-          <a href="{{ route('search.users',['user_interest' => 'investors']) }}" class="badge badge-success btn"> مستثمر </a>
+          <?php
+            $classes = ['success','primary','warning','danger'];
+            $i = 0;
+          ?>
+          @foreach($mvp_type as $type)
+            <a href="{{ route('search.users',['can_work_on' => $type->slug]) }}" class="badge badge-<?php echo $classes[$i] ?> btn"> {{ $type->name }} </a>
+            <?php
+              if(isset($classes[$i+1])){
+                  $i++;
+              }else $i = 0;
+            ?>
+          @endforeach
         </p>
       </div>
 
@@ -55,7 +62,8 @@
                                 <p class="">{{ $user->location }}</p>
                                 <div class="w3-left" style="margin-top: 10px;">
                                     @if(Auth::user()->hasWorkRequestRecived($user))
-                                        <work_accept-app :user_id="{{ $user->id }}"></work_accept-app>
+                                      <button onclick="document.getElementById('agreement_{{ $user->id }}').style.display = 'block'"  class="w3-button w3-white w3-border w3-border-gray w3-round w3-text-gray w3-hover-light-gray w3-hover-text-gray" style="padding: 7px 15px">
+                                        <i class="fa fa-file-text-o w3-margin-left-8 w3-text-gray"></i> عرض نص الاتفاق </button>
                                     @elseif(Auth::user()->isWorkWith($user))
                                         <p>You and {{ $user->getname() }} are worker</p>
 
@@ -67,8 +75,26 @@
                                         <a href="/workers/add/{{ $user->id}}" class="btn btn-primary">add as worker</a>
                                     @endif
                                 </div>
-
                               </li>
+
+                              <!-- work request agreement model -->
+                              <div id="agreement_{{ $user->id }}" class="w3-modal" style="display: none;">
+                                  <div class="w3-modal-content brnda-card-4 w3-animate-zoom">
+                                      <header class="w3-container w3-border-bottom">
+                                          <h6 class="w3-right-align"><i class="fa fa-tags w3-margin-left-8"></i>  نص الاتفاق </h6>
+                                          <span onclick="document.getElementById('agreement_{{ $user->id }}').style.display='none'" class="w3-btn w3-display-topleft">×</span>
+                                      </header>
+                                        <div class="w3-container w3-section">
+                                            <p class="w3-center user_text"> {{ $user->agreement }} </p>
+                                        </div>
+                                        <footer class="w3-container ">
+                                            <div class="w3-section w3-right">
+                                                <work_accept-app :user_id="{{ $user->id }}"></work_accept-app>
+                                            </div>
+                                        </footer>
+                                  </div>
+                              </div>
+                              <!-- end work agreement model -->
                               <br>
                           @endforeach
                         @endif

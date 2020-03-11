@@ -42,21 +42,17 @@
 
 <style lang="scss" scoped>
 .conversation {
-    flex: 5;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
+    background-color: #fff;
+    width: 100%;
     h1 {
         font-size: 20px;
         padding: 10px;
         margin: 0;
-        border-bottom: 1px dashed lightgray;
     }
 }
 @media screen and (max-width: 768px){
     .conversation {
-        flex: 7;
+
     }
 }
 </style>

@@ -10,8 +10,8 @@
         <!--<a class="navbar-brand brand" href="#"><img src="img/logo.png" width="100" height="100" alt="Git Startup" id="brand_image"></a>  -->
         <div class="">
            <a class="navbar-brand brand" href="#">
-               <span class="w3-xlarge custom-color" id="brand">
-                   Gitstartup
+               <span class="w3-xlarge" id="brand">
+                   Git Startup
                </span>
            </a>
         </div>
@@ -39,7 +39,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="section-top text-center w3-text-white wow bounceIn" data-wow-duration="1s" data-wow-delay=".5s" data-wow-offset="10" data-wow-iteration="1">
-                <p class="w3-xxlarge">دعم تفني لفكرتك الناشئة</p>
+                <p class="w3-xxlarge">دعم تفني</p>
+                <p class="w3-xxxlarge">لفكرتك الناشئة</p>
               </div>
               <div class="w3-padding">
                 <form method="POST" action="{{ route('register') }}">

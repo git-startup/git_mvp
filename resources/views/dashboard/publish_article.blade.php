@@ -1,150 +1,137 @@
-@include('dashboard/layout/header')
+@include('dashboard/layouts/header')
 
-  <body class="skin-blue sidebar-mini" dir="rtl">
-    <div class="wrapper">
+<body id="page-top">
 
-      <header class="main-header">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+ 
+    @include('dashboard/layouts/aside')
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
+      <!-- Main Content -->
+      <div id="content">
 
-      @include('dashboard/layout/aside')
+        @include('dashboard/layouts/nav')
 
+          <div class="container">
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-
-      @include('dashboard/layout/alert')
-
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-lg-2"></div>
-            <!--  column -->
-            <div class="col-lg-8">
-              <!-- general form elements -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title"> نشر مقالة جديدة </h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" action="{{ route('dashboard.publish_article') }}" method="post" enctype="multipart/form-data" >
-                  @csrf
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label >عنوان المقالة</label>
-                      <input type="text" class="form-control" name="heading">
-                      @if ($errors->has('heading'))
-                        <span class="alert-danger">{{ $errors->first('heading') }}</span>
-                      @endif
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="p-5">
+                      <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4"> نشر مقالة جديدة </h1>
+                      </div>
+                      <form class="user" method="post" action="{{ route('dashboard.publish_article') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group text-right">
+                          <label> عنوان المقالة   </label>
+                          <input type="text" name="heading" class="form-control text-right" >
+                          @if ($errors->has('heading'))
+                            <span class="alert-danger">{{ $errors->first('heading') }}</span>
+                          @endif
+                        </div>
+                        <div class="form-group text-right">
+                            <label for="category"> تحت اي تصنيف </label>
+                            <select id="category" name="category_id" class="form-control text-right">
+                              @foreach($category as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                              @endforeach
+                            </select>
+                            @if ($errors->has('category'))
+                              <span class="alert-danger">{{ $errors->first('category') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-group text-right">
+                          <label> العنوان الفرعي </label>
+                          <input type="text" name="sub_heading" class="form-control text-right" >
+                          @if ($errors->has('sub_heading'))
+                            <span class="alert-danger">{{ $errors->first('sub_heading') }}</span>
+                          @endif
+                        </div>
+                        <div class="form-group text-right">
+                          <label> اسم فريد للمقالة  </label>
+                          <input type="text" name="slug" class="form-control text-right" >
+                          @if ($errors->has('slug'))
+                            <span class="alert-danger">{{ $errors->first('slug') }}</span>
+                          @endif
+                        </div>
+                        <div class="form-group text-right">
+                          <label >المحتوى الرئيسي للمقالة</label>
+                          <textarea class="form-control text-right" rows="12" name="content">
+                          </textarea>
+                          @if ($errors->has('content'))
+                            <span class="alert-danger">{{ $errors->first('content') }}</span>
+                          @endif
+                        </div>
+                        <div class="form-group text-right">
+                          <label >المحتوى الفرعي للمقالة</label>
+                          <textarea class="form-control text-right" rows="8" name="bottom_content"> </textarea>
+                          @if ($errors->has('bottom_content'))
+                            <span class="alert-danger">{{ $errors->first('bottom_content') }}</span>
+                          @endif
+                        </div>
+                        <div class="form-group text-right">
+                          <label >الصورة الرئيسية للمقالة</label>
+                          <input type="file" class="form-control" name="image">
+                          @if ($errors->has('image'))
+                            <span class="alert-danger">{{ $errors->first('image') }}</span>
+                          @endif
+                        </div>
+                        <div class="form-group text-right">
+                          <label >الصورة الفرعية للمقالة</label>
+                          <input type="file" class="form-control" name="bottom_image">
+                          @if ($errors->has('bottom_image'))
+                            <span class="alert-danger">{{ $errors->first('bottom_image') }}</span>
+                          @endif
+                        </div>
+                        <div class="form-group text-right">
+                          <label > لغة الكتابة </label>
+                          <select name="language" class="form-control text-right">
+                            <option value="ar">عربي</option>
+                            <option value="en">انجليزي</option>
+                          </select>
+                          @if ($errors->has('language'))
+                            <span class="alert-danger">{{ $errors->first('language') }}</span>
+                          @endif
+                        </div>
+                        <button type="submit" name="add_btn" class="btn btn-primary w3-right">
+                          اضافة
+                        </button>
+                      </form>
+                      <div class="w3-clear"></div>
+                      <hr>
                     </div>
-
-                    <div class="form-group">
-                      <label >تحت اي تصنيف</label>
-                      <select name="category_id" class="form-control">
-                        @foreach($category as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                      </select>
-                      @if ($errors->has('category'))
-                        <span class="alert-danger">{{ $errors->first('category') }}</span>
-                      @endif
-                    </div>
-
-                    <div class="form-group">
-                      <label >العنوان الفرعي</label>
-                      <input type="text" class="form-control" name="sub_heading" >
-                      @if ($errors->has('sub_heading'))
-                        <span class="alert-danger">{{ $errors->first('sub_heading') }}</span>
-                      @endif
-                    </div>
-                    <div class="form-group">
-                      <label >اسم الاستخدام للمقالة</label>
-                      <input type="text" class="form-control" name="slug" >
-                      @if ($errors->has('slug'))
-                        <span class="alert-danger">{{ $errors->first('slug') }}</span>
-                      @endif
-                    </div>
-
-                    <div class="form-group">
-                      <label >المحتوى الرئيسي للمقالة</label>
-                      <textarea dir="auto" class="form-control" rows="12" name="content"> 
-                      </textarea>
-                      @if ($errors->has('content'))
-                        <span class="alert-danger">{{ $errors->first('content') }}</span>
-                      @endif
-                    </div>
-
-                    <div class="form-group">
-                      <label >المحتوى الفرعي للمقالة</label>
-                      <textarea dir="auto" class="form-control" rows="8" name="bottom_content"> </textarea>
-                      @if ($errors->has('bottom_content'))
-                        <span class="alert-danger">{{ $errors->first('bottom_content') }}</span>
-                      @endif
-                    </div>
-
-                    <div class="form-group">
-                      <label >الصورة الرئيسية للمقالة</label>
-                      <input type="file" class="form-control" name="image">
-                      @if ($errors->has('image'))
-                        <span class="alert-danger">{{ $errors->first('image') }}</span>
-                      @endif
-                    </div>
-
-                    <div class="form-group">
-                      <label >الصورة الفرعية للمقالة</label>
-                      <input type="file" class="form-control" name="bottom_image">
-                      @if ($errors->has('bottom_image'))
-                        <span class="alert-danger">{{ $errors->first('bottom_image') }}</span>
-                      @endif
-                    </div>
-
-                    <div class="form-group">
-                      <label >الصورة الفرعية للمقالة</label>
-                      <select name="language" class="form-control">
-                        <option value="ar">عربي</option>
-                        <option value="en">انجليزي</option>
-                      </select>
-                      @if ($errors->has('language'))
-                        <span class="alert-danger">{{ $errors->first('language') }}</span>
-                      @endif
-                    </div>
-
-                    <div class="box-footer">
-                      <input type="submit" name="btn_setting" class="btn btn-primary" value="نشر">
                   </div>
-                </form>
-              </div><!-- /.box -->
-            </div><!--/.col (left) -->
+                </div>
+              </div>
+            </div>
 
-            <div class="col-lg-2"></div>
+          </div>
 
-          </div>   <!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
 
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>gitstartup</b>
-        </div>
-        <strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Git Startup</a>.</strong> All rights reserved.
-      </footer>
+      @include('dashboard/layouts/footer')
 
-      <!-- Control Sidebar -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
-    </div><!-- ./wrapper -->
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-    <!-- jQuery 2.1.4 -->
-    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <!-- Bootstrap 3.3.4 -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="plugins/fastclick/fastclick.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="dist/js/app.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="dist/js/demo.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('dashboard/vendor/chart.js/Chart.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
+
   </body>
-</html>
+
+  </html>

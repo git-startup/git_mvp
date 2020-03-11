@@ -12,7 +12,7 @@
 
 <script>
     export default {
-        props: { 
+        props: {
             contact: {
                 type: Object
             },
@@ -41,11 +41,9 @@
 
 <style lang="scss" scoped>
 .feed {
-    background: #f0f0f0;
+    background: #fff;
     height: 100%;
     max-height: 470px;
-    overflow: scroll;
-
     ul {
         list-style-type: none;
         padding: 5px;
@@ -60,7 +58,6 @@
                     border-radius: 5px;
                     padding: 12px;
                     display: inline-block;
-                    
                 }
 
                 &.received {
@@ -83,4 +80,3 @@
     }
 }
 </style>
-

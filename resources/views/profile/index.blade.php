@@ -241,8 +241,6 @@
                   <span class="help-block">{{ $errors->first('description') }}</span>
                 @endif
               </p>
-
-
               <p><input type="submit" class="btn custom-bg w3-padding" name="btn_edit_profile" value="تحديث" /></p>
             </form>
           </div>
@@ -268,7 +266,12 @@
           </div>
         @elseif(!Auth::user()->hasWorkRequestPending($profile))
           <div class="w3-container" id="work_request">
-            <work_request-app :user="{{ $profile }}"></work_request-app>
+            <div>
+              <work_request-app :user="{{ $profile }}"></work_request-app>
+            </div>
+            <div class="w3-margin">
+              <button type="button" onclick="document.getElementById('agreement_model').style.display='block'" class="btn btn-primary"> ارسال طلب عمل </button>
+            </div>
           </div>
         @else
           <div class="alert alert-info">

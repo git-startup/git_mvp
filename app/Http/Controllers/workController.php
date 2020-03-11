@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Work;
+use App\Mvp_type;
 use App\Message;
 use App\Events\workNotification;
 
@@ -16,15 +18,18 @@ class workController extends Controller
 
         $requests_pending = Auth::user()->workRequestPending();
 
+        $mvp_type = Mvp_type::where('is_active',1)->get();
+
         return view('workers.index')
         ->with('workers',$workers)
         ->with('requests',$requests)
-        ->with('requests_pending',$requests_pending);
+        ->with('requests_pending',$requests_pending)
+        ->with('mvp_type',$mvp_type);
 
     }
 
-    public function getAdd($id){
-        $user = User::where('id',$id)->first();
+    public function getAdd(Request $request){
+        $user = User::where('id',$request->worker_id)->first();
         if(!$user){
             return response()->json('that user could not be found');
         }
@@ -42,7 +47,15 @@ class workController extends Controller
             return response()->json('you are alredy worker ');
         }
 
-        Auth::user()->addWorker($user);
+        //Auth::user()->addWorker($user);
+        Work::create([
+          'user_id'          => Auth::user()->id,
+          'worker_id'        => $user->id,
+          'accepted'         => 0,
+          'work_title'       => $request->work_title,
+          'agreement'        => $request->agreement,
+          'end_of_agreement' => $request->end_of_agreement
+        ]);
 
         broadcast(new workNotification($user));
 

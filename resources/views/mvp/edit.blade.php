@@ -43,9 +43,9 @@
 			                @endif
 	                    </div>
 	                </div>
-                  
+
 	                <div class="add_project_Slides">
-	                    <div class="form-group{{ $errors->has('dev_tools') ? ' alert alert-danger' : '' }}">
+	                    <div class="form-gro up{{ $errors->has('dev_tools') ? ' alert alert-danger' : '' }}">
 	                        <label> الادوات المستخدمة في التطوير </label>
                             <textarea rows="8" class="form-control w3-border w3-margin-bottom w3-right-align" name="dev_tools" >
                             	{{ $mvp->dev_tools }}

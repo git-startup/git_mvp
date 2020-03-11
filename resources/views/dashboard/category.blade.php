@@ -1,98 +1,99 @@
- @include('dashboard/layout/header')
+@include('dashboard/layouts/header')
 
-  <body class="skin-blue sidebar-mini"  dir="rtl">
-    <div class="wrapper">
+<body id="page-top">
 
-      <header class="main-header">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-      @include('dashboard/layout/aside')
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        
-        <!-- Content Header (Page header) -->
+    @include('dashboard/layouts/aside')
 
 
-        @include('dashboard/layout/alert')
 
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-            <div class="col-lg-12">
-              <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">ادارة التصنيفات</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body" style="overflow-x: scroll!important;">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th class="text-right">الاسم</th>
-                        <th class="text-right">اسم الاستخدام </th>
-                        <th class="text-right">الاعدادت</th>
+      <!-- Main Content -->
+      <div id="content">
+
+        @include('dashboard/layouts/nav')
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800 text-right"> ادارة جدول تصنيف المقالات   </h1>
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary text-right">
+                جدول تصنيف المقالات
+              </h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr class="text-right">
+                      <th> اسم التصنيف </th>
+                      <th> اسم الاستخدام  </th>
+                      <th>  العمليات </th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr class="text-right">
+                      <th> اسم التصنيف </th>
+                      <th> اسم الاستخدام  </th>
+                      <th>  العمليات </th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    @foreach($category as $category)
+                      <tr class="text-right">
+                        <td>{{ $category->name }}</td>
+                        <td>{{ $category->slug }}</td>
+                        <td style="width: 50px">
+                          <form action="{{ route('dashboard.category') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="category_id" value="{{ $category->id }}" />
+                            <button type="submit" name="delete_category" class="btn btn-danger" >
+                              <i class="fa fa-times-circle"></i>
+                             </button>
+                          </form>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($category as $category)
-                         <tr>
-                          <td>{{ $category->name }}</td>
-                          <td>{{ $category->slug }}</td>
-                          <td>
-                            <form action="{{ route('dashboard.category') }}" method="post">
-                              @csrf
-                              <input type="hidden" name="category_id" value="{{ $category->id }}">
-                              <input type="submit"  name="delete_category" value="حذف التصنيف" class="col-lg-6 btn btn-sm btn-danger">
-                            </form>
-                          </td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-            </div><!-- /.col -->
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-          </div><!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-      
-      
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Git Startup</b> 
         </div>
-        <strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Git Startup</a>.</strong> All rights reserved.
-      </footer>
+        <!-- /.container-fluid -->
 
-    
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
+      </div>
+      <!-- End of Main Content -->
 
-    </div><!-- ./wrapper -->
+      <!-- Footer -->
+      @include('dashboard/layouts/footer')
 
-    <!-- jQuery 2.1.4 -->
-    <script src="{{ asset('dashboard/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <!-- Bootstrap 3.3.4 -->
-    <script src="{{ asset('dashboard/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- FastClick -->
-    <script src="{{ asset('dashboard/plugins/fastclick/fastclick.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('dashboard/dist/js/app.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ asset('dashboard/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-    <!-- jvectormap -->
-    <script src="{{ asset('dashboard/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-    <script src="{{ asset('dashboard/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <!-- SlimScroll 1.3.0 -->
-    <script src="{{ asset('dashboard/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-    <!-- ChartJS 1.0.1 -->
-    <script src="{{ asset('dashboard/plugins/chartjs/Chart.min.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dashboard/dist/js/pages/dashboard2.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dashboard/dist/js/demo.js') }}"></script>
-  </body>
+  <!-- Bootstrap core JavaScript-->
+  <script src="{{  asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{{ asset('dashboard/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('dashboard/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{{ asset('dashboard/js/demo/datatables-demo.js') }}"></script>
+
+</body>
+
 </html>

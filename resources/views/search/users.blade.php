@@ -24,11 +24,18 @@
         <h4 class="">ابحث عن اشخاص</h4>
         <p>ابحث حسب الاهتمامات</p>
         <p>
-          <a href="{{ route('search.users',['user_interest' => 'web-developer']) }}" class="badge badge-warning btn">مطور ويب</a>
-          <a href="{{ route('search.users',['user_interest' => 'graphic-designer']) }}" class="badge badge-success btn">مصمم </a>
-          <a href="{{ route('search.users',['user_interest' => 'mobile-app-developer']) }}" class="badge badge-warning btn"> مطور تطبيقات </a>
-          <a href="{{ route('search.users',['user_interest' => 'marketer']) }}" class="badge badge-danger btn">مسوق </a>
-          <a href="{{ route('search.users',['user_interest' => 'investors']) }}" class="badge badge-success btn"> مستثمر </a>
+          <?php
+            $classes = ['success','primary','warning','danger'];
+            $i = 0;
+          ?>
+          @foreach($mvp_type as $type)
+            <a href="{{ route('search.users',['can_work_on' => $type->slug]) }}" class="badge badge-<?php echo $classes[$i] ?> btn"> {{ $type->name }} </a>
+            <?php
+              if(isset($classes[$i+1])){
+                  $i++;
+              }else $i = 0;
+            ?>
+          @endforeach
         </p>
       </div>
     </div>
@@ -44,18 +51,25 @@
       		<div class="w3-container w3-white w3-padding">
             	<div class="card" style="width: 100%;">
     			  		<ul class="list-group list-group-flush">
-    			            @if($users->count())
-    			              @foreach($users as $user )
+    			            @if($results->count())
+    			              @foreach($results as $result)
     			                  <li class="list-group-item bg-light w3-margin text-right">
     			                  	<div class="w3-right">
-    				                  		<img src="{{ asset($user->image) }}" style="width: 80px; height: 80px;">
+    				                  		<img src="{{ asset($result->user->image) }}" style="width: 80px; height: 80px;">
     			                  	</div>
 
-    			                  	<p style="position: relative; top: 40px;"><a href="/profile/{{ $user->id }}" class="w3-text-black" style="margin-right: 10px;">{{ $user->name }}</a></p>
+    			                  	<p style="position: relative; top: 40px;"><a href="/profile/{{ $result->user->id }}" class="w3-text-black" style="margin-right: 10px;">{{ $result->user->name }}</a></p>
 
-    				                <div class="w3-left">
-    				                	<p class="w3-left">{{ $user->location }}</p>
+    				                  <div class="w3-left">
+                                <p>{{ $result->user->location }}</p>
     			                  	</div>
+
+                              <div class="w3-margin w3-clear">
+                                @for($i = 0; $i< $result->rating; $i++)
+                                <i class="fa fa-star w3-text-amber"></i>
+                                @endfor
+                              </div>
+
     			                  </li>
     			                  <br>
     			              @endforeach

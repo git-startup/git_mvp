@@ -112,9 +112,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class,'from');
     }
 
-    // this method for orders table
-    public function orders(){
-        return $this->hasMany('gitstartup\Orders','user_id');
+    // this method for can_work_on table
+    public function can_work_on(){
+        return $this->hasMany(Can_work_on::class,'user_id');
     }
 
     // for like model
@@ -128,12 +128,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     // for work table
     public function workersOfMine(){
-        return $this->belongsToMany(User::class,'work_list','user_id','worker_id');
+        return $this->belongsToMany(User::class,'work_list','worker_id','user_id');
     }
 
     public function workerOf(){
-        // test this out (user_id vs worker_id)
-        return $this->belongsToMany(User::class,'work_list','worker_id','user_id');
+        return $this->belongsToMany(User::class,'work_list','user_id','worker_id');
     }
 
     public function workers(){

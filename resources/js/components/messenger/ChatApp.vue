@@ -1,7 +1,7 @@
 <template>
     <div class="chat-app row">
         <Conversation :contact="selectedContact" :messages="messages" @new="saveNewMessage"/>
-        <ContactsList :contacts="contacts" @selected="startConversationWith"/>
+        <ContactsList id="contacts_list" :contacts="contacts" @selected="startConversationWith"/>
     </div>
 </template>
 
@@ -80,6 +80,7 @@
 
 <style lang="scss" scoped>
 .chat-app {
-    display: flex;
+
 }
+
 </style>

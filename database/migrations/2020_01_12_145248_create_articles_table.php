@@ -15,7 +15,7 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('heading');
+            $table->string('heading'); 
             $table->string('sub_heading');
             $table->string('slug')->unique();
             $table->string('image');
@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
                 ->references('id')
-                ->on('users'); 
+                ->on('users');
             $table->integer('is_published')->unsigned()->default(1);
             $table->integer('is_deleted')->unsigned()->default(0);
             $table->integer('comment_count')->unsigned()->default(0);

@@ -6,29 +6,18 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use App\Message;
+use App\Mvp_type;
 
 class HomeController extends Controller
 {
 
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
-    public function index()
-    {
+    public function index(){
         if(!Auth::check()){
-
             return view('index');
-        }
-        else{
-            
-            $messagesCount = Message::where('to','=',Auth::user()->id)
-            ->orwhere('from','=',Auth::user()->id)->count();
-            
+        }else{
+            $mvp_type = Mvp_type::where('is_active',1)->get();
             return view('social.index')
-                    ->with('messagesCount',$messagesCount);
-                    
+                    ->with('mvp_type',$mvp_type);
         }
     }
 }

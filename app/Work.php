@@ -11,6 +11,9 @@ class Work extends Model
     	'user_id',
     	'worker_id',
     	'accepted',
+      'work_title',
+      'end_of_agreement',
+      'agreement',
       'is_deleted'
     ];
 

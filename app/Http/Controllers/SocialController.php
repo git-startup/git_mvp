@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Message;
 use App\User;
+use App\Mvp_type;
+use App\Can_work_on;
 use Auth;
 
 class SocialController extends Controller
 {
     public function getSocial(Request $request)
     {
-        $messagesCount = Message::where('to','=',Auth::user()->id)
-            ->orwhere('from','=',Auth::user()->id)->count();
+        $mvp_type = Mvp_type::where('is_active',1)->get();
         return view('social.index')
-            ->with('messagesCount',$messagesCount);
+                  ->with('mvp_type',$mvp_type);
     }
 
     // to send new message
@@ -40,11 +41,14 @@ class SocialController extends Controller
     }
 
     // to get users by they account type
-    public function searchUsers(Request $request, $user_interest)
+    public function searchUsers(Request $request, $can_work_on)
     {
-        $users = User::where('skills',$user_interest)->get();
+        $mvp_type = Mvp_type::where('is_active',1)->get();
+        $results = Can_work_on::whereJsonContains('name',$can_work_on)->get();
+
         return view('search.users')
-                ->with('users',$users);
+                ->with('results',$results)
+                ->with('mvp_type',$mvp_type);
     }
 
 }

@@ -1,90 +1,99 @@
-@include('dashboard/layout/header')
+@include('dashboard/layouts/header')
 
-  <body class="skin-blue sidebar-mini" dir="rtl">
-    <div class="wrapper">
+<body id="page-top">
 
-      <header class="main-header">
-        
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-      @include('dashboard/layout/aside')
-      
+    @include('dashboard/layouts/aside')
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-      
-      @include('dashboard/layout/alert')
+      <!-- Main Content -->
+      <div id="content">
 
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-lg-2"></div>
-            <!--  column -->
-            <div class="col-lg-8">
-              <!-- general form elements -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title"> تعديل اعدادات الموقع  </h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <form role="form" action="{{ route('dashboard.settings') }}" method="post" enctype="multipart/form-data" >
-                  @csrf
-                  <div class="box-body">
-                    <div class="form-group">
-                      <label >اسم الموقع</label>
-                      <input type="text" class="form-control" value="{{ $settings->name }}" name="site_name">
-                      @if ($errors->has('name'))
-                        <span class="alert-danger">{{ $errors->first('name') }}</span>
-                      @endif
+        @include('dashboard/layouts/nav')
+
+          <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="p-5">
+                      <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4"> اعدادات الموقع </h1>
+                      </div>
+                      <form class="user" method="post" action="{{ route('dashboard.settings') }}">
+                        @csrf
+                        <div class="form-group text-right">
+                          <label>اسم الموقع</label>
+                          <input type="text" name="site_name" value="{{ $settings->site_name }}" class="form-control text-right" >
+                        </div>
+                        <div class="form-group row text-right">
+                          <div class="col-md-6">
+                            <label for="email_two"> الايميل الثاني  </label>
+                            <input id="email_two" type="text" value="{{ $settings->email_two }}"  class="form-control text-right" name="email_two">
+                          </div>
+                          <div class="col-md-6">
+                            <label for="email_one"> الايميل الاول  </label>
+                            <input id="email_one" type="text" value="{{ $settings->email_one }}"  class="form-control text-right" name="email_one">
+                          </div>
+                        </div>
+                        <div class="form-group text-right">
+                          <label for="region">المقر</label>
+                          <input id="region" type="text" value="{{ $settings->address }}"  name="address" class="form-control text-right" >
+                        </div>
+                        <div class="form-group text-right">
+                          <label for="logo">شعار الموقع</label>
+                          <input id="logo" type="file" name="logo" value="{{ $settings->logo }}"  class="form-control text-right" >
+                        </div>
+                        <div class="form-group row text-right">
+                          <div class="col-md-6">
+                            <label for="phone_two"> الرقم الثاني   </label>
+                            <input id="phone_two" type="text" class="form-control text-right" value="{{ $settings->phone_two }}" name="phone_two">
+                          </div>
+                          <div class="col-md-6">
+                            <label for="phone_one"> الرقم الاول   </label>
+                            <input id="phone_one" type="text" class="form-control text-right" value="{{ $settings->phone_one }}"  name="phone_one">
+                          </div>
+                        </div>
+                        <input type="hidden" name="id" value="{{ $settings->id }}" >
+                        <button type="submit" class="btn btn-primary w3-right">
+                          تحديث
+                        </button>
+                      </form>
+                      <div class="w3-clear"></div>
+                      <hr>
                     </div>
-                  <div class="box-footer">
-                    <input type="hidden" name="id" value="{{ $settings->id }}">
-                    <input type="submit" name="btn_setting" class="btn btn-primary" value="تحديث">
                   </div>
-                </form>
-              </div><!-- /.box -->
-            </div><!--/.col (left) -->
+                </div>
+              </div>
+            </div>
 
-            <div class="col-lg-2"></div>
+          </div>
 
-          </div>   <!-- /.row -->
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-      
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Git Startup</b> 
-        </div>
-        <strong>Copyright &copy; <?php echo date('Y') ?> <a href="#">Git Startup</a>.</strong> All rights reserved.
-      </footer>
 
-    
-      <!-- Add the sidebar's background. This div must be placed
-           immediately after the control sidebar -->
-      <div class="control-sidebar-bg"></div>
+      @include('dashboard/layouts/footer')
 
-    </div><!-- ./wrapper -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- jQuery 2.1.4 -->
-    <script src="{{ asset('dashboard/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <!-- Bootstrap 3.3.4 -->
-    <script src="{{ asset('dashboard/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- FastClick -->
-    <script src="{{ asset('dashboard/plugins/fastclick/fastclick.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('dashboard/dist/js/app.min.js') }}"></script>
-    <!-- Sparkline -->
-    <script src="{{ asset('dashboard/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-    <!-- jvectormap -->
-    <script src="{{ asset('dashboard/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-    <script src="{{ asset('dashboard/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <!-- SlimScroll 1.3.0 -->
-    <script src="{{ asset('dashboard/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-    <!-- ChartJS 1.0.1 -->
-    <script src="{{ asset('dashboard/plugins/chartjs/Chart.min.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dashboard/dist/js/pages/dashboard2.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dashboard/dist/js/demo.js') }}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('dashboard/js/sb-admin-2.min.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('dashboard/vendor/chart.js/Chart.min.js') }}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('dashboard/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('dashboard/js/demo/chart-pie-demo.js') }}"></script>
+
   </body>
-</html>
+
+  </html>
