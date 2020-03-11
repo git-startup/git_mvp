@@ -12,7 +12,9 @@ class Work extends Model
     	'worker_id',
     	'accepted',
       'work_title',
+      'start_of_agreement',
       'end_of_agreement',
+      'sallery',
       'agreement',
       'is_deleted'
     ];

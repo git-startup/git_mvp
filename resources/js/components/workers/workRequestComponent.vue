@@ -2,8 +2,8 @@
 	<div id="agreement_model" class="w3-modal" style="display: none;">
 			<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="">
 					<div class="w3-margin row" style="padding-top: 30px">
-							<div class="form-group col-md-6">
-								<label for="work_title">اسم تعريفي للعمل</label>
+							<div class="form-group col-md-12">
+								<label for="work_title">اسم تعريفي للمشروع</label>
 								<validation-provider name="work_title" rules="required|max:150" v-slot="{ errors }">
 									<input type="text" id="work_title" name="work_title" v-model="work_title" class="form-control">
 									<span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
@@ -12,13 +12,17 @@
 								</Validation-Provider>
 							</div>
 							<div class="form-group col-md-6">
-								<label for="end_of_agreement">انتهاء مدة الاتفاق</label>
-								<validation-provider name="end_of_agreement" rules="required" v-slot="{ errors }">
-									<input type="date" id="end_of_agreement" name="end_of_agreement" v-model="end_of_agreement" class="form-control">
-									<span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
-										{{ errors[0] }}
-									</span>
-								</Validation-Provider>
+								<label for="end_of_agreement"> بداية ونهاية فترة العمل  </label>
+								<date-picker v-model="range" range  lang="en" type="date" formate="YYYY-MM-dd" style="width: 100%"></date-picker>
+							</div>
+							<div class="form-group col-md-6">
+								<label> تكلفة التطوير </label>
+								<vue-slider
+	                v-model="price"
+	                :min="0"
+	                :max="400"
+	                :interval="1" >
+	              </vue-slider>
 							</div>
 							<div class="form-group col-md-12">
 								<label for="agreement">اكتب اتفاق العمل بالتفصيل </label>
@@ -46,10 +50,18 @@
 
 <script>
 import { ValidationProvider } from 'vee-validate';
+// to import datepicker component
+import DatePicker from 'vue2-datepicker';
+import 'vue2-datepicker/index.css';
+// to import slider component
+import VueSlider from 'vue-slider-component';
+import 'vue-slider-component/theme/antd.css';
 
 	export default{
 		components: {
-				ValidationProvider
+				ValidationProvider,
+				DatePicker,
+				VueSlider
 		},
 		props: {
 			user : {
@@ -61,6 +73,8 @@ import { ValidationProvider } from 'vee-validate';
 			return {
 				work_title: '',
 				agreement: '',
+				range: [],
+				price: 0,
 				end_of_agreement: ''
 			}
 		},
@@ -76,7 +90,8 @@ import { ValidationProvider } from 'vee-validate';
 					worker_id: this.user.id,
 					work_title: this.work_title,
 					agreement: this.agreement,
-					end_of_agreement: this.end_of_agreement,
+					date_range: this.range,
+					price: this.price,
 					_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 				}).then((response) => {
 					document.getElementById('send_request_btn').innerHTML = 'تم ارسال الطلب ';
