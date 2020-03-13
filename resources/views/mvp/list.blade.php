@@ -14,7 +14,7 @@
      <!-- profile and other things -->
     <div class="col-md-3 card card-body bg-light" id="social_card" style="height: 400px!important;">
       <div class="w3-margin">
-        <a href="/profile/{{ Auth::user()->id }}"> <p>{{ Auth::user()->username }}</p>
+        <a href="/profile/{{ Auth::user()->username }}"> <p>{{ Auth::user()->username }}</p>
         <img src="{{ asset(Auth::user()->image) }}" class="w3-circle" height="55" width="55" alt="Avatar">
         </a>
       </div>
@@ -24,18 +24,18 @@
         <h4 class="">ابحث عن مشروع</h4>
         <p>ابحث حسب نوع المشروع</p>
         <p>
-          <a href="{{ route('mvp.search',['type' => 'web']) }}" class="badge badge-warning btn">
-            موقع الكتروني
-          </a>
-          <a href="{{ route('mvp.search',['type' => 'design']) }}" class="badge badge-success btn">
-          تصميم
-          </a>
-          <a href="{{ route('mvp.search',['type' => 'app']) }}" class="badge badge-warning btn">
-           تطبيق
-          </a>
-          <a href="{{ route('mvp.search',['type' => 'system']) }}" class="badge badge-danger btn">
-           نظام
-          </a>
+          <?php
+            $classes = ['success','primary','warning','danger'];
+            $i = 0;
+          ?>
+          @foreach($mvp_type as $type)
+            <a href="{{ route('mvp.search',['type' => $type->slug]) }}" class="badge badge-<?php echo $classes[$i] ?> btn"> {{ $type->name }} </a>
+            <?php
+              if(isset($classes[$i+1])){
+                  $i++;
+              }else $i = 0;
+            ?>
+          @endforeach
         </p>
       </div>
 
@@ -99,7 +99,7 @@
          </div>
        </div>
 
-      <script src="{{ asset('assets/vendor/js/jquery.min.js') }}"></script>
+      <script src="{{ asset('assets/js/script.js') }}"></script>
 
 <!-- Footer -->
 @include('layouts.footer')

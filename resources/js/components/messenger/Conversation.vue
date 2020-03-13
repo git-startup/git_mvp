@@ -1,6 +1,6 @@
 <template>
     <div class="conversation">
-        <h1 class="w3-right-align">{{ contact ? contact.name : '' }}</h1>
+        <h1 class="w3-right-align" id="contact_name">{{ contact ? contact.name : '' }}</h1>
         <MessagesFeed :contact="contact" :messages="messages"/>
         <MessageComposer @send="sendMessage"/>
     </div>
@@ -44,6 +44,7 @@
 .conversation {
     background-color: #fff;
     width: 100%;
+    height: 100%;
     h1 {
         font-size: 20px;
         padding: 10px;

@@ -10,7 +10,7 @@
         <div class="w3-white mvp-single">
             <div class="row">
               <div class="col-md-12">
-                <h1 class="text-right w3-margin-bottom">{{ $mvp->name }}</h1>
+                <h1 class="text-right w3-text-blue w3-margin-bottom"> <a href="{{ $mvp->mvp_link }}"> {{ $mvp->name }} </a> </h1>
                 <div id="carousel_{{ $mvp->id }}" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
                     <?php $count = 0 ?>
@@ -40,15 +40,31 @@
             </div>
 
             <div class="text-right">
-              <h3>وصف المشروع</h3>
-              <div>
-                  <p class="user_text lead">{{ $mvp->description }}</p>
+              <div class="">
+                <h3>وصف المشروع</h3>
+                <p class="user_text lead">{{ $mvp->description }}</p>
               </div>
-              <hr>
-              <h3>الادوات المستخدمة في التطوير</h3>
-              <div>
-                  <p class="lead user_text">{{ $mvp->dev_tools }}</p>
+
+              <div class="w3-margin-top">
+                <h3>الادوات المستخدمة في التطوير</h3>
+                <p class="lead user_text">{{ $mvp->dev_tools }}</p>
               </div>
+
+              @if($mvp->features)
+                @foreach($mvp->features as $feature)
+                  @if($feature->username == Auth::user()->username)
+                    <div class="w3-margin-top">
+                      <h3>ملفات المشروع</h3>
+                      <div>
+                        <div class="w3-light-grey w3-padding w3-card">
+                          <h4>{{ $feature->name }} <a href="/{{ $feature->url }}"> <i class="fa fa-download w3-text-blue"></i>  </a> </h4>
+                          <p class="user_text">{{ $feature->description }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  @endif
+                @endforeach
+              @endif
             </div>
 
             <div class="row">
@@ -82,9 +98,9 @@
                           </div>
                           <br>
                           <footer class="w3-margin-right">
-                            <button class="w3-button w3-white w3-border w3-border-gray w3-round w3-text-gray w3-hover-light-gray w3-hover-text-gray" id="upload_mvp_images" style="padding: 7px 15px"><i class="fa fa-upload  w3-margin-left-8  w3-text-gray"></i> تحميل </button>
+                            <button class="btn btn-success w3-round" id="upload_mvp_images" style="padding: 7px"><i class="fa fa-upload"></i> تحميل </button>
                             <button type="button" onclick="document.getElementById('mvp_files_model').style.display='none'"
-                              class="w3-button w3-border w3-hover-light-gray w3-text-gray w3-round" style="padding: 7px 15px;"><i class="fa fa-arrow-right"></i> إلغاء</button>
+                              class="btn btn-danger w3-round" style="padding: 7px;"><i class="fa fa-arrow-right"></i> إلغاء</button>
                           </footer>
                           <br>
                         </div>
@@ -105,11 +121,20 @@
                             <label for="name">اسم توضيحي</label>
                             <input type="text" name="name" id="name" class="form-control">
                           </div>
-                          <div class="form-group">
+                          <div class="form-grop w3-margin-top">
+                            <label for="name"> حصر الوصول للملف لمستخدم واحد - اختياري </label>
+                            <input list="users" name="username" class="form-control">
+                            <datalist id="users">
+                              @foreach($users as $user)
+                                <option value="{{ $user->username }}">
+                              @endforeach
+                            </datalist>
+                          </div>
+                          <div class="form-group w3-margin-top">
                             <label for="description">وصف عام </label>
                             <textarea name="description" id="description" rows="8" cols="80" class="form-control"></textarea>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group w3-margin-top">
                             <label for="file">ارفاق ملف</label>
                             <input type="file" name="file" id="file" class="form-control">
                           </div>
@@ -117,9 +142,9 @@
                         </form>
                         <br>
                         <footer class="w3-margin-right">
-                          <button type="submit" form="add_feature_form" class="w3-button w3-white w3-border w3-border-gray w3-round w3-text-gray w3-hover-light-gray w3-hover-text-gray"  style="padding: 7px 15px"><i class="fa fa-check-square-o  w3-margin-left-8  w3-text-gray"></i> موافق</button>
+                          <button type="submit" form="add_feature_form" class="btn btn-success w3-round"  style="padding: 7px"><i class="fa fa-check"></i> موافق</button>
                           <button type="button"  onclick="document.getElementById('mvp_features_file_model').style.display='none'"
-                            class="w3-button w3-border w3-hover-light-gray w3-text-gray w3-round" style="padding: 7px 15px;"><i class="fa fa-arrow-right"></i> إلغاء</button>
+                            class="btn btn-danger w3-round" style="padding: 7px;"><i class="fa fa-arrow-right"></i> إلغاء</button>
                         </footer>
                         <br>
                       </div>

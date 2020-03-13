@@ -2128,6 +2128,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2345,7 +2354,9 @@ __webpack_require__.r(__webpack_exports__);
       this.selected = contact;
       this.$emit('selected', contact); // close contact menu
 
-      document.getElementById("contacts_list").style.display = 'none';
+      document.getElementById("contacts_list").style.display = 'none'; // add border in bottom of contact name
+
+      document.getElementById('contact_name').style.borderBottom = '1px solid #f1f1f1';
     }
   },
   computed: {
@@ -2600,16 +2611,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ValidationProvider: vee_validate__WEBPACK_IMPORTED_MODULE_0__["ValidationProvider"]
   },
   props: {
-    users: {
+    mvp_types: {
       type: Array,
       required: true
     },
@@ -2682,6 +2690,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vee_validate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vee-validate */ "./node_modules/vee-validate/dist/vee-validate.esm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3054,7 +3071,7 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       var commentText = document.getElementById('comment');
       var newComment = document.createElement('div');
       newComment.classList.add('comment');
-      newComment.innerHTML = " \n\t\t\t    \t<div class=\"w3-right\">\n\t\t                <img src=\"".concat(userImage, "\" class=\"w3-circle\" height=\"55\" width=\"55\" alt=\"").concat(userName.innerHTML, "\">\n\t\t                <p class=\"w3-text-blue\" id=\"comment_userName\">").concat(userName.innerHTML, "</p>\n\t\t            </div>\n\t\t            <div class=\"w3-clear\">\n                        <p class=\"w3-right-align user_text\">").concat(commentText.value, "</p>\n                    </div>\n                    ");
+      newComment.innerHTML = "\n\t\t\t    \t<div class=\"w3-right\">\n\t\t                <img src=\"".concat(userImage, "\" class=\"w3-circle\" height=\"55\" width=\"55\" alt=\"").concat(userName.innerHTML, "\">\n\t\t                <p class=\"w3-text-blue\" id=\"comment_userName\">").concat(userName.innerHTML, "</p>\n\t\t            </div>\n\t\t            <div class=\"w3-clear\">\n                        <p class=\"w3-right-align user_text\">").concat(commentText.value, "</p>\n                    </div>\n                    ");
       comment_div.parentElement.appendChild(newComment);
       userName.value = '';
       commentText.value = '';
@@ -3122,7 +3139,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    user_id: {
+    work_id: {
       required: true
     }
   },
@@ -3130,22 +3147,29 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
-    accept_btn: function accept_btn() {
+    accept_request: function accept_request() {
       var _this = this;
 
-      axios.get('/workers/accept/' + this.user_id, {}).then(function (response) {
-        document.getElementById('accept_btn_' + _this.user_id).innerHTML = 'تم قبول الطلب';
-        document.getElementById('accept_btn_' + _this.user_id).style.backgroundColor = 'green';
+      axios.post('/workers/accept', {
+        work_id: this.work_id,
+        _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }).then(function (response) {
+        document.getElementById('accept_btn_' + _this.work_id).innerHTML = 'تم قبول الطلب';
+        document.getElementById('accept_btn_' + _this.work_id).style.backgroundColor = 'green';
+        document.getElementById('reject_btn_' + _this.work_id).style.display = 'none';
         var counter = parseInt(document.getElementById('work_notifi').innerText);
         document.getElementById('work_notifi').innerHTML = counter - 1;
       });
     },
-    delete_btn: function delete_btn() {
+    reject_request: function reject_request() {
       var _this2 = this;
 
-      axios.post('/workers/delete/' + this.user_id, {}).then(function (response) {
-        document.getElementById('delete_btn_' + _this2.user_id).innerHTML = ' تم حذف الطلب ';
-        document.getElementById('delete_btn_' + _this2.user_id).style.backgroundColor = 'green';
+      axios.post('/workers/reject', {
+        work_id: this.work_id,
+        _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }).then(function (response) {
+        document.getElementById('reject_btn_' + _this2.work_id).innerHTML = ' تم رفض الطلب  ';
+        document.getElementById('accept_btn_' + _this2.work_id).style.display = 'none';
         var counter = parseInt(document.getElementById('work_notifi').innerText);
         document.getElementById('work_notifi').innerHTML = counter - 1;
       });
@@ -3246,7 +3270,7 @@ __webpack_require__.r(__webpack_exports__);
       work_title: '',
       agreement: '',
       range: [],
-      price: 0,
+      sallery: 0,
       end_of_agreement: ''
     };
   },
@@ -3264,7 +3288,7 @@ __webpack_require__.r(__webpack_exports__);
         work_title: this.work_title,
         agreement: this.agreement,
         date_range: this.range,
-        price: this.price,
+        sallery: this.sallery,
         _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
       }).then(function (response) {
         document.getElementById('send_request_btn').innerHTML = 'تم ارسال الطلب ';
@@ -9809,7 +9833,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".contacts-list[data-v-5739f2b8] {\n  position: absolute;\n  right: 0px;\n  max-height: 600px;\n  margin-top: -20px;\n}\n.contacts-list nav[data-v-5739f2b8] {\n  background-color: rgba(0, 0, 0, 0.03);\n  z-index: 99;\n  width: 320px;\n  height: 600px;\n}\n@media screen and (max-width: 480px) {\n.contacts-list nav[data-v-5739f2b8] {\n    width: 220px;\n}\n}\n.contacts-list ul[data-v-5739f2b8] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-5739f2b8] {\n  border-bottom: 1px solid #aaaaaa;\n  height: 100%;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-5739f2b8] {\n  background: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-5739f2b8] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  font-weight: 700;\n  min-width: 20px;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul li .avatar[data-v-5739f2b8] {\n  -webkit-box-align: center;\n          align-items: center;\n}\n.contacts-list ul li .avatar img[data-v-5739f2b8] {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contacts-list ul li .contact[data-v-5739f2b8] {\n  font-size: 10px;\n  overflow: hidden;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.contacts-list ul li .contact p[data-v-5739f2b8] {\n  margin: 0;\n}\n.contacts-list ul li .contact p.name[data-v-5739f2b8] {\n  font-weight: bold;\n  font-size: 14px;\n}\n.contacts-list ul li .contact p.email[data-v-5739f2b8] {\n  font-size: 14px;\n}", ""]);
+exports.push([module.i, ".contacts-list[data-v-5739f2b8] {\n  position: absolute;\n  right: 0px;\n  max-height: 600px;\n  margin-top: -20px;\n}\n.contacts-list nav[data-v-5739f2b8] {\n  background-color: #fff;\n  border-left: 1px solid #f1f1f1;\n  z-index: 99;\n  width: 320px;\n  height: 600px;\n}\n@media screen and (max-width: 480px) {\n.contacts-list nav[data-v-5739f2b8] {\n    width: 210px;\n}\n}\n.contacts-list ul[data-v-5739f2b8] {\n  list-style-type: none;\n  padding-left: 0;\n}\n.contacts-list ul li[data-v-5739f2b8] {\n  border-bottom: 1px solid #f1f1f1;\n  height: 100%;\n  position: relative;\n  cursor: pointer;\n}\n.contacts-list ul li.selected[data-v-5739f2b8] {\n  background: #dfdfdf;\n}\n.contacts-list ul li span.unread[data-v-5739f2b8] {\n  background: #82e0a8;\n  color: #fff;\n  position: absolute;\n  right: 11px;\n  top: 20px;\n  font-weight: 700;\n  min-width: 20px;\n  -webkit-box-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n          align-items: center;\n  line-height: 20px;\n  font-size: 12px;\n  padding: 0 4px;\n  border-radius: 3px;\n}\n.contacts-list ul li .avatar[data-v-5739f2b8] {\n  -webkit-box-align: center;\n          align-items: center;\n}\n.contacts-list ul li .avatar img[data-v-5739f2b8] {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.contacts-list ul li .contact[data-v-5739f2b8] {\n  font-size: 10px;\n  overflow: hidden;\n  -webkit-box-pack: center;\n          justify-content: center;\n}\n.contacts-list ul li .contact p[data-v-5739f2b8] {\n  margin: 0;\n}\n.contacts-list ul li .contact p.name[data-v-5739f2b8] {\n  font-weight: bold;\n  font-size: 14px;\n}\n.contacts-list ul li .contact p.email[data-v-5739f2b8] {\n  font-size: 14px;\n}", ""]);
 
 // exports
 
@@ -9828,7 +9852,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".conversation[data-v-414a3aac] {\n  background-color: #fff;\n  width: 100%;\n}\n.conversation h1[data-v-414a3aac] {\n  font-size: 20px;\n  padding: 10px;\n  margin: 0;\n}", ""]);
+exports.push([module.i, ".conversation[data-v-414a3aac] {\n  background-color: #fff;\n  width: 100%;\n  height: 100%;\n}\n.conversation h1[data-v-414a3aac] {\n  font-size: 20px;\n  padding: 10px;\n  margin: 0;\n}", ""]);
 
 // exports
 
@@ -87127,10 +87151,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "w3-margin-top" }, [
+  return _c("div", { staticClass: "w3-margin-top row" }, [
     _c(
       "div",
-      { staticClass: "form-group text-right" },
+      { staticClass: "form-group  col-md-6 text-right" },
       [
         _c("validation-provider", {
           attrs: { name: "name", rules: "required|max:25|string" },
@@ -87197,7 +87221,78 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "form-group text-right" },
+      { staticClass: "form-group  col-md-6 text-right" },
+      [
+        _c("validation-provider", {
+          attrs: { name: "username", rules: "required|max:25|string" },
+          scopedSlots: _vm._u([
+            {
+              key: "default",
+              fn: function(ref) {
+                var errors = ref.errors
+                return [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.username,
+                        expression: "username"
+                      }
+                    ],
+                    staticClass: "form-control text-right",
+                    attrs: {
+                      placeholder: "اسم الاستخدام",
+                      type: "text",
+                      name: "username"
+                    },
+                    domProps: { value: _vm.username },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.username = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: errors[0],
+                          expression: "errors[0]"
+                        }
+                      ],
+                      class: {
+                        "form-control": true,
+                        "alert-danger text-right": errors[0]
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n\t\t\t\t\t\t\t\t" +
+                          _vm._s(errors[0]) +
+                          "\n\t\t\t\t\t\t\t"
+                      )
+                    ]
+                  )
+                ]
+              }
+            }
+          ])
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "form-group col-md-6 text-right" },
       [
         _c("validation-provider", {
           attrs: { name: "email", rules: "required|max:25|email" },
@@ -87268,7 +87363,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "form-group text-right" },
+      { staticClass: "form-group col-md-6 text-right" },
       [
         _c("validation-provider", {
           attrs: { name: "phone", rules: "required|max:15" },
@@ -87339,7 +87434,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "form-group text-right" },
+      { staticClass: "form-group col-md-6 text-right" },
       [
         _c("validation-provider", {
           attrs: { name: "password", rules: "required|min:6" },
@@ -87411,7 +87506,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "form-group text-right" },
+      { staticClass: "form-group col-md-6 text-right" },
       [
         _c("validation-provider", {
           attrs: { name: "password_confirmation", rules: "required|min:6" },
@@ -87483,7 +87578,7 @@ var render = function() {
     _vm._v(" "),
     _c(
       "div",
-      { staticClass: "form-group text-right" },
+      { staticClass: "form-group col-md-12 text-right" },
       [
         _c("validation-provider", {
           attrs: { name: "type", rules: "required" },
@@ -87574,7 +87669,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group text-right" }, [
+    return _c("div", { staticClass: "form-group col-md-12 text-right" }, [
       _c("p", { staticClass: "gender" }, [
         _c("label", { attrs: { for: "male" } }, [_vm._v("ذكر")]),
         _vm._v(" "),
@@ -87879,6 +87974,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("ContactsList", {
+        staticStyle: { display: "none" },
         attrs: { id: "contacts_list", contacts: _vm.contacts },
         on: { selected: _vm.startConversationWith }
       })
@@ -87989,9 +88085,11 @@ var render = function() {
     "div",
     { staticClass: "conversation" },
     [
-      _c("h1", { staticClass: "w3-right-align" }, [
-        _vm._v(_vm._s(_vm.contact ? _vm.contact.name : ""))
-      ]),
+      _c(
+        "h1",
+        { staticClass: "w3-right-align", attrs: { id: "contact_name" } },
+        [_vm._v(_vm._s(_vm.contact ? _vm.contact.name : ""))]
+      ),
       _vm._v(" "),
       _c("MessagesFeed", {
         attrs: { contact: _vm.contact, messages: _vm.messages }
@@ -88251,19 +88349,12 @@ var render = function() {
                   }
                 }
               },
-              [
-                _c("option", { attrs: { value: "web" } }, [
-                  _vm._v("موقع الكتروني ")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "app" } }, [
-                  _vm._v("تطبيق هاتف ")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "system" } }, [_vm._v("نظام")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "design" } }, [_vm._v("تصميم")])
-              ]
+              _vm._l(_vm.mvp_types, function(type) {
+                return _c("option", { domProps: { value: type.slug } }, [
+                  _vm._v(" " + _vm._s(type.name) + "  ")
+                ])
+              }),
+              0
             )
           ])
         ]),
@@ -88355,7 +88446,7 @@ var render = function() {
                     fn: function(ref) {
                       var errors = ref.errors
                       return [
-                        _c("label", [_vm._v(" رابط تحميل المشروع ")]),
+                        _c("label", [_vm._v(" رابط المشروع  ")]),
                         _vm._v(" "),
                         _c("input", {
                           staticClass:
@@ -88659,7 +88750,7 @@ var render = function() {
       _c("div", { staticClass: "row" }, [
         _c(
           "div",
-          { staticClass: "form-group col-md-12 text-right" },
+          { staticClass: "form-group col-md-6 text-right" },
           [
             _c("validation-provider", {
               attrs: { name: "name", rules: "required|max:25|string" },
@@ -88716,6 +88807,77 @@ var render = function() {
                             "\n\t\t\t\t\t\t\t\t" +
                               _vm._s(errors[0]) +
                               "\n\t\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ]
+                  }
+                }
+              ])
+            })
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "form-group  col-md-6 text-right" },
+          [
+            _c("validation-provider", {
+              attrs: { name: "username", rules: "required|max:25|string" },
+              scopedSlots: _vm._u([
+                {
+                  key: "default",
+                  fn: function(ref) {
+                    var errors = ref.errors
+                    return [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.username,
+                            expression: "username"
+                          }
+                        ],
+                        staticClass: "form-control text-right",
+                        attrs: {
+                          placeholder: "اسم الاستخدام",
+                          type: "text",
+                          name: "username"
+                        },
+                        domProps: { value: _vm.username },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.username = $event.target.value
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: errors[0],
+                              expression: "errors[0]"
+                            }
+                          ],
+                          class: {
+                            "form-control": true,
+                            "alert-danger text-right": errors[0]
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t\t" +
+                              _vm._s(errors[0]) +
+                              "\n\t\t\t\t\t\t\t\t"
                           )
                         ]
                       )
@@ -89424,7 +89586,7 @@ var render = function() {
         return _c("div", { key: status.id, staticClass: "row" }, [
           _c("div", { staticClass: "col-lg-3" }, [
             _c("div", { staticClass: "card-body bg-white w3-margin" }, [
-              _c("a", { attrs: { href: "/profile/" + status.user_id } }, [
+              _c("a", { attrs: { href: "/profile/" + status.user.username } }, [
                 _c("p", { staticClass: "w3-text-blue" }, [
                   _vm._v(_vm._s(status.user.name))
                 ]),
@@ -89526,7 +89688,11 @@ var render = function() {
                         _c("div", { staticClass: "w3-right" }, [
                           _c(
                             "a",
-                            { attrs: { href: "/profile/" + comment.user.id } },
+                            {
+                              attrs: {
+                                href: "/profile/" + comment.user.username
+                              }
+                            },
                             [
                               _c("img", {
                                 staticClass: "w3-circle",
@@ -89728,10 +89894,10 @@ var render = function() {
       {
         staticClass: "btn btn-success w3-round",
         staticStyle: { padding: "7px 15px" },
-        attrs: { id: "accept_btn_" + _vm.user_id },
+        attrs: { id: "accept_btn_" + _vm.work_id },
         on: {
           click: function($event) {
-            return _vm.accept_btn()
+            return _vm.accept_request()
           }
         }
       },
@@ -89746,14 +89912,14 @@ var render = function() {
       {
         staticClass: "btn btn-danger w3-round",
         staticStyle: { padding: "7px 15px" },
-        attrs: { id: "delete_btn_" + _vm.user_id },
+        attrs: { id: "reject_btn_" + _vm.work_id },
         on: {
           click: function($event) {
-            return _vm.delete_btn()
+            return _vm.reject_request()
           }
         }
       },
-      [_c("i", { staticClass: "fa fa-close" }), _vm._v(" حذف\n\t")]
+      [_c("i", { staticClass: "fa fa-close" }), _vm._v(" رفض\n\t")]
     )
   ])
 }
@@ -89797,7 +89963,7 @@ var render = function() {
           [
             _c(
               "div",
-              { staticClass: "form-group col-md-12" },
+              { staticClass: "form-group col-md-6" },
               [
                 _c("label", { attrs: { for: "work_title" } }, [
                   _vm._v("اسم تعريفي للمشروع")
@@ -89884,7 +90050,7 @@ var render = function() {
                     range: "",
                     lang: "en",
                     type: "date",
-                    formate: "YYYY-MM-dd"
+                    formate: "YYYY"
                   },
                   model: {
                     value: _vm.range,
@@ -89900,18 +90066,18 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "form-group col-md-6" },
+              { staticClass: "form-group col-md-12" },
               [
-                _c("label", [_vm._v(" تكلفة التطوير ")]),
+                _c("label", [_vm._v(" تكلفة التطوير - بالدولار ")]),
                 _vm._v(" "),
                 _c("vue-slider", {
                   attrs: { min: 0, max: 400, interval: 1 },
                   model: {
-                    value: _vm.price,
+                    value: _vm.sallery,
                     callback: function($$v) {
-                      _vm.price = $$v
+                      _vm.sallery = $$v
                     },
-                    expression: "price"
+                    expression: "sallery"
                   }
                 })
               ],

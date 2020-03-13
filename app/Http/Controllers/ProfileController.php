@@ -6,14 +6,15 @@ use Illuminate\Http\Request;
 use App\Mvp;
 use App\Status;
 use App\Message;
+use App\Work;
 use App\User;
 use Auth;
 
 class ProfileController extends Controller
 {
-    public function getProfile(Request $request,$user_id){
+    public function getProfile(Request $request,$username){
 
-        $profile = User::find($user_id);
+        $profile = User::where('username',$username)->first();
 
         if(!$profile){
             return view('errors.404');
@@ -21,16 +22,19 @@ class ProfileController extends Controller
         else {
             $mvps = Mvp::where('user_id',Auth::user()->id)->where('is_deleted',0)->get();
             $status = Status::where('user_id',Auth::user()->id)->where('is_deleted',0)->get();
+            $check_if_worker = Work::where('worker_id',$profile->id)
+                                    ->where('user_id',Auth::user()->id)->count();
 
             return view('profile.index')
                 ->with('profile',$profile)
                 ->with('mvps',$mvps)
-                ->with('status',$status);
+                ->with('status',$status)
+                ->with('check_if_worker',$check_if_worker);
         }
 
     }
 
-    public function postProfile(Request $request,$userid){
+    public function postProfile(Request $request,$username){
 
         if($request->has('not_available')){
             Mvp::where('id',$request->mvp_id)->update(['is_available' => 0]);
@@ -41,12 +45,6 @@ class ProfileController extends Controller
             return redirect()->back()->with('info','تم تفعيل المشروع بنجاح');
         }
         elseif($request->input('delete_mvp')){
-            //$getMvp = Mvp::where('id','=',$request->mvp_id)->first();
-            //to delete the Mvp image's files
-            //File::delete($getMvp->image_one);
-            //File::delete($getMvp->image_two);
-            //File::delete($getMvp->image_three);
-            // to delete the mvp record from db
             Mvp::where('id',$request->mvp_id)->update([
               'is_deleted' => 1
             ]);
@@ -78,11 +76,11 @@ class ProfileController extends Controller
         if($request->input('btn_edit_profile')){
 
             $this->validate($request ,[
-                'name'          => 'string|nullable',
-                'phone'         => 'string|nullable|max:15',
-                'location'      => 'string|nullable',
-                'description'   => 'string|nullable',
-                'skills'        => 'string|nullable',
+                'name'          => 'required|string',
+                'phone'         => 'string|required|max:15',
+                'location'      => 'string|required',
+                'description'   => 'string|required',
+                'skills'        => 'string|required',
                 'image'         => 'image|mimes:jpeg,jpg,gif,svg,png|max:5120',
             ]);
 
@@ -101,6 +99,7 @@ class ProfileController extends Controller
                     'description'   => $request->input('description'),
                     'skills'        => $request->input('skills'),
                     'image'         => $input['imagename'],
+                    'is_completed'  => 1
                 ]);
             }else{
                 User::where('id',Auth::user()->id)->update([
@@ -110,6 +109,7 @@ class ProfileController extends Controller
                     'type'          => $request->input('type'),
                     'description'   => $request->input('description'),
                     'skills'        => $request->input('skills'),
+                    'is_completed'  => 1 
                 ]);
             }
 

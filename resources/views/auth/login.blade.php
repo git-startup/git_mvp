@@ -19,7 +19,7 @@
 </head>
     <body>
         <div class="container">
-            <div class="row">
+            <div class="row w3-card-4 w3-margin w3-padding-16" style="padding-bottom: 80px!important">
                 <div class="col-md-6">
                     <img src="{{ asset('site/images/undraw/login.png') }}" class="signimg">
                 </div>

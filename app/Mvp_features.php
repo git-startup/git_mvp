@@ -11,6 +11,7 @@ class Mvp_features extends Model
     'mvp_id',
     'name',
     'description',
+    'username',
     'url'
   ];
 

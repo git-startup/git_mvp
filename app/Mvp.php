@@ -15,7 +15,6 @@ class Mvp extends Model
     	'slug',
     	'dev_tools',
     	'mvp_link',
-      'client_id',
     	'is_approved',
     	'is_available',
       'is_deleted'

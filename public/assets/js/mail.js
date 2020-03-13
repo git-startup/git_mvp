@@ -5,4 +5,7 @@ function open_contacts_list() {
     } else {
         contacts.style.display = 'none';
     }
+
+    // to remove border bottom from contact name
+    document.getElementById('contact_name').style.borderBottom = '0px';
 }

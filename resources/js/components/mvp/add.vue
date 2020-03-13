@@ -20,10 +20,7 @@
                 <div class="form-group">
                     <label>نوع المشروع</label>
                     <select class="form-control w3-border w3-margin-bottom w3-right-align" name="type"v-model="type">
-                        <option value="web">موقع الكتروني </option>
-                        <option value="app">تطبيق هاتف </option>
-                        <option value="system">نظام</option>
-                        <option value="design">تصميم</option>
+                        <option v-for="type in mvp_types" :value="type.slug"> {{ type.name }}  </option>
                     </select>
                 </div>
               </div>
@@ -41,7 +38,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                     <validation-provider name="mvp_link" rules="required" v-slot="{ errors }">
-                            <label> رابط تحميل المشروع </label>
+                            <label> رابط المشروع  </label>
                             <input class="form-control w3-border w3-margin-bottom w3-right-align" type="text"  name="mvp_link">
                         <span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
                             {{ errors[0] }}
@@ -87,7 +84,7 @@
             ValidationProvider
         },
         props: {
-            users: {
+            mvp_types: {
               type: Array,
               required: true
             },

@@ -11,7 +11,7 @@
         <div class="">
            <a class="navbar-brand brand" href="#">
                <span class="w3-xlarge" id="brand">
-                   Git Startup
+                   git Startup
                </span>
            </a>
         </div>
@@ -23,6 +23,7 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <hr class="">
               <ul class="navbar-nav ml-auto nav-links w3-right-align">
+                <li><a class="nav-item nav-link w3-large" href="/login">  تسجيل دخول  </a></li>
                 <li><a class="nav-item nav-link w3-large" href="#community"> اخر المقالات  </a></li>
                 <li><a class="nav-item nav-link w3-large" href="#services">مشاريع مميزة</a></li>
                 <li><a class="nav-item nav-link w3-large" onclick="open_add_project()" href="#">ابدء مشروعك معنا</a></li>
@@ -39,8 +40,8 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="section-top text-center w3-text-white wow bounceIn" data-wow-duration="1s" data-wow-delay=".5s" data-wow-offset="10" data-wow-iteration="1">
-                <p class="w3-xxlarge">دعم تفني</p>
-                <p class="w3-xxxlarge">لفكرتك الناشئة</p>
+                <p class="w3-xxxlarge"> جيت استارتب </p>
+                <p class="w3-xxlarge"> دعم تقني لفكرتك الناشئة </p>
               </div>
               <div class="w3-padding">
                 <form method="POST" action="{{ route('register') }}">
@@ -156,15 +157,15 @@
     <!-- end last projects section -->
 
     <!-- call to action section -->
-    <section class="container w3-padding w3-card call-action">
-      <div class="w3-right">
+    <section class="container w3-padding w3-card call-action w3-light-grey w3-center">
+      <div class="">
           <div class="w3-padding">
               <h3> سجل دخولك الان وابدء العمل مع افضل المبرمجين </h3>
           </div>
       </div>
       <div class="">
           <div class="w3-padding">
-              <a href="#" class="btn custom-bg w3-xlarge">تسجيل دخول جديد</a>
+              <a href="#" class="btn w3-white w3-card-4 w3-xlarge">تسجيل دخول جديد</a>
           </div>
       </div>
     </section>
@@ -178,7 +179,7 @@
               <a href="#">
                 <div class="w3-border w3-margin">
                     <img src="site/images/articals/img1.jpg" width="100%" height="100%">
-                    <p class="w3-padding">Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.</p>
+                    <p class="w3-padding">Lorem ipsum dolor sit amet</p>
                 </div>
               </a>
             </div>
@@ -186,7 +187,7 @@
               <a href="#">
                 <div class="w3-border w3-margin">
                     <img src="site/images/articals/img2.jpg" width="100%" height="100%">
-                    <p class="w3-padding">Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.</p>
+                    <p class="w3-padding">Lorem ipsum dolor sit amet, has ei ipsum </p>
                 </div>
               </a>
             </div>
@@ -194,7 +195,7 @@
               <a href="#">
                 <div class="w3-border w3-margin">
                     <img src="site/images/articals/img3.jpg" width="100%" height="100%">
-                    <p class="w3-padding">Lorem ipsum dolor sit amet, has ei ipsum scaevola deseruisse am sea facilisis.</p>
+                    <p class="w3-padding">Lorem ipsum dolor sit amet, has ei</p>
                 </div>
               </a>
             </div>
@@ -205,14 +206,14 @@
 
     <!-- footer section -->
     <section>
-        <footer class="w3-center w3-white w3-padding-32 w3-light-grey w3-opacity w3-margin-top" style="margin-top: 100px!important">
+        <footer class="w3-center w3-white w3-padding w3-black w3-margin-top" style="margin-top: 100px!important">
           <h5> تابع صفحاتنا على مواقع اتواصل الاجتماعي  </h5>
           <div class="w3-xlarge w3-padding-16">
-            <i class="fa fa-facebook-official w3-hover-opacity"></i>
-            <i class="fa fa-twitter w3-hover-opacity"></i>
-            <i class="fa fa-linkedin w3-hover-opacity"></i>
+            <a href="#"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+            <a href="#"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+            <a href="#"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
           </div>
-          <p>تم التطوير بواسطة <a href="#" target="_blank" class="w3-hover-text-black"> فريق git startup    </a></p>
+          <p>تم التطوير بواسطة <a href="#" target="_blank" class="w3-hover-text-blue"> فريق git startup    </a></p>
         </footer>
     </section>
     <!-- end footer section -->

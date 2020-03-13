@@ -14,7 +14,7 @@
      <!-- profile and other things -->
     <div class="col-md-3 card card-body bg-light" id="social_card" style="height: 400px!important;">
       <div class="w3-margin">
-        <a href="/profile/{{ Auth::user()->id }}"> <p>{{ Auth::user()->username }}</p>
+        <a href="/profile/{{ Auth::user()->username }}"> <p>{{ Auth::user()->username }}</p>
         <img src="{{ asset(Auth::user()->image) }}" class="w3-circle" height="55" width="55" alt="Avatar">
         </a>
       </div>
@@ -53,18 +53,20 @@
     			  		<ul class="list-group list-group-flush">
     			            @if($results->count())
     			              @foreach($results as $result)
-    			                  <li class="list-group-item bg-light w3-margin text-right">
-    			                  	<div class="w3-right">
-    				                  		<img src="{{ asset($result->user->image) }}" style="width: 80px; height: 80px;">
+    			                  <li class="list-group-item bg-light w3-margin text-right searchResults">
+    			                  	<div class="w3-right searchResults_image">
+    				                  		<img src="{{ asset($result->user->image) }}">
     			                  	</div>
 
-    			                  	<p style="position: relative; top: 40px;"><a href="/profile/{{ $result->user->id }}" class="w3-text-black" style="margin-right: 10px;">{{ $result->user->name }}</a></p>
+                              <div class="searchResults_name">
+      			                  	<p><a href="/profile/{{ $result->user->username }}" class="w3-text-black">{{ $result->user->name }}</a></p>
+                              </div>
 
-    				                  <div class="w3-left">
+    				                  <div class="searchResults_location">
                                 <p>{{ $result->user->location }}</p>
     			                  	</div>
 
-                              <div class="w3-margin w3-clear">
+                              <div class="w3-margin w3-clear searchResults_rating">
                                 @for($i = 0; $i< $result->rating; $i++)
                                 <i class="fa fa-star w3-text-amber"></i>
                                 @endfor

@@ -15,7 +15,7 @@
 
     <div class="w3-row-padding w3-center info-icon" style="margin:32px 0;">
       @if(!$profile->location)
-        <div class="alert alert-info"><i class="fa fa-map-marker"></i> قم يتحديد موقعك </div>
+        <div class="alert alert-info"><i class="fa fa-map-marker"></i> لم يتم تحديد الموقع   </div>
       @else
         <div class=""><i class="fa fa-map-marker"></i> {{ $profile->location }} </div>
       @endif
@@ -75,9 +75,9 @@
       <div class="container w3-white">
         <div class="row">
           <div class="col-sm-12">
-            <h3 class="w3-margin-top"> الاهتمامات او مهارات العمل </h3>
+            <h3 class="w3-margin-top"> الاهتمامات ومهارات العمل </h3>
             @if(!$profile->skills)
-              <p class="w3-opacity alert alert-info">قم بتحديد اهتمامك </p>
+              <p class="w3-opacity alert alert-info"> لم بتم تحديد الاهتمامات والمهارات   </p>
             @else
               <p class="w3-opacity user_text w3-large">{{ $profile->skills }}</p>
             @endif
@@ -91,7 +91,7 @@
           <div class="col-sm-6 card card-body bg-light">
             <h3 class="w3-margin-right">{{ $profile->name }}</h3>
             @if(!$profile->description)
-              <p class="w3-margin-right alert alert-info">قم باضافة نبذة عنك</p>
+              <p class="w3-margin-right alert alert-info"> لم يتم اضافة نبذة تعريفية   </p>
             @else
               <p class="w3-margin-right user_text">{{ $profile->description }}</p>
             @endif
@@ -130,7 +130,7 @@
                           <hr>
                         </div>
                       @endif
-                      <form action="/profile/{{ $profile->id }}" method="post">
+                      <form action="/profile/{{ $profile->username }}" method="post">
                         <input type="hidden" name="$request->mvp_id" value="{{ $mvp->id }}">
                         @csrf
                         <input type="submit" name="delete_mvp" class="btn btn-danger w3-margin-bottom" value="حذف">
@@ -179,7 +179,7 @@
       <div class="w3-white">
           <div class="w3-container">
             <h4 class="w3-margin-top">تحديث  بياناتك</h4>
-            <form action="/profile/{{ $profile->id }}" method="post" enctype="multipart/form-data">
+            <form action="/profile/{{ $profile->username }}" method="post" enctype="multipart/form-data">
                @csrf
 
                <p class="form-group{{ $errors->has('name') ? ' alert alert-danger' : '' }}">
@@ -250,7 +250,7 @@
     <!--  contact me section -->
     <div id="contact-tab" class="w3-margin-bottom myLink">
       <div class="w3-white">
-        @if(Auth::user()->isWorkWith($profile))
+        @if($check_if_worker > 0)
           <div class="w3-container">
             <h4 class="w3-margin-top">كيف اخدمك</h4>
             <form action="/profile/{{ $profile->id }}" method="post">
@@ -260,11 +260,11 @@
               </p>
               <input type="hidden" id="to" name="to" value="{{ $profile->id }}">
               <p>
-                <input type="submit" class="btn custom-bg w3-padding" name="btn_contact" value="ارسال" />
+                <input type="submit" class="btn w3-black w3-padding" name="btn_contact" value="ارسال" />
               </p>
             </form>
           </div>
-        @elseif(!Auth::user()->hasWorkRequestPending($profile))
+        @else
           <div class="w3-container" id="work_request">
             <div>
               <work_request-app :user="{{ $profile }}"></work_request-app>
@@ -272,10 +272,6 @@
             <div class="w3-margin">
               <button type="button" onclick="document.getElementById('agreement_model').style.display='block'" class="btn btn-primary"> ارسال طلب عمل </button>
             </div>
-          </div>
-        @else
-          <div class="alert alert-info">
-            <p>في انتظار الموافقة على طلب العمل</p>
           </div>
         @endif
       </div>

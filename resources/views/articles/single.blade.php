@@ -9,9 +9,9 @@
     <div class="container">
         <article class="single-article text-right">
             <h1>{{ $article->heading }}</h1>
-            <img src="{{ asset($article->image) }}" class="article-main-img">
+            <img src="{{ asset($article->image) }}" width="100%" class="article-main-img">
             <div class="article-text">
-                <p dir="auto" class="lead user_text">{{ $article->content }}</p>  
+                <p dir="auto" class="lead user_text">{{ $article->content }}</p>
             </div>
                 <h2>{{ $article->sub_heading }}</h2>
                 <hr>

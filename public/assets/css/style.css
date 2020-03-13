@@ -2,12 +2,13 @@
 @font-face {font-family: JF-Flat-regular;src: url("../fonts/Flat_Font_Jozoor/JF-Flat-regular.ttf"); }
 
 body{font-family: JF-Flat-regular; overflow-x: hidden;}
+p,h1,h2,h3,h4,h5,h6,div,input,option,textarea,button{font-family: JF-Flat-regular!important;}
 /******************************************************************/
 
 /*************************************************************************/
 /* style for navigation bar */
 .top-nav{width: 100%;padding: 10px;background-color: #fff}
-.top-nav ul{margin-right: 6%!important;}
+.top-nav ul{}
 .top-nav li{margin: 0px 10px!important;}
 .navbar-toggler{border: 0px!important;}
 .navbar-toggler-icon{border-radius: 50%;color: #fff!important}
@@ -24,8 +25,8 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 
 /**********************************************************************************/
 /* style for jumo and carousel area */
-.carousel-area{background-image: url('../../site/images/slidebear.jpg');background-position: center center;background-repeat: no-repeat;background-size: cover;width: 100%;height:500px; margin: 0px 0px 75px 0!important;}
-.carousel-slider {margin-top: 150px;padding-bottom: 20px;position: relative;}
+.carousel-area{background-image: url('../../site/images/cover_svg.svg');background-position: center center;background-repeat: no-repeat;background-size: cover;width: 100%;height:500px; margin: 0px 0px 75px 0!important;}
+.carousel-slider {margin-top: 250px;padding-bottom: 20px;position: relative;}
 .section-top{padding-top: 80px;}
 .intro-content {background: rgba(0, 0, 0, 0.65); height: 500px; }
 
@@ -37,16 +38,22 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
   #home_register{width: 98%;margin: 0 1%}
 }
 @media screen and (max-width: 766px){
-  .carousel-slider{margin-top: 250px}
+  .carousel-slider{margin-top: 300px!important}
 }
+
 
 @media screen and (max-width: 438px){
   .carousel-area, .intro-content{height: 600px}
   .carousel-slider{margin-top: 250px}
 }
+
 /**********************************************************/
 /* how work section */
-.our-community{margin-top: 80px;}
+
+.our-community{margin-top: 50px;}
+@media screen and (max-width: 990px){
+  .our-community{margin-top: 20px;}
+}
 .our-community h2{padding-top: 50px;}
 .our-community img{margin-top: -100px;}
 .how-work-text{position: relative;top: 60px;}
@@ -56,7 +63,7 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 .projects_portfolio{
   background: url('../../site/images/team_background.jpg');margin-top: 10px;padding: 20px;}
 /* home page call action*/
-.call-action{margin-top: 80px;background-color: #000;color: #fff;}
+.call-action{margin-top: 80px;}
 /* home page our serc=vice section*/
 .our-articals{margin-top: 80px;}
 
@@ -109,6 +116,24 @@ body{font-family: JF-Flat-regular; overflow-x: hidden;}
 #social_send_message{cursor: pointer;color: #2196F3;}
 @media screen and (max-width: 766px) {#social_card{height: 400px!important;margin-bottom: 20px;}}
 @media screen and (max-width: 250px) {#social_card{height: 450px!important;margin-bottom: 20px;}}
+/* ============================================*/
+/* for search users page*/
+.searchResults_name p{position: relative; top: 40px;right: 10px;}
+.searchResults_location p{position: relative; top: 25px;right: 10px;}
+@media screen and (max-width: 460px){
+  .searchResults{height: 160px;}
+  .searchResults_name p{position: relative; top: 75px;right: -80px;}
+  .searchResults_location p{position: relative; top: 55px;right: -80px;}
+  .searchResults_rating{position: relative;top: 33px;right: -17px;}
+}
+@media screen and (max-width: 334px){
+  .searchResults{height: 180px;}
+  .searchResults_name p{position: absolute;top: 87px;right: 20px}
+  .searchResults_location p{position: absolute;top: 105px;right: 20px}
+  .searchResults_rating{position: absolute;top: 110px;right: 0px}
+}
+.searchResults_image img{width: 80px; height: 80px;}
+
 /*
 * media  query sectio
 */

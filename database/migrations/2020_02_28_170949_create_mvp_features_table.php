@@ -20,6 +20,7 @@ class CreateMvpFeaturesTable extends Migration
                 ->references('id')
                 ->on('mvp');
             $table->string('name');
+            $table->string('username')->nullable();
             $table->text('description');
             $table->string('url');
             $table->timestamps();
@@ -28,7 +29,7 @@ class CreateMvpFeaturesTable extends Migration
 
     /**
      * Reverse the migrations.
-     * 
+     *
      * @return void
      */
     public function down()

@@ -1,7 +1,7 @@
 <template>
 		<div class="w3-white w3-padding w3-round w3-card" style="padding-top: 30px!important">
 			<div class="row">
-				<div class="form-group col-md-12 text-right">
+				<div class="form-group col-md-6 text-right">
 						<validation-provider name="name" rules="required|max:25|string" v-slot="{ errors }">
 							<input class="form-control text-right"  placeholder="الاسم" type="text" name="name"  v-model="name">
 							<span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
@@ -9,6 +9,15 @@
 							</span>
 						</validation-provider>
 					</div>
+
+					<div class="form-group  col-md-6 text-right">
+							<validation-provider name="username" rules="required|max:25|string" v-slot="{ errors }">
+								<input class="form-control text-right"  placeholder="اسم الاستخدام" type="text" name="username"  v-model="username">
+								<span v-show="errors[0]" :class="{'form-control': true, 'alert-danger text-right': errors[0] }">
+									{{ errors[0] }}
+								</span>
+							</validation-provider>
+						</div>
 
 					<div class="form-group col-md-6 text-right">
 							<validation-provider name="email" rules="required|max:25|email" v-slot="{ errors }">

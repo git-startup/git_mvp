@@ -12,9 +12,9 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header w3-right-align">
-                  <span class="w3-hide-small">
+                  <span class="">
                     <i onclick="open_contacts_list()" class="fa fa-bars w3-large w3-margin-left w3-margin-top" style="cursor: pointer"></i>
-                    اختر مستخدم لتبدء التواصل معه
+                    اضغط لاختيار مستخدم 
                   </span>
                 </div>
 

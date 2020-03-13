@@ -19,6 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
         'role',
         'phone',
@@ -29,6 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'description',
         'skills',
         'is_disable',
+        'is_completed',
         'is_deleted'
     ];
 
@@ -126,52 +128,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return (bool) $status->likes()->where('user_id',$this->id)->count();
     }
 
-    // for work table
     public function workersOfMine(){
-        return $this->belongsToMany(User::class,'work_list','worker_id','user_id');
-    }
-
-    public function workerOf(){
         return $this->belongsToMany(User::class,'work_list','user_id','worker_id');
     }
 
+    public function workersOf(){
+        return $this->belongsToMany(User::class,'work_list','worker_id','user_id');
+    }
+
     public function workers(){
-        return $this->workersOfMine()->wherePivot('accepted',true)->get()->merge($this->workerOf()->wherePivot('accepted',true)->get());
-    }
-
-    public function workRequest(){
-        return $this->workersOfMine()->wherePivot('accepted',false)->get();
-    }
-
-    public function workRequestPending(){
-        return $this->workerOf()->wherePivot('accepted',false)->get();
-    }
-
-    public function hasWorkRequestPending(User $user){
-        return (bool) $this->workRequestPending()->where('id',$user->id)->count();
-    }
-
-    public function hasWorkRequestRecived(User $user){
-        return (bool) $this->workRequest()->where('id',$user->id)->count();
-    }
-
-    public function addWorker(User $user){
-        $this->workerOf()->attach($user->id);
-    }
-
-    public function deleteWorker(User $user){
-        $this->workerOf()->detach($user->id);
-        $this->workersOfMine()->detach($user->id);
-    }
-
-    public function acceptWorkRequest(User $user){
-        $this->workRequest()->where('id',$user->id)->first()->pivot->update([
-            'accepted' => true,
-        ]);
-    }
-
-    public function isWorkWith(User $user){
-        return (bool) $this->workers()->where('id',$user->id)->count();
+        return $this->workersOfMine()->wherePivot('accepted',true)->get()->merge($this->workersOf()->wherePivot('accepted',true)->get());
     }
 
 }

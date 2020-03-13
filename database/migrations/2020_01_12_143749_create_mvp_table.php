@@ -25,7 +25,6 @@ class CreateMvpTable extends Migration
             $table->string('slug')->unique();
             $table->text('dev_tools');
             $table->string('mvp_link');
-            $table->integer('client_id')->nullable();
             $table->integer('is_approved')->unsigned()->default(0);
             $table->integer('is_available')->unsigned()->default(1);
             $table->integer('is_deleted')->nullable();

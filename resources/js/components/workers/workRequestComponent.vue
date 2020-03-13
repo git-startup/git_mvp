@@ -2,7 +2,7 @@
 	<div id="agreement_model" class="w3-modal" style="display: none;">
 			<div class="w3-modal-content w3-card-4 w3-animate-zoom" style="">
 					<div class="w3-margin row" style="padding-top: 30px">
-							<div class="form-group col-md-12">
+							<div class="form-group col-md-6">
 								<label for="work_title">اسم تعريفي للمشروع</label>
 								<validation-provider name="work_title" rules="required|max:150" v-slot="{ errors }">
 									<input type="text" id="work_title" name="work_title" v-model="work_title" class="form-control">
@@ -13,12 +13,12 @@
 							</div>
 							<div class="form-group col-md-6">
 								<label for="end_of_agreement"> بداية ونهاية فترة العمل  </label>
-								<date-picker v-model="range" range  lang="en" type="date" formate="YYYY-MM-dd" style="width: 100%"></date-picker>
+								<date-picker v-model="range" range  lang="en" type="date" formate="YYYY" style="width: 100%"></date-picker>
 							</div>
-							<div class="form-group col-md-6">
-								<label> تكلفة التطوير </label>
+							<div class="form-group col-md-12">
+								<label> تكلفة التطوير - بالدولار </label>
 								<vue-slider
-	                v-model="price"
+	                v-model="sallery"
 	                :min="0"
 	                :max="400"
 	                :interval="1" >
@@ -74,7 +74,7 @@ import 'vue-slider-component/theme/antd.css';
 				work_title: '',
 				agreement: '',
 				range: [],
-				price: 0,
+				sallery: 0,
 				end_of_agreement: ''
 			}
 		},
@@ -91,7 +91,7 @@ import 'vue-slider-component/theme/antd.css';
 					work_title: this.work_title,
 					agreement: this.agreement,
 					date_range: this.range,
-					price: this.price,
+					sallery: this.sallery,
 					_token: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 				}).then((response) => {
 					document.getElementById('send_request_btn').innerHTML = 'تم ارسال الطلب ';

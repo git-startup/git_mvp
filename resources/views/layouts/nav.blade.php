@@ -22,7 +22,7 @@
 
 <!-- User Avatar Menu -->
 <div class="w3-dropdown-content w3-border-top w3-black w3-border-bottom w3-bar-block notification_content" id="drop_content_profile" style="left: 0px">
-    <a href="/profile/{{ Auth::user()->id }}" class="w3-bar-item w3-hover-dark-grey w3-center w3-button"> الملف الشخصي   </a>
+    <a href="/profile/{{ Auth::user()->username }}" class="w3-bar-item w3-hover-dark-grey w3-center w3-button"> الملف الشخصي   </a>
       <a href="{{ route('logout') }}" style="text-decoration: none;"
           onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();" class="w3-bar-item w3-center w3-button w3-hover-dark-grey">تسجيل خروج</a>

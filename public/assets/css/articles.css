@@ -15,90 +15,99 @@
     top: 53.5px;
     left: 25%;
 }
-.container article { 
-    padding: 1rem; 
-    margin-top: 7%; 
+@media screen and (max-width: 574px){
+  .search-box input[type="search"]{
+      width: 80%;
+      margin: 0 10% auto;
+  }
+  .search-box input[type="submit"]{
+      left: 5%;
+  }
+}
+.container article {
+    padding: 1rem;
+    margin-top: 7%;
     background-color: #fff;
-} 
+}
 
-.container article h1 {  
+.container article h1 {
     font-size: 300%;
 }
 
-.container article .article-main-img { 
+.container article .article-main-img {
     margin-top: 2%;
 }
 
-.container article p {  
-    margin-top: 4%; 
+.container article p {
+    margin-top: 4%;
     text-align: right;
-    
-} 
 
-.comments-wrap { 
-    padding: 1rem; 
+}
+
+.comments-wrap {
+    padding: 1rem;
     margin-top: 5%;
     background-color: #fff;
-} 
+}
 
-.comments-wrap textarea { 
-    width: 100%; 
+.comments-wrap textarea {
+    width: 100%;
     height:30%;
-} 
+}
 
-.comments-wrap .comment { 
-    width: 100%; 
+.comments-wrap .comment {
+    width: 100%;
     background-color:#f1f1f1;
-    padding: 0.5rem; 
-    margin-bottom: 2%;  
-    font-size: 20px; 
-    text-align: right; 
+    padding: 0.5rem;
+    margin-bottom: 2%;
+    font-size: 20px;
+    text-align: right;
 
-} 
+}
 
-.comments-wrap .comment h5 { 
-    text-align: left; 
+.comments-wrap .comment h5 {
+    text-align: left;
     font-size: 15px;
-}  
+}
 
-.comments-wrap .comment h5 img { 
-    width: 4%; 
-    margin-right: 0.5rem; 
+.comments-wrap .comment h5 img {
+    width: 4%;
+    margin-right: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-.comments-wrap .comment p { 
+.comments-wrap .comment p {
     font-size: 15px;
 }
 
-.article-hold { 
-    margin-bottom: 5%; 
+.article-hold {
+    margin-bottom: 5%;
     transform: all 1s;
-} 
+}
 
-.article-hold img { 
-    width: 100%; 
+.article-hold img {
+    width: 100%;
 
 }
 
-.article-hold:hover { 
+.article-hold:hover {
     box-shadow: 0 0 15px 0 black;
-} 
+}
 
 
-.another-articles h2 { 
-    width: 30%; 
-    margin: 5% auto; 
-    margin-top: 5%; 
-    margin-bottom: 2%; 
-} 
+.another-articles h2 {
+    width: 30%;
+    margin: 5% auto;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
 
-.underline { 
+.underline {
     width: 30%;
     background-color: #4285F4;
     height: 0.1rem;
-}  
+}
 
-.another-articles p { 
-    text-align: center; 
+.another-articles p {
+    text-align: center;
 }

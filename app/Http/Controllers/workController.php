@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Carbon;
 use App\User;
 use App\Work;
 use App\Mvp_type;
@@ -13,48 +14,44 @@ use App\Events\workNotification;
 class workController extends Controller
 {
     public function getIndex(){
-        $workers = Auth::user()->workers();
-        $requests = Auth::user()->workRequest();
 
-        $requests_pending = Auth::user()->workRequestPending();
+        $requests = Work::where('worker_id',Auth::user()->id)
+                        ->where('accepted',0)
+                        ->where('is_deleted',0)->with('user')->get();
+
+        $requests_pending = Work::where('user_id',Auth::user()->id)
+                        ->where('accepted',0)
+                        ->where('is_deleted',0)->get();
 
         $mvp_type = Mvp_type::where('is_active',1)->get();
 
         return view('workers.index')
-        ->with('workers',$workers)
         ->with('requests',$requests)
         ->with('requests_pending',$requests_pending)
         ->with('mvp_type',$mvp_type);
 
     }
 
-    public function getAdd(Request $request){
+    public function addWorker(Request $request){
+
         $user = User::where('id',$request->worker_id)->first();
         if(!$user){
-            return response()->json('that user could not be found');
+            return response()->json('هذا المستخدم غير موجود حاليا');
         }
-
         if(Auth::user()->id === $user->id){
-            return response()->json('cannot send request to your self');
+            return response()->json('لا يمكنك ارسال طلب عمل لنفسك');
         }
 
-        // test this line
-        if(Auth::user()->hasWorkRequestPending($user) || $user->hasWorkRequestPending(Auth::user()) ){
-            return response()->json('request alredy pending .');
-        }
-
-        if(Auth::user()->isWorkWith($user)){
-            return response()->json('you are alredy worker ');
-        }
-
-        //Auth::user()->addWorker($user);
         Work::create([
           'user_id'          => Auth::user()->id,
           'worker_id'        => $user->id,
           'accepted'         => 0,
           'work_title'       => $request->work_title,
           'agreement'        => $request->agreement,
-          'end_of_agreement' => $request->end_of_agreement
+          'start_of_agreement' => Carbon\Carbon::parse($request->date_range[0])->toDateTimeString(),
+          'end_of_agreement' => Carbon\Carbon::parse($request->date_range[1])->toDateTimeString(),
+          'sallery' => $request->sallery,
+          'is_deleted' => 0
         ]);
 
         broadcast(new workNotification($user));
@@ -63,29 +60,54 @@ class workController extends Controller
 
     }
 
-    public function getAccept($id){
+    public function postAccept(Request $request){
 
-        $user = User::where('id',$id)->first();
-        if(!$user){
-            return redirect()->route('home')->with('info','that user could not be found');
-        }
+        Work::where('id',$request->work_id)->update([
+          'accepted' => 1
+        ]);
 
-        if(!Auth::user()->hasWorkRequestRecived($user)){
-            return redirect()->route('home');
-        }
+        return response()->json([
+          'message' => 'تم قبول طلب العمل'
+        ]);
 
-        Auth::user()->acceptWorkRequest($user);
-        return redirect()
-            ->route('home')
-            ->with('info','friend request accepted.');
     }
 
-    public function postDelete($id){
-        $user = User::where('id',$id)->first();
-        if(!Auth::user()->isWorkWith($user)){
-            return redirect()->back();
-        }
-        Auth::user()->deleteWorker($user);
-        return redirect()->back()->with('info','friend deleted');
+    public function postEdit(Request $request){
+
+      $this->validate($request,[
+        'work_title' => 'required|string',
+        'start_of_agreement' => 'required|date',
+        'end_of_agreement' => 'required|date',
+        'sallery' => 'required|integer',
+        'agreement' => 'required|string'
+      ]);
+
+
+
+      Work::where('id',$request->work_id)->update([
+        'work_title' => $request->work_title,
+        'start_of_agreement' => $request->start_of_agreement,
+        'end_of_agreement' => $request->end_of_agreement,
+        'sallery' => $request->sallery,
+        'agreement' => $request->agreement,
+      ]);
+
+      return redirect()->back()->with('info','تم تحديث البيانات بنجاح  ');
+    }
+
+    public function postReject(Request $request){
+      Work::where('id',$request->work_id)->update([
+        'accepted' => 0
+      ]);
+
+      return redirect()->back()->with('info','  تم رفض الطلب بنجاح ');
+    }
+
+    public function postDelete(Request $request){
+        Work::where('id',$request->work_id)->update([
+          'is_deleted' => 1
+        ]);
+
+        return redirect()->back()->with('info','تم حذف الطلب بنجاح');
     }
 }

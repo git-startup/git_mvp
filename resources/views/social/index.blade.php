@@ -14,7 +14,7 @@
     <!-- profile and other things -->
     <div class="col-md-3 card card-body bg-light" id="social_card" style="height: 400px!important;">
       <div class="w3-margin">
-        <a href="/profile/{{ Auth::user()->id }}"> <p>{{ Auth::user()->username }}</p>
+        <a href="/profile/{{ Auth::user()->username }}"> <p>{{ Auth::user()->username }}</p>
           <img src="{{ asset(Auth::user()->image) }}" class="w3-circle" height="55" width="55" alt="{{ Auth::user()->name }}">
         </a>
       </div>

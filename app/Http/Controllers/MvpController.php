@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Mvp;
+use App\Mvp_type;
 use App\User;
 
 class MvpController extends Controller{
 
 	// to get add mvp page
 	public function getAdd(){
-			$users = User::get();
+			$users = User::where('is_deleted',0)->where('is_disable',0)->get();
+			$mvp_types = Mvp_type::where('is_active',1)->get();
       return view('mvp.add')
-			 				->with('users',$users);
+			 				->with('users',$users)
+							->with('mvp_types',$mvp_types);
     }
     // to add mvp
     public function postAdd(Request $request){
@@ -40,7 +43,7 @@ class MvpController extends Controller{
             'slug'        => $request->slug,
             'dev_tools'   => $request->dev_tools,
             'mvp_link'    => $request->mvp_link,
-						'client_id'   => $request->client_id
+						'is_deleted'  => 0
         ]);
 
 	    return view('mvp.index',['slug' => $request->slug])
@@ -53,8 +56,14 @@ class MvpController extends Controller{
 							->where('is_approved',1)
 							->where('is_available',1)
 							->where('is_deleted',0)->first();
-		if($mvp->count() > 0){
-				return view('mvp.index')->with('mvp',$mvp);
+
+		// get all users for add feature users datalist
+		$users = User::where('is_deleted',0)->where('is_disable',0)->get();
+
+		if($mvp){
+				return view('mvp.index')->with('mvp',$mvp)->with('users',$users);
+		}else{
+			return redirect()->back()->with('info','هذا المشروع غير متاح حاليا');
 		}
  	}
     // to get edit mvp page
@@ -70,34 +79,31 @@ class MvpController extends Controller{
     // to edit mvp data
     public function postEditMvp(Request $request,$slug){
 	    if($request->has('btn_edit_mvp')){
-	        $this->validate($request,[
-	            'name'            => 'required|string',
-	            'type'            => 'required|string',
-	            'description'     => 'required|string',
-	            'mvp_file'        => 'required|url',
-	            'dev_tools'       => 'required|string',
-	            'image_one'       => 'image|mimes:jpeg,jpg,png|max:5120',
-	            'image_two'       => 'image|mimes:jpeg,jpg,png|max:5120',
-	            'image_three'     => 'image|mimes:jpeg,jpg,png|max:5120',
-	        ],[
-	            'required'  => 'رجاءا قم بملئ هذا الحقل اولا',
-	            'string'    => 'هذا الحقل يجب ان يحتوي على بيانات نصية',
-	            'max'       => 'حجم الملف اكبر من حجم الملف المسموح به في هذا الحقل',
-	            'mimes'     => 'نوع الملف غير مسموح به',
-							'url'       => 'الرجاء ادخال رابط صحيح'
-	        ]);
+				$this->validate($request,[
+						'name'            => 'required|string',
+						'type'            => 'required|string',
+						'description'     => 'required|string',
+						'mvp_link'        => 'required|url',
+						'dev_tools'       => 'required|string'
+				],[
+						'required'  => 'رجاءا قم بملئ هذا الحقل اولا',
+						'string'    => 'هذا الحقل يجب ان يحتوي على بيانات نصية',
+						'max'       => 'حجم الملف اكبر من حجم الملف المسموح به في هذا الحقل',
+						'mimes'     => 'نوع الملف غير مسموح به',
+						'url'       => 'الرجاء ادخال رابط صحيح'
+				]);
 
-            Mvp::where('id',$request->mvp_id)->update([
-              'name'               => $request->input('name'),
-	            'type'               => $request->input('type'),
-	            'description'        => $request->input('description'),
-	            'dev_tools'      	 => $request->input('dev_tools'),
-	            'mvp_link'           => $request->mvp_link
-            ]);
+        Mvp::where('id',$request->mvp_id)->update([
+          'name'           => $request->input('name'),
+          'type'           => $request->input('type'),
+          'description'    => $request->input('description'),
+          'dev_tools'      => $request->input('dev_tools'),
+          'mvp_link'       => $request->mvp_link
+        ]);
 
-            return redirect()
-                ->back()
-                ->with('info','تم تعديل المشروع بنجاح');
+        return redirect()
+            ->back()
+            ->with('info','تم تحديث بيانات المشروع ');
 	    }
 
 	}
@@ -108,14 +114,20 @@ class MvpController extends Controller{
 					->where('is_approved',1)
 					->where('is_available',1)
 					->where('is_deleted',0)->get();
+		$mvp_type = Mvp_type::where('is_active',1)->get();
+
 		return view('mvp.list')
-				->with('mvps',$mvps);
+				->with('mvps',$mvps)
+				->with('mvp_type',$mvp_type);
 	}
 
 	public function search($type){
 		$mvps = Mvp::where('type',$type)->get();
+		$mvp_type = Mvp_type::where('is_active',1)->get();
+
 		return view('mvp.list')
-				->with('mvps',$mvps);
+				->with('mvps',$mvps)
+				->with('mvp_type',$mvp_type);
 	}
 
 }

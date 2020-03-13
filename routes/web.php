@@ -37,14 +37,14 @@ Route::post('/conversation/send', 'ContactsController@send');
 /*
 * Route For User Profile
 */
-Route::get('/profile/{user_id}',[
+Route::get('/profile/{username}',[
     'uses' => 'ProfileController@getProfile',
     'as' => 'profile.index',
     'middleware' => ['auth'],
     //'middleware' => ['verified'],
 ]);
 
-Route::post('/profile/{user_id}',[
+Route::post('/profile/{username}',[
     'uses' => 'ProfileController@postProfile',
     'middleware' => ['auth'],
 ]);
@@ -114,20 +114,32 @@ Route::get('/workers',[
 ]);
 
 Route::post('/workers/add',[
-    'uses' => 'workController@getAdd',
+    'uses' => 'workController@addWorker',
     'as' => 'workers.add',
     'middleware' => ['auth'],
 ]);
 
-Route::get('/workers/accept/{id}',[
-    'uses' => 'workController@getAccept',
+Route::post('/workers/accept',[
+    'uses' => 'workController@postAccept',
     'as' => 'workers.accept',
     'middleware' => ['auth'],
 ]);
 
-Route::post('/workers/delete/{id}',[
+Route::post('/workers/reject',[
+    'uses' => 'workController@postReject',
+    'as' => 'workers.reject',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/workers/delete',[
     'uses' => 'workController@postDelete',
     'as' => 'workers.delete',
+    'middleware' => ['auth'],
+]);
+
+Route::post('/workers/edit',[
+    'uses' => 'workController@postEdit',
+    'as' => 'workers.edit',
     'middleware' => ['auth'],
 ]);
 

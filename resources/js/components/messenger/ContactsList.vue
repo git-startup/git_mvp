@@ -36,7 +36,9 @@
                 this.selected = contact;
                 this.$emit('selected', contact);
                 // close contact menu
-                document.getElementById("contacts_list").style.display = 'none'
+                document.getElementById("contacts_list").style.display = 'none';
+                // add border in bottom of contact name
+                document.getElementById('contact_name').style.borderBottom = '1px solid #f1f1f1';
             }
         },
         computed: {
@@ -61,14 +63,15 @@
     margin-top: -20px;
 
     nav{
-      background-color: rgba(0,0,0,.03);
+      background-color: #fff;
+      border-left: 1px solid #f1f1f1;
       z-index:99;
       width:320px;
       height: 600px;
     }
     @media screen and (max-width: 480px){
       nav{
-        width:220px
+        width:210px
       }
     }
 
@@ -77,7 +80,7 @@
         padding-left: 0;
 
         li {
-            border-bottom: 1px solid #aaaaaa;
+            border-bottom: 1px solid #f1f1f1;
             height: 100%;
             position: relative;
             cursor: pointer;
